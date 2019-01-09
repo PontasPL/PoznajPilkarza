@@ -1,0 +1,47 @@
+<header>
+  <div class="navbar">
+
+    <div class="navbar-items">
+      <ul class="navbar-list">
+        <li class="navbar-item">
+          <img class="size-logo" src="../assets/Icons/Logo.svg" alt="LOGO">
+        </li>
+
+        <li (mouseenter)="malowanie(true)" (mouseleave)="malowanie(false)" class="navbar-item">
+          <a href="#">
+            <div>
+              <div class="canvas-icons" id="canvas-whistle"></div>
+            </div>
+            <div class="category category-1">
+              Mecze
+            </div>
+          </a>
+        </li>
+        <li (mouseenter)="malowanie2(true)" (mouseleave)="malowanie2(false)" class="navbar-item">
+          <div>
+            <div class="canvas-icons" id="canvas-footballer"></div>
+          </div>
+          <div class="category category-2">
+            Piłkarze
+          </div>
+        </li>
+        <li (mouseenter)="malowanie3(true)" (mouseleave)="malowanie3(false)" class="navbar-item">
+          <div>
+            <div class="canvas-icons" id="canvas-managers"></div>
+          </div>
+          <div class="category category-3">
+            Trenerzy
+          </div>
+        </li>
+        <li class="navbar-item">
+          <div>
+            <div class="canvas-icons" id="canvas-login"></div>
+          </div>
+          <div class="category category-4">
+            Logowanie
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</header>

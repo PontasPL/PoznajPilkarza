@@ -1,0 +1,15 @@
+$whistle-color-hover: cyan;
+
+@keyframes whistle-blowing {
+  to {
+    transform: rotate(+7deg);
+  }
+}
+
+%whistle-hover {
+  animation-name: whistle-blowing;
+  animation-duration: 0.2s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate-reverse;
+  fill: $whistle-color-hover;
+}

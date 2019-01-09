@@ -1,0 +1,116 @@
+@import "./scss/nav-icons/all-nav-icons.scss";
+
+
+.navbar {
+  background-color: rgba($color: #000000, $alpha: 0.63);
+
+  .navbar-items {
+    width: 60%;
+    margin: 0 auto;
+    padding: 30px;
+
+    @media screen and (max-width: 980px) {
+      width: 100%;
+      padding: 20px 0 20px 0;
+    }
+
+    @media screen and (max-width: 600px) {
+      width: 100%;
+      padding: 20px 0 20px 0;
+
+      .navbar-item {
+
+        display: none;
+
+      }
+    }
+
+    .navbar-list {
+
+      display: flex;
+      align-items: center;
+
+      .navbar-item {
+        margin: 0 auto;
+
+        &>* {
+          fill: white;
+        }
+
+        &:hover {
+          .category-1 {
+            color: $whistle-color-hover;
+
+          }
+
+          .category-2 {
+            color: $footballer-color-hover;
+
+          }
+
+          .category-3 {
+            color: $managers-color-hover;
+          }
+
+          .category-4 {
+            color: $login-color-hover;
+          }
+
+          #canvas-managers {
+            fill: $managers-color-hover;
+          }
+
+          #canvas-footballer {
+            fill: $footballer-color-hover;
+          }
+
+          #canvas-login {
+            fill: $login-color-hover;
+          }
+
+          #canvas-whistle {
+            @extend %whistle-hover;
+          }
+        }
+
+        .navbar-item-icon {
+          height: auto;
+          max-width: 220px;
+          min-width: 80px;
+          width: 100%;
+        }
+
+        .category {
+          color: white;
+          font-family: 'DJBSkritchSkratch', DJBSkritchSkratch;
+          font-weight: 800;
+          // font-size: 0.84vw;
+          font-size: 16px;
+          display: flex;
+          justify-content: center;
+        }
+      }
+    }
+  }
+}
+
+.canvas-icons {
+
+  display: flex;
+  justify-content: center;
+  padding: 0 0 13px 0;
+}
+
+//   #canvas-footballer {
+//     display: flex;
+//     justify-content: center;
+//   }
+
+
+
+.size-logo {
+  height: auto;
+  max-width: 220px;
+  min-width: 80px;
+  width: 100%;
+}
