@@ -16,16 +16,19 @@
 
     @media screen and (max-width: 600px) {
       width: 100%;
-      padding: 20px 0 20px 0;
+      //   padding: 20px 0 20px 0;
 
       .navbar-item {
-
         display: none;
-
       }
+
+
     }
 
+
     .navbar-list {
+
+
 
       display: flex;
       align-items: center;
@@ -109,8 +112,36 @@
 
 
 .size-logo {
-  height: auto;
+  height: 100%;
   max-width: 220px;
   min-width: 80px;
   width: 100%;
+}
+
+
+
+
+@media screen and (min-width: 601px) {
+  #mobile {
+    display: none;
+    visibility: hidden;
+  }
+}
+
+
+@media screen and (max-width: 600px) {
+  #mobile {
+    display: block;
+    // margin: 0 auto;
+    position: absolute;
+  }
+
+  .navbar-list {}
+
+  #abd {
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+  }
+
 }

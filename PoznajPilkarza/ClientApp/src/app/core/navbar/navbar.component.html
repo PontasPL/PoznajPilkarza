@@ -3,10 +3,17 @@
 
     <div class="navbar-items">
       <ul class="navbar-list">
-        <li class="navbar-item">
+        <li id="mobile">
+          <div class="hamburger">
+            <span class="hamburger-first-line"></span>
+            <span class="hamburger-second-line"></span>
+            <span class="hamburger-third-line"></span>
+            <span class="hamburger-first-line"></span>
+          </div>
+        </li>
+        <li class="navbar-item" id="abd">
           <img class="size-logo" src="../assets/Icons/Logo.svg" alt="LOGO">
         </li>
-
         <li (mouseenter)="malowanie(true)" (mouseleave)="malowanie(false)" class="navbar-item">
           <a href="#">
             <div>
@@ -45,3 +52,8 @@
     </div>
   </div>
 </header>
+<div class="container">
+  <span class="test1"></span>
+  <span class="test2"></span>
+  <span class="test3"></span>
+</div>
