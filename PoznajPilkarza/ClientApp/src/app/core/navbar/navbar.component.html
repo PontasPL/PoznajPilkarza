@@ -4,16 +4,18 @@
     <div class="navbar-items">
       <ul class="navbar-list">
         <li id="mobile">
-          <div class="hamburger">
-            <span class="hamburger-first-line"></span>
-            <span class="hamburger-second-line"></span>
-            <span class="hamburger-third-line"></span>
-            <span class="hamburger-first-line"></span>
-          </div>
+          <button type="submit" (click)="hamburgerClick()" class="hamburger">
+            <span class="hamburger-first-line" [ngClass]="{'open-upper-line': checkHamburger==true}"></span>
+            <span class="hamburger-second-line" [ngClass]="{'open-cross-left-line': checkHamburger==true}"></span>
+            <span class="hamburger-third-line" [ngClass]="{'open-cross-right-line': checkHamburger==true}"></span>
+            <span class="hamburger-first-line" [ngClass]="{'open-lower-line': checkHamburger==true}"></span>
+          </button>
         </li>
         <li class="navbar-item" id="abd">
           <img class="size-logo" src="../assets/Icons/Logo.svg" alt="LOGO">
         </li>
+
+
         <li (mouseenter)="malowanie(true)" (mouseleave)="malowanie(false)" class="navbar-item">
           <a href="#">
             <div>
@@ -50,10 +52,6 @@
         </li>
       </ul>
     </div>
+
   </div>
 </header>
-<div class="container">
-  <span class="test1"></span>
-  <span class="test2"></span>
-  <span class="test3"></span>
-</div>

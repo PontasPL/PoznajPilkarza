@@ -9,6 +9,7 @@ declare const SVG: any;
 })
 export class NavbarComponent implements OnInit {
 
+  checkHamburger = false;
   constructor(private http: HttpClient) { }
 
   malowanie(onHover: boolean) {
@@ -57,6 +58,11 @@ export class NavbarComponent implements OnInit {
   ngOnInit() {
     this.paintingSvgIcons();
   }
+
+  hamburgerClick() {
+    this.checkHamburger = !this.checkHamburger;
+  }
+
 
   paintingSvgIcons() {
     const listIconsName: String[] = [`Whistle`, `Login`, `Managers`, `Footballer`];

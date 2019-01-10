@@ -5,7 +5,7 @@ $hamburger-height: 5px;
   display: flex-inline;
   justify-content: center;
   align-content: center;
-  margin: 15px;
+  margin: 25px;
 
   .hamburger-first-line {
     margin: 10px 0;
@@ -14,8 +14,11 @@ $hamburger-height: 5px;
     height: $hamburger-height;
     width: $hamburger-width;
     border-radius: 10px;
-
+    transition: .25s;
+    transform: rotate(0deg);
   }
+
+
 
   .hamburger-second-line {
     position: absolute;
@@ -24,7 +27,8 @@ $hamburger-height: 5px;
     height: $hamburger-height;
     width: $hamburger-width;
     border-radius: 10px;
-
+    transition: .25s;
+    transform: rotate(0deg);
   }
 
   .hamburger-third-line {
@@ -33,37 +37,72 @@ $hamburger-height: 5px;
     height: $hamburger-height;
     width: $hamburger-width;
     border-radius: 10px;
-
+    transition: .25s;
+    transform: rotate(0deg);
   }
 
-  &:hover {
-
-    span:nth-child(1) {
-      transform: translate(30px);
-      transition: .25s;
-      opacity: 0.0;
-    }
-
-    span:nth-child(4) {
-      transform: translate(-30px);
-      transition: .25s;
-      opacity: 0.0;
-
-    }
-
-    span:nth-child(3) {
-      transform: translate(-30px);
-      transition: .25s;
-
-      transform: rotate(45deg);
-      background: #ff5959;
-    }
-
-    span:nth-child(2) {
-      // transform: translate(-30px);
-      transition: .25s;
-      transform: rotate(-45deg);
-      background: #ff5959;
-    }
+  .open-lower-line {
+    transform: translate(-30px);
+    transition: .25s;
+    opacity: 0.0;
   }
+
+  .open-upper-line {
+    transform: translate(30px);
+    transition: .25s;
+    opacity: 0.0;
+  }
+
+  .open-cross-left-line {
+    transition: .25s;
+    transform: rotate(45deg);
+    background: #ff5959;
+  }
+
+  .open-cross-right-line {
+    transition: .25s;
+    transform: rotate(-45deg);
+    background: #ff5959;
+  }
+
+  .close-cross-right-line {
+    transition: .25s;
+    transform: rotate(45deg);
+    background: #ff5959;
+  }
+
+
+
+  // .open {
+
+  //   span:nth-child(1) {
+  //     // transform: translate(30px);
+  //     // transition: .25s;
+  //     // opacity: 0.0;
+  //     background: red;
+  //   }
+
+  //   span:nth-child(4) {
+  //     transform: translate(-30px);
+  //     transition: .25s;
+  //     opacity: 0.0;
+
+  //   }
+
+  //   span:nth-child(3) {
+  //     transform: translate(-30px);
+  //     transition: .25s;
+
+  //     transform: rotate(45deg);
+  //     background: #ff5959;
+  //   }
+
+  //   span:nth-child(2) {
+  //     // transform: translate(-30px);
+  //     transition: .25s;
+  //     transform: rotate(-45deg);
+  //     background: #ff5959;
+  //   }
+  // }
+
 }
