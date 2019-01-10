@@ -16,14 +16,14 @@
         </div>
       </div>
 
-      <ul class="navbar-list">
+      <ul class="navbar-list" [ngClass]="{'navbar-list-mobile': checkHamburger==true}">
         <li class="navbar-item" id="logo-desktop">
           <img class="size-logo" src="../assets/Icons/Logo.svg" alt="LOGO">
         </li>
 
-
         <li (mouseenter)="malowanie(true)" (mouseleave)="malowanie(false)" class="navbar-item">
           <a href="#">
+
             <div>
               <div class="canvas-icons" id="canvas-whistle"></div>
             </div>
