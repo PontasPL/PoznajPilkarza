@@ -22,6 +22,9 @@
         display: none;
       }
 
+      #logo-desktop {
+        display: none;
+      }
 
     }
 
@@ -116,18 +119,35 @@
 
 
 @media screen and (min-width: 601px) {
+
   #mobile {
     display: none;
     visibility: hidden;
+
   }
 }
 
 
 @media screen and (max-width: 600px) {
+
   #mobile {
-    display: block;
+    // display: block;
     // margin: 0 auto;
-    position: absolute;
+    // position: absolute;
+
+    display: grid;
+    grid-template-columns: 75px auto 75px;
+
+    .mobile-logo {
+      display: flex;
+      justify-content: center;
+    }
+
+    .mobile-button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
   }
 
   .navbar-list {}
