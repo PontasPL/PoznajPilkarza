@@ -12,7 +12,7 @@ export class NavbarComponent implements OnInit {
   checkHamburger = false;
   constructor(private http: HttpClient) { }
 
-  malowanie(onHover: boolean) {
+  paintingIconMatches(onHover: boolean) {
     for (let indexwhistle = 1; indexwhistle <= 3; indexwhistle++) {
       const svgele = SVG.adopt(document.getElementById(`whistle${indexwhistle}`));
       if (onHover) {
@@ -25,7 +25,7 @@ export class NavbarComponent implements OnInit {
     }
   }
 
-  malowanie2(onHover: boolean) {
+  paintingIconFootballer(onHover: boolean) {
 
     const svgele = SVG.adopt(document.getElementById(`que-mark1`));
     if (onHover) {
@@ -41,7 +41,7 @@ export class NavbarComponent implements OnInit {
     }
   }
 
-  malowanie3(onHover: boolean) {
+  paintingIconManagers(onHover: boolean) {
     for (let indexwhistle = 1; indexwhistle <= 4; indexwhistle++) {
       const svgele = SVG.adopt(document.getElementById(`managers${indexwhistle}`));
       if (onHover) {

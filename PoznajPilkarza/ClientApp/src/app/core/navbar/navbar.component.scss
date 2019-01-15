@@ -1,11 +1,29 @@
 @import "./scss/nav-icons/all-nav-icons.scss";
 
+
+@keyframes navbar-animations {
+  0% {
+    opacity: 0;
+    transform: translateX(-150px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+
+}
+
+
 $nav-background-color :rgba($color: #000000, $alpha: 0.63);
 
 .navbar {
   background-color: $nav-background-color;
 
   .navbar-items {
+    animation-name: navbar-animations;
+    animation-duration: 2s;
+
     width: 60%;
     margin: 0 auto;
     padding: 30px;
@@ -157,9 +175,6 @@ $nav-background-color :rgba($color: #000000, $alpha: 0.63);
   }
 
   #mobile {
-    // display: block;
-    // margin: 0 auto;
-    // position: absolute;
 
     display: grid;
     grid-template-columns: 75px auto 75px;
