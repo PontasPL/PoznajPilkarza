@@ -1,0 +1,23 @@
+@import "../../app/shared/shared.scss";
+
+
+@mixin medium-main-container-mixin {
+  grid-template-areas: " main-block main-block main-block "
+    "main-inform-block main-inform-block main-inform-block";
+
+  .main-block {
+
+    .search-block {
+      margin: 0 15px;
+
+      .main-search-bar {
+        font-size: $search-font-size-title - 2px;
+      }
+
+      .main-search-tittle {
+        font-size: $search-font-size-title - 2px;
+      }
+    }
+  }
+
+}

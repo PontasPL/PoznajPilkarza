@@ -1,0 +1,91 @@
+$search-font-size-title: 19px;
+@import "../../app/shared/shared.scss";
+
+$back-color:rgba($color: #000000, $alpha: 0.43);
+$search-color: rgba(27, 26, 26, 0.747);
+
+@keyframes search-animations {
+  0% {
+    opacity: 0;
+    transform: translateY(-70px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+
+}
+
+
+@mixin main-container-mixin() {
+
+
+  position: absolute;
+  display: grid;
+  grid-template-columns: 15% 70% 15%;
+  grid-template-rows: minmax(140px, 25%) 75%;
+  width: 100%;
+  height: calc(100% - 134px);
+  grid-template-areas: " . main-block . "
+    "main-inform-block main-inform-block main-inform-block";
+
+
+  .main-block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    grid-area: main-block;
+
+    .search-block {
+      width: 640px;
+
+      .main-search-tittle {
+        font-family: 'DJBSkritchSkratch', DJBSkritchSkratch;
+        font-weight: 800;
+        color: white;
+        display: flex;
+        font-size: $search-font-size-title;
+        justify-content: center;
+        margin: 0 0 20px 0;
+        animation: search-animations 2s;
+
+        .search-tittle-item {
+          padding: 0 3px;
+        }
+      }
+
+
+      .main-search-bar {
+        animation-name: test;
+        animation: search-animations 2s;
+        height: 50px;
+        width: 140px;
+        border-radius: 15px;
+        text-align: center;
+        min-width: 100%;
+        background-color: $search-color;
+        font-family: 'DJBSkritchSkratch', DJBSkritchSkratch;
+        font-weight: 800;
+        color: white;
+      }
+    }
+  }
+
+  .main-inform-block {
+
+    grid-area: main-inform-block;
+    background-color: $back-color;
+    display: flex;
+
+    .main-inform-item {
+      margin: 0 auto;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+
+}

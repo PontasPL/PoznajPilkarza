@@ -1,0 +1,49 @@
+@import "../../app/shared/shared.scss";
+
+
+@mixin small-main-container-mixin {
+  grid-template-areas: " main-block main-block main-block "
+    "main-inform-block main-inform-block main-inform-block";
+
+  .main-block {
+
+    .search-block {
+      margin: 0 15px;
+
+      .main-search-tittle {
+        overflow-wrap: break-word;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .search-tittle-item {
+          padding: 5px 0;
+        }
+      }
+
+      .main-search-bar {
+        font-size: $search-font-size-title - 3px;
+      }
+
+      .main-search-tittle {
+        font-size: $search-font-size-title - 3px;
+      }
+    }
+
+  }
+
+  .main-inform-block {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 33% 34% 33%;
+    grid-template-areas: " main-inform-block "
+      " main-inform-block "
+      " main-inform-block ";
+
+    .main-inform-pitch {
+
+      grid-area: main-inform-pitch;
+    }
+  }
+
+}

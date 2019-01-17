@@ -1,2 +1,3 @@
-$shared-medium-width : 980px;
-$shared-small-width : 600px;
+$information-big-screen: "only screen and (min-width : 1px)";
+$information-medium-screen: "only screen and (min-width : 601px ) and (max-width : 980px)";
+$information-small-screen: "only screen and (max-width : 600px)";
