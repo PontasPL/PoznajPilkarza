@@ -23,26 +23,40 @@
 
       .main-search-bar {
         font-size: $search-font-size-title - 3px;
+        height: 40px;
       }
 
       .main-search-tittle {
         font-size: $search-font-size-title - 3px;
+        margin: 10px 0;
+
+        .search-tittle-item {
+
+          &:last-of-type {
+            display: none;
+            visibility: hidden;
+
+          }
+        }
       }
     }
 
   }
 
   .main-inform-block {
-    display: grid;
-    grid-template-columns: 100%;
-    grid-template-rows: 33% 34% 33%;
-    grid-template-areas: " main-inform-block "
-      " main-inform-block "
-      " main-inform-block ";
+    // display: grid;
+    // grid-template-columns: 100%;
+    // grid-template-rows: 33% 34% 33%;
+    // grid-template-areas: " main-inform-block "
+    //   " main-inform-block "
+    //   " main-inform-block ";
+    display: flex;
+    flex-direction: column;
+    padding: 20px 0;
 
     .main-inform-pitch {
 
-      grid-area: main-inform-pitch;
+      // grid-area: main-inform-pitch;
     }
   }
 

@@ -24,7 +24,7 @@ $search-color: rgba(27, 26, 26, 0.747);
   position: absolute;
   display: grid;
   grid-template-columns: 15% 70% 15%;
-  grid-template-rows: minmax(140px, 25%) 75%;
+  grid-template-rows: minmax(140px, 25%) 1fr;
   width: 100%;
   height: calc(100% - 134px);
   grid-template-areas: " . main-block . "
@@ -52,6 +52,11 @@ $search-color: rgba(27, 26, 26, 0.747);
 
         .search-tittle-item {
           padding: 0 3px;
+
+          .search-arrowRightDown {
+            position: absolute;
+            transform: scale(0.7) rotate(30deg);
+          }
         }
       }
 
@@ -74,6 +79,7 @@ $search-color: rgba(27, 26, 26, 0.747);
 
   .main-inform-block {
 
+    box-shadow: 0px 0px 10px 3px $back-color;
     grid-area: main-inform-block;
     background-color: $back-color;
     display: flex;

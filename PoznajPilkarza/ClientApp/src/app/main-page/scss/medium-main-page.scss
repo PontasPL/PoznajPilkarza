@@ -16,6 +16,15 @@
 
       .main-search-tittle {
         font-size: $search-font-size-title - 2px;
+
+        .search-tittle-item {
+          .search-arrowRightDown {
+            //position: absolute;
+            width: 100%;
+            transform: none;
+            max-width: 9vw;
+          }
+        }
       }
     }
   }
