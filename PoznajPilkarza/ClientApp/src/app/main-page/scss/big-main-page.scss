@@ -82,15 +82,98 @@ $search-color: rgba(27, 26, 26, 0.747);
     box-shadow: 0px 0px 10px 3px $back-color;
     grid-area: main-inform-block;
     background-color: $back-color;
-    display: flex;
+    // display: flex;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
 
+    // grid-template-areas: " pitch about-project about-me ";
     .main-inform-item {
-      margin: 0 auto;
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      display: grid;
+      grid-template-rows: 100px 1fr;
+
+      box-shadow: inset 0px 0px 10px 3px rgba(163, 163, 163, 1);
+      z-index: 10;
+      position: relative;
+
+      .main-tittle-item {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: 'DJBSkritchSkratch', DJBSkritchSkratch;
+        font-weight: 800;
+        color: white;
+        font-size: $search-font-size-title;
+      }
+
+      .main-bullet-points {
+        list-style: disc;
+        font-size: $search-font-size-title;
+        font-family: 'DJBSkritchSkratch', DJBSkritchSkratch;
+        font-weight: 800;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0 0 0 50px;
+        line-height: 2;
+
+        .main-bullet-dot {
+          font-size: 15px;
+          padding: 20px 0;
+        }
+      }
+
+      .main-content-item {
+        display: flex;
+        justify-content: center;
+        align-items: start;
+
+        .main-content-about {
+          display: flex;
+          align-items: center;
+          flex-direction: column;
+        }
+
+        .circle {
+          height: 200px;
+          width: 200px;
+          background-color: #bbb;
+          border-radius: 50%;
+          box-shadow: 0px 0px 8px 2px #CCD;
+          margin: 0 0 50px 0;
+        }
+
+        .main-content-about-text {
+          font-size: $search-font-size-title;
+          font-family: 'DJBSkritchSkratch', DJBSkritchSkratch;
+          font-weight: 800;
+          color: white;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          padding: 0 30px;
+          line-height: 2;
+          font-size: 15px;
+        }
+      }
     }
+
+    // // .main-inform-item {
+    // //   margin: 0 auto;
+    // //   width: 100%;
+    // //   display: flex;
+    // //   justify-content: center;
+    // //   align-items: center;
+    // //   flex-direction: column;
+
+    //   .main-tittle-item {
+    //     font-family: 'DJBSkritchSkratch', DJBSkritchSkratch;
+    //     font-weight: 800;
+    //     color: white;
+    //     margin: 0 0 20px 0;
+    //   }
+    // }
   }
 
 
