@@ -44,19 +44,26 @@
   }
 
   .main-inform-block {
-    // display: grid;
-    // grid-template-columns: 100%;
-    // grid-template-rows: 33% 34% 33%;
-    // grid-template-areas: " main-inform-block "
-    //   " main-inform-block "
-    //   " main-inform-block ";
     display: flex;
     flex-direction: column;
-    padding: 20px 0;
 
-    .main-inform-pitch {
+    .main-inform-item {
+      margin: 10px 0;
+      padding: 10px 0;
+      box-shadow: 0px 0px 6px 5px rgba(0, 0, 0, 0.53);
+    }
 
-      // grid-area: main-inform-pitch;
+    .pitch {
+      order: 1;
+    }
+
+    .about {
+      margin: 10px 0 0 0;
+      order: 3;
+    }
+
+    .assumption {
+      order: 2;
     }
   }
 

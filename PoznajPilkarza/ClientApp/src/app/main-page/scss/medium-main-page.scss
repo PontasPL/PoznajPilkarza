@@ -19,7 +19,6 @@
 
         .search-tittle-item {
           .search-arrowRightDown {
-            //position: absolute;
             width: 100%;
             transform: none;
             max-width: 9vw;
@@ -29,4 +28,38 @@
     }
   }
 
+  .main-inform-block {
+    grid-template-rows: 0.5fr 1fr;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-areas: "pitch pitch pitch pitch"
+      "assumption assumption about about";
+
+    .main-inform-item {
+      .main-content-item {
+
+        .main-content-picture {
+          display: none;
+          visibility: hidden;
+        }
+
+        .main-content-picture-mobile {
+          display: block;
+          visibility: inherit;
+          padding: 0 0 20px 0;
+        }
+      }
+    }
+
+    .pitch {
+      grid-area: pitch;
+    }
+
+    .assumption {
+      grid-area: assumption;
+    }
+
+    .about {
+      grid-area: about;
+    }
+  }
 }

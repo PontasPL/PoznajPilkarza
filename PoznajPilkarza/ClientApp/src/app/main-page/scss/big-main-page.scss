@@ -79,20 +79,16 @@ $search-color: rgba(27, 26, 26, 0.747);
 
   .main-inform-block {
 
-    box-shadow: 0px 0px 10px 3px $back-color;
     grid-area: main-inform-block;
-    background-color: $back-color;
-    // display: flex;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 20px;
 
-    // grid-template-areas: " pitch about-project about-me ";
     .main-inform-item {
+      box-shadow: 0px -2px 6px 4px rgba(0, 0, 0, 0.53);
       display: grid;
       grid-template-rows: 100px 1fr;
-
-      box-shadow: inset 0px 0px 10px 3px rgba(163, 163, 163, 1);
+      background-color: rgba(0, 0, 0, 0.29);
       z-index: 10;
       position: relative;
 
@@ -129,6 +125,11 @@ $search-color: rgba(27, 26, 26, 0.747);
         justify-content: center;
         align-items: start;
 
+        .main-content-picture-mobile {
+          display: none;
+          visibility: hidden;
+        }
+
         .main-content-about {
           display: flex;
           align-items: center;
@@ -140,7 +141,7 @@ $search-color: rgba(27, 26, 26, 0.747);
           width: 200px;
           background-color: #bbb;
           border-radius: 50%;
-          box-shadow: 0px 0px 8px 2px #CCD;
+          box-shadow: 0px 0px 11px 3px #000;
           margin: 0 0 50px 0;
         }
 
@@ -159,22 +160,8 @@ $search-color: rgba(27, 26, 26, 0.747);
       }
     }
 
-    // // .main-inform-item {
-    // //   margin: 0 auto;
-    // //   width: 100%;
-    // //   display: flex;
-    // //   justify-content: center;
-    // //   align-items: center;
-    // //   flex-direction: column;
-
-    //   .main-tittle-item {
-    //     font-family: 'DJBSkritchSkratch', DJBSkritchSkratch;
-    //     font-weight: 800;
-    //     color: white;
-    //     margin: 0 0 20px 0;
-    //   }
-    // }
   }
+
 
 
 }
