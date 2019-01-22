@@ -35,6 +35,12 @@
       "assumption assumption about about";
 
     .main-inform-item {
+      grid-template-rows: 70px 1fr;
+
+      .main-bullet-points {
+        padding: 0 0 0 30px;
+      }
+
       .main-content-item {
 
         .main-content-picture {
@@ -46,6 +52,15 @@
           display: block;
           visibility: inherit;
           padding: 0 0 20px 0;
+        }
+
+        .main-content-about {
+
+          .circle {
+            height: 150px;
+            width: 150px;
+            margin: 0 0 30px 0;
+          }
         }
       }
     }
