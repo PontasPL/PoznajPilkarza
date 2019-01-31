@@ -45,7 +45,7 @@ $search-color: rgba(27, 26, 26, 0.747);
   height: calc(100% - 134px);
   grid-template-areas: " . main-block . "
     "main-inform-block main-inform-block main-inform-block";
-
+  transition: 1s;
 
   .main-block {
     display: flex;

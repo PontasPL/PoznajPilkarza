@@ -14,6 +14,19 @@
 
 }
 
+@keyframes navbar-mobile-animations {
+  0% {
+    opacity: 0;
+    transform: translateY(150px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+
+}
+
 
 $nav-background-color :rgba($color: #000000, $alpha: 0.63);
 
@@ -31,7 +44,6 @@ $nav-background-color :rgba($color: #000000, $alpha: 0.63);
 
     @media #{$information-medium-screen} {
       width: 100%;
-      // padding: 20px 0 20px 0;
     }
 
     @media #{$information-small-screen} {
@@ -132,8 +144,6 @@ $nav-background-color :rgba($color: #000000, $alpha: 0.63);
 
 
 @media screen and (min-width: 601px) {
-  // @media screen and (min-width: calc(#{$shared-small-width} + 1px)) {
-  // @media #{$information-small-screen} {
 
   #mobile {
     display: none;
@@ -155,21 +165,26 @@ $nav-background-color :rgba($color: #000000, $alpha: 0.63);
 
   .navbar-list-mobile {
     display: grid !important;
-    grid-template-columns: 50% 50%;
-    grid-template-rows: 50% 50%;
+    grid-template-rows: repeat(4, 1fr);
+    height: calc(100% - 134px);
     box-shadow: inset 0px 0px 0px 1px rgba(204, 209, 209, 0.425);
     visibility: visible;
     overflow: hidden;
-    // position: fixed;
+    position: fixed;
     z-index: 100 !important;
     width: 100%;
-    // background: $nav-background-color;
     background: black;
+    animation-name: navbar-mobile-animations;
+    animation-duration: 1s;
 
     .navbar-item {
-      padding: 10px;
       box-shadow: inset 0px 0px 0px 1px rgba(204, 209, 209, 0.425);
-      margin: 0 !important;
+      height: 100%;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
 
       &:hover {
         background: rgba(197, 197, 196, 0.342);
@@ -195,11 +210,4 @@ $nav-background-color :rgba($color: #000000, $alpha: 0.63);
       align-items: center;
     }
   }
-
-  #abd {
-    display: flex;
-    justify-content: center;
-    margin: 0 auto;
-  }
-
 }

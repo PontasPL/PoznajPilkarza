@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { NavbarMainSharedService } from '../../shared/navbar-main-shared.service';
 
 declare const SVG: any;
 @Component({
@@ -8,9 +9,8 @@ declare const SVG: any;
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-
   checkHamburger = false;
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private notify: NavbarMainSharedService) { }
 
   paintingIconMatches(onHover: boolean) {
     for (let indexwhistle = 1; indexwhistle <= 3; indexwhistle++) {
@@ -61,6 +61,7 @@ export class NavbarComponent implements OnInit {
 
   hamburgerClick() {
     this.checkHamburger = !this.checkHamburger;
+    this.notify.changeNav(this.checkHamburger);
   }
 
 

@@ -17,3 +17,10 @@
     @include small-main-container-mixin();
   }
 }
+
+.hide-main-page {
+  visibility: hidden;
+  overflow: hidden;
+  opacity: 0;
+  transition: 1s;
+}

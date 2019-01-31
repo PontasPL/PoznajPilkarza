@@ -1,4 +1,6 @@
-import { Component, OnInit, HostListener, ElementRef, Renderer2 } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
+import { NavbarMainSharedService } from '../shared/navbar-main-shared.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-main-page',
@@ -6,18 +8,25 @@ import { Component, OnInit, HostListener, ElementRef, Renderer2 } from '@angular
   styleUrls: ['./main-page.component.scss']
 })
 export class MainPageComponent implements OnInit {
-  // checkMobile = false;
-
-  constructor() { }
-
+  innerWidth: number;
+  hamburgerOpen: boolean;
+  subscription: Subscription;
+  constructor(private navbarSharedService: NavbarMainSharedService) {
+    this.hamburgerOpen = false;
+    this.navbarSharedService = navbarSharedService;
+    this.getScreenSize();
+  }
+  @HostListener('window:resize', ['$event'])
+  getScreenSize(event?) {
+    this.innerWidth = window.innerWidth;
+    if (innerWidth >= 601) {
+      this.hamburgerOpen = false;
+    }
+  }
   ngOnInit() {
-    // this.ResizeSearchText();
+    this.subscription = this.navbarSharedService.navItem$
+      .subscribe(item => this.hamburgerOpen = item);
+    console.log(this.hamburgerOpen);
   }
 
-  // public ResizeSearchText() {
-  //   if (window.innerWidth < 601) {
-  //     this.checkMobile = true;
-  //   }
-  //   console.log(window.innerWidth);
-  // }
 }

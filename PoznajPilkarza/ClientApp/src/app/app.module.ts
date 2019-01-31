@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './core/navbar/navbar.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { MainPageComponent } from './main-page/main-page.component';
+import { NavbarMainSharedService } from './shared/navbar-main-shared.service';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { MainPageComponent } from './main-page/main-page.component';
     AppRoutingModule,
     HttpClientModule,
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  providers: [NavbarMainSharedService]
 })
 export class AppModule { }
