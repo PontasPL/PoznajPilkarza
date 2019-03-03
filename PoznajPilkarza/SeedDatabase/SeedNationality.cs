@@ -35,7 +35,6 @@ namespace PoznajPilkarza.SeedDatabase
             var nodesCountries = htmldoc.DocumentNode.SelectNodes($"//main/div/article/div/table//tr/td");
 
             var linkCoutries = new List<Nationality>();
-            //string test = GetImageAsBase64Url("es").Result;
             //long population = GetPopulation("Brazil").Result;
             for (int i = 5; i < nodesCountries.Count - 1; i++)
             {
@@ -59,6 +58,15 @@ namespace PoznajPilkarza.SeedDatabase
                 i += 2;
             }
 
+            var wikiScot = GetWiki("Scotland").Result;
+            linkCoutries.Add(new Nationality
+            {
+                Name = "Scotland",
+                CodeCountryThreeChars = "SCO",
+                CodeCountryTwoChars = "SC",
+                Description = wikiScot.Description,
+                WikiLink = wikiScot.Link
+            });
             context.Nationalities.AddRange(linkCoutries);
             context.SaveChanges();
 

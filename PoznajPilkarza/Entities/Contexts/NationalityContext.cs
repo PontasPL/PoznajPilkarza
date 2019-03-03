@@ -21,8 +21,6 @@ namespace PoznajPilkarza.Entities.Contexts
         }
         public NationalityContext(DbContextOptions<NationalityContext> options) :base(options)
         {
-
-            Database.Migrate();
         }
     }
 }
