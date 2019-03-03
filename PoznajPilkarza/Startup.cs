@@ -25,6 +25,8 @@ namespace PoznajPilkarza
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddDbContext<NationalityContext>(o =>
                 o.UseSqlServer(Configuration.GetConnectionString("myConnectionString")));
+            services.AddDbContext<LeagueContext>(o =>
+                o.UseSqlServer(Configuration.GetConnectionString("myConnectionString")));
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
@@ -33,7 +35,7 @@ namespace PoznajPilkarza
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env,NationalityContext nationalityContext)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env,NationalityContext nationalityContext,LeagueContext leagueContext)
         {
             if (env.IsDevelopment())
             {
@@ -44,6 +46,8 @@ namespace PoznajPilkarza
                 app.UseExceptionHandler("/Error");
             }
             nationalityContext.EnsureSeedDataForContext();
+            leagueContext.EnsureSeedDataForContext();
+
 
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
