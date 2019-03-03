@@ -10,6 +10,7 @@
 
     <!-- Set this to true if you enable server-side prerendering -->
     <BuildServerSideRenderer>false</BuildServerSideRenderer>
+    <UserSecretsId>db2a75b6-20a3-4486-9f6e-b36d56f00274</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -25,6 +26,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -35,8 +37,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-    <Folder Include="Entities\Contexts\" />
+    <Compile Remove="Migrations\20190303132802_NationalitesProperyNameChanged.cs" />
+    <Compile Remove="Migrations\20190303132802_NationalitesProperyNameChanged.Designer.cs" />
+    <Compile Remove="Migrations\20190303134940_NationalitesPropertyChanged.cs" />
+    <Compile Remove="Migrations\20190303134940_NationalitesPropertyChanged.Designer.cs" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
