@@ -2,8 +2,11 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using PoznajPilkarza.Entities.Contexts;
+using PoznajPilkarza.SeedDatabase;
 
 namespace PoznajPilkarza
 {
@@ -20,7 +23,8 @@ namespace PoznajPilkarza
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-
+            services.AddDbContext<NationalityContext>(o =>
+                o.UseSqlServer(Configuration.GetConnectionString("myConnectionString")));
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
@@ -29,7 +33,7 @@ namespace PoznajPilkarza
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env,NationalityContext nationalityContext)
         {
             if (env.IsDevelopment())
             {
@@ -39,6 +43,7 @@ namespace PoznajPilkarza
             {
                 app.UseExceptionHandler("/Error");
             }
+            nationalityContext.EnsureSeedDataForContext();
 
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
