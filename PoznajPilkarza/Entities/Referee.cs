@@ -1,7 +1,12 @@
-﻿namespace PoznajPilkarza.Enitites
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace PoznajPilkarza.Enitites
 {
     public class Referee
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int RefereeId { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }

@@ -1,7 +1,12 @@
-﻿namespace PoznajPilkarza.Enitites
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace PoznajPilkarza.Enitites
 {
     public class MatchDetails
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int MatchDetailsId { get; set; }
         public int Attendance { get; set; }
 
