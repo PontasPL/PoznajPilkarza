@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 
 namespace PoznajPilkarza.Models
 {
-    public class Team
+    public class TeamDto
     {
         public int TeamId { get; set; }
         public string Name { get; set; }
-        public League League { get; set; }
+        public LeagueDto League { get; set; }
 
         public int Formed { get; set; }
         public string PngImage { get; set; }
@@ -18,8 +18,8 @@ namespace PoznajPilkarza.Models
 
         public string WikiLink { get; set; }
 
-        public Manager Manager { get; set; }
-        public Stadium Stadium { get; set; }
+        public ManagerDto Manager { get; set; }
+        public StadiumDto Stadium { get; set; }
 
     }
 }

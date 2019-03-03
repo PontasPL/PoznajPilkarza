@@ -1,11 +1,11 @@
 ﻿namespace PoznajPilkarza.Models
 {
-    public class Referee
+    public class RefereeDto
     {
         public int RefereeId { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
-        public Nationality Nationality { get; set; }
+        public NationalityDto Nationality { get; set; }
 
         public string PngImage { get; set; }
 

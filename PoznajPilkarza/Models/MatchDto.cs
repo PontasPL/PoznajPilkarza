@@ -5,12 +5,12 @@ using System.Threading.Tasks;
 
 namespace PoznajPilkarza.Models
 {
-    public class Match
+    public class MatchDto
     {
         public int MatchId { get; set; }
-        public League League { get; set; }
-        public Team HomeTeam { get; set; }
-        public Team AwayTeam { get; set; }
+        public LeagueDto League { get; set; }
+        public TeamDto HomeTeam { get; set; }
+        public TeamDto AwayTeam { get; set; }
 
         public DateTime MatchDay { get; set; }
 
@@ -20,7 +20,7 @@ namespace PoznajPilkarza.Models
         public int HTAwayGoals { get; set; }
 
         
-        public MatchDetails MatchDetails { get; set; }
+        public MatchDetailsDto MatchDetails { get; set; }
 
 
     }

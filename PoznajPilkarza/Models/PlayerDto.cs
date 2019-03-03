@@ -13,8 +13,8 @@ namespace PoznajPilkarza.Models
 
         public string Surname { get; set; }
 
-        public Nationality Nationality { get; set; }
-        public Position Position { get; set; }
+        public NationalityDto Nationality { get; set; }
+        public PositionDto Position { get; set; }
         public int Height { get; set; }
 
         public int Weight { get; set; }

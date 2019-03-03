@@ -1,11 +1,11 @@
 ﻿namespace PoznajPilkarza.Models
 {
-    public class MatchDetails
+    public class MatchDetailsDto
     {
         public int MatchDetailsId { get; set; }
         public int Attendance { get; set; }
 
-        public Referee Referee { get; set; }
+        public RefereeDto Referee { get; set; }
         public int HomeTeamShots { get; set; }
         public int AwayTeamShots { get; set; }
         public int HomeTeamShotsOnTarget { get; set; }

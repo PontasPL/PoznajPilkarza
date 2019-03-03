@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace PoznajPilkarza.Models
 {
-    public class Nationality
+    public class NationalityDto
     {
         public int NationalityID { get; set; }
 

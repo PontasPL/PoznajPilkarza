@@ -1,6 +1,6 @@
 ﻿namespace PoznajPilkarza.Models
 {
-    public class Position
+    public class PositionDto
     {
         public int PositionId { get; set; }
         public string ShortCode { get; set; }

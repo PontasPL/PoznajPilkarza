@@ -1,6 +1,6 @@
 ﻿namespace PoznajPilkarza.Models
 {
-    public class Stadium
+    public class StadiumDto
     {
         public int StadiumId { get; set; }
         public string Name { get; set; }

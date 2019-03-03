@@ -5,14 +5,14 @@ using System.Threading.Tasks;
 
 namespace PoznajPilkarza.Models
 {
-    public class League
+    public class LeagueDto
     {
         public int LeagueId { get; set; }
 
 
         public string Name { get; set; }
 
-        public Nationality Nationality { get; set; }
+        public NationalityDto Nationality { get; set; }
         public string SeasonYear { get; set; }
 
         public string WikiLink { get; set; }
