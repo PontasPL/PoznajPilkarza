@@ -15,8 +15,8 @@ namespace PoznajPilkarza.Enitites
 
 
         public string Name { get; set; }
-
-        public Nationality Nationality { get; set; }
+        public int NationalityId { get; set; }
+        public virtual Nationality Nationality { get; set; }
         public string SeasonYear { get; set; }
 
         public string WikiLink { get; set; }

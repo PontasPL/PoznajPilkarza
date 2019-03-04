@@ -11,7 +11,7 @@ namespace PoznajPilkarza.Models
 
 
         public string Name { get; set; }
-
+        public int NationalityID { get; set; }
         public NationalityDto Nationality { get; set; }
         public string SeasonYear { get; set; }
 
