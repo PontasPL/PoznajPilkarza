@@ -29,5 +29,8 @@ namespace PoznajPilkarza.Enitites
         public virtual Stadium Stadium { get; set; }
         public virtual Player Player { get; set; }
 
+        public virtual Match HomeMatch { get; set; }
+        public virtual Match AwayMatch { get; set; }
+
     }
 }

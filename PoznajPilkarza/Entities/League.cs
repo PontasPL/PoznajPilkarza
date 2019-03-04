@@ -23,5 +23,7 @@ namespace PoznajPilkarza.Enitites
         public string Description { get; set; }
 
         public virtual Team Team { get; set; }
+
+        public virtual Match Match { get; set; }
     }
 }

@@ -29,5 +29,6 @@ namespace PoznajPilkarza.Enitites
 
         public virtual Manager Manager { get; set; }
         public virtual Stadium Stadium { get; set; }
+        public virtual Referee Referee { get; set; }
     }
 }

@@ -18,5 +18,6 @@ namespace PoznajPilkarza.Enitites
         public string Description { get; set; }
 
         public string WikiLink { get; set; }
+        public virtual MatchDetails MatchDetails { get; set; }
     }
 }

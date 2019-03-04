@@ -31,8 +31,9 @@ namespace PoznajPilkarza
                 o.UseSqlServer(Configuration.GetConnectionString("myConnectionString")));
             services.AddDbContext<PlayerContext>(o =>
                 o.UseSqlServer(Configuration.GetConnectionString("myConnectionString")));
+            services.AddDbContext<MatchContext>(o =>
+                o.UseSqlServer(Configuration.GetConnectionString("myConnectionString")));
 
-         
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {

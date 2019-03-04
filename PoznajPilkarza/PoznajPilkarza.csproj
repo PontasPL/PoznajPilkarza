@@ -41,6 +41,8 @@
     <Compile Remove="Migrations\20190303132802_NationalitesProperyNameChanged.Designer.cs" />
     <Compile Remove="Migrations\20190303134940_NationalitesPropertyChanged.cs" />
     <Compile Remove="Migrations\20190303134940_NationalitesPropertyChanged.Designer.cs" />
+    <Compile Remove="Migrations\20190304232714_AddedMatches.cs" />
+    <Compile Remove="Migrations\20190304232714_AddedMatches.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

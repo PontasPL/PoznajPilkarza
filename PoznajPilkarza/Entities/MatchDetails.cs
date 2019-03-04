@@ -9,7 +9,7 @@ namespace PoznajPilkarza.Enitites
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int MatchDetailsId { get; set; }
         public int Attendance { get; set; }
-
+        public int RefereeId { get; set; }
         public Referee Referee { get; set; }
         public int HomeTeamShots { get; set; }
         public int AwayTeamShots { get; set; }
@@ -27,6 +27,8 @@ namespace PoznajPilkarza.Enitites
         public int AwayYellowCards { get; set; }
         public int HomeTeamRedCards { get; set; }
         public int AwayTeamRedCards { get; set; }
+
+        public virtual Match Match { get; set; }
 
     }
 }
