@@ -39,9 +39,8 @@ namespace PoznajPilkarza.SeedDatabase
             for (int i = 5; i < nodesCountries.Count - 1; i++)
             {
 
-                WikipediaData wikiData =
-                    GetWiki(Regex.Replace(nodesCountries[i].InnerText, $"\\r\\n\\s", "").Trim())
-                    .Result;
+               var wikiData =
+                   SeedWikipedia.GetWiki(Regex.Replace(nodesCountries[i].InnerText, $"\\r\\n\\s", "").Trim()).Result;
                 
                 linkCoutries.Add(item: new Nationality
                 {
@@ -58,7 +57,7 @@ namespace PoznajPilkarza.SeedDatabase
                 i += 2;
             }
 
-            var wikiScot = GetWiki("Scotland").Result;
+            var wikiScot = SeedWikipedia.GetWiki("Scotland").Result;
             linkCoutries.Add(new Nationality
             {
                 Name = "Scotland",
@@ -81,27 +80,6 @@ namespace PoznajPilkarza.SeedDatabase
             }
         }
 
-        public static async Task<WikipediaData> GetWiki(string searchQuery)
-        {
-            var wiki = new WikipediaData();
-            using (var client = new HttpClient())
-            {
-                var stringJson =
-                    await client.GetStringAsync(
-                        $@"https://en.wikipedia.org/w/api.php?action=opensearch&search={searchQuery}&limit=1&namespace=0&format=json");
-                JToken token = JToken.Parse(stringJson);
-                string patternDesc = $@"\([^()]*\)";
-                string patternBrackets = $@"[\[\]']";
-                wiki.Description = Regex.Replace(
-                    Regex.Replace(
-                        Regex.Replace(token[2].ToString(), patternDesc, ""),
-                        patternDesc, ""),
-                    patternBrackets,"");
-                wiki.Link = Regex.Replace(token[3].ToString(),patternBrackets,"");
-
-            }
-
-            return wiki;
-        }
+       
     }
 }

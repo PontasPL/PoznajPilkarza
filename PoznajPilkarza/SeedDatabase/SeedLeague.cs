@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using HtmlAgilityPack;
@@ -26,7 +27,11 @@ namespace PoznajPilkarza.SeedDatabase
         private static List<League> GetLeague(LeagueContext context)
         {
             var html = @"http://www.footballsquads.co.uk/squads.htm";
-            var web = new HtmlWeb();
+            var web = new HtmlWeb
+            {
+                AutoDetectEncoding = false,
+                OverrideEncoding = Encoding.GetEncoding("iso-8859-1")
+            };
             var htmldoc = web.Load(html);
             var nodesLeagueRow = htmldoc.DocumentNode.SelectNodes(@"//table/tr/td/a");
             List<string> linkLeagues = new List<string>();
@@ -42,13 +47,14 @@ namespace PoznajPilkarza.SeedDatabase
             var leagues = new List<League>();
             for (int i = 0; i < linkLeagues.Count; i++)
             {
+                var wiki = SeedWikipedia.GetWiki(nameLeagues[i]).Result;
                 leagues.Add(new League
                 {
                    Name = nameLeagues[i],
-                   Nationality = context.Nationalities.FirstOrDefault
-                   (x=>x.Name==linkLeagues[i] ||
-                       x.Name==linkLeagues[i].Substring(0,3)),
-                   SeasonYear = "2018/2019"
+                   NationalityId = FixingCountry(context,linkLeagues[i]),
+                   SeasonYear = "2018/2019",
+                   Description = wiki.Description,
+                   WikiLink = wiki.Link
                 });
             }
 
@@ -57,5 +63,17 @@ namespace PoznajPilkarza.SeedDatabase
             //leaguePlayers.Add(teams);
 
         }
+
+        public static int FixingCountry(LeagueContext context,string coutryLink)
+        {
+            coutryLink=Regex.Replace(coutryLink, "eng", "United Kingdom");
+            coutryLink=Regex.Replace(coutryLink, "usa", "United States");
+            int natId = context.Nationalities.Any(x => x.Name == coutryLink )?
+                context.Nationalities.FirstOrDefault(x=>x.Name==coutryLink).NationalityID:
+                context.Nationalities.FirstOrDefault(x=>x.Name.Substring(0,3)
+                                                        == coutryLink.Substring(0, 3)).NationalityID;
+            return natId;
+        }
     }
+   
 }
