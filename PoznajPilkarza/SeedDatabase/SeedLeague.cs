@@ -69,9 +69,9 @@ namespace PoznajPilkarza.SeedDatabase
             coutryLink=Regex.Replace(coutryLink, "eng", "United Kingdom");
             coutryLink=Regex.Replace(coutryLink, "usa", "United States");
             int natId = context.Nationalities.Any(x => x.Name == coutryLink )?
-                context.Nationalities.FirstOrDefault(x=>x.Name==coutryLink).NationalityID:
+                context.Nationalities.FirstOrDefault(x=>x.Name==coutryLink).NationalityId:
                 context.Nationalities.FirstOrDefault(x=>x.Name.Substring(0,3)
-                                                        == coutryLink.Substring(0, 3)).NationalityID;
+                                                        == coutryLink.Substring(0, 3)).NationalityId;
             return natId;
         }
     }
