@@ -10,5 +10,7 @@ namespace PoznajPilkarza.Enitites
         public int PositionId { get; set; }
         public string ShortCode { get; set; }
         public string PositionName { get; set; }
+
+        public virtual Player Player { get; set; }
     }
 }

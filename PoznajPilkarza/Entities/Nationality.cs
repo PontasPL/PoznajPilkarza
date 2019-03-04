@@ -11,7 +11,7 @@ namespace PoznajPilkarza.Enitites
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int NationalityID { get; set; }
+        public int NationalityId { get; set; }
 
         public string Name { get; set; }
         public string CodeCountryTwoChars { get; set; }
@@ -23,5 +23,11 @@ namespace PoznajPilkarza.Enitites
         public string Description { get; set; }
 
         public string WikiLink { get; set; }
+
+        public virtual League League { get; set; }
+        public virtual Player Player { get; set; }
+
+        public virtual Manager Manager { get; set; }
+        public virtual Stadium Stadium { get; set; }
     }
 }

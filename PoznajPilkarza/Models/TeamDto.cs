@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper.Configuration.Conventions;
 
 namespace PoznajPilkarza.Models
 {
@@ -9,6 +10,7 @@ namespace PoznajPilkarza.Models
     {
         public int TeamId { get; set; }
         public string Name { get; set; }
+        public int LeagueId { get; set; }
         public LeagueDto League { get; set; }
 
         public int Formed { get; set; }
@@ -18,7 +20,9 @@ namespace PoznajPilkarza.Models
 
         public string WikiLink { get; set; }
 
+        public int ManagerId { get; set; }
         public ManagerDto Manager { get; set; }
+        public int StadiumId { get; set; }
         public StadiumDto Stadium { get; set; }
 
     }

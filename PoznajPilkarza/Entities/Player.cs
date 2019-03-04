@@ -16,13 +16,18 @@ namespace PoznajPilkarza.Enitites
         public string Name { get; set; }
 
         public string Surname { get; set; }
-
-        public Nationality Nationality { get; set; }
-        public Position Position { get; set; }
+        public int NationalityId { get; set; }
+        public virtual Nationality Nationality { get; set; }
+        public int PositionId { get; set; }
+        public virtual Position Position { get; set; }
         public int Height { get; set; }
 
         public int Weight { get; set; }
         public DateTime DateOfBirth { get; set; }
+
+        public int TeamId { get; set; }
+        public virtual Team Team { get; set; }
+
         public string PngImage { get; set; }
 
         public string Description { get; set; }

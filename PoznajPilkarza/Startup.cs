@@ -23,10 +23,16 @@ namespace PoznajPilkarza
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddDbContext<MainContext>(o =>
+                o.UseSqlServer(Configuration.GetConnectionString("myConnectionString")));
             services.AddDbContext<NationalityContext>(o =>
                 o.UseSqlServer(Configuration.GetConnectionString("myConnectionString")));
             services.AddDbContext<LeagueContext>(o =>
                 o.UseSqlServer(Configuration.GetConnectionString("myConnectionString")));
+            services.AddDbContext<PlayerContext>(o =>
+                o.UseSqlServer(Configuration.GetConnectionString("myConnectionString")));
+
+         
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {

@@ -13,12 +13,17 @@ namespace PoznajPilkarza.Models
 
         public string Surname { get; set; }
 
+        public int NationalityID { get; set; }
         public NationalityDto Nationality { get; set; }
+        public int PositionId { get; set; }
         public PositionDto Position { get; set; }
         public int Height { get; set; }
 
         public int Weight { get; set; }
         public DateTime DateOfBirth { get; set; }
+
+        public int TeamId { get; set; }
+        public TeamDto Team { get; set; }
         public string PngImage { get; set; }
 
         public string Description { get; set; }

@@ -5,6 +5,7 @@
         public int RefereeId { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
+        public int NationalityId { get; set; }
         public NationalityDto Nationality { get; set; }
 
         public string PngImage { get; set; }

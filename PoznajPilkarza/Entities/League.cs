@@ -21,5 +21,7 @@ namespace PoznajPilkarza.Enitites
 
         public string WikiLink { get; set; }
         public string Description { get; set; }
+
+        public virtual Team Team { get; set; }
     }
 }

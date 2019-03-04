@@ -6,7 +6,8 @@
         public string Name { get; set; }
         public int Capacity { get; set; }
 
-
+        public int NationalityId { get; set; }
+        public NationalityDto Nationality { get; set; }
         public string PngImage { get; set; }
 
         public string Description { get; set; }

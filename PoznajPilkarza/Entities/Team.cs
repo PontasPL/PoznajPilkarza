@@ -13,6 +13,7 @@ namespace PoznajPilkarza.Enitites
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int TeamId { get; set; }
         public string Name { get; set; }
+        public int LeagueId { get; set; }
         public League League { get; set; }
 
         public int Formed { get; set; }
@@ -22,8 +23,11 @@ namespace PoznajPilkarza.Enitites
 
         public string WikiLink { get; set; }
 
+        public int ManagerId { get; set; }
         public Manager Manager { get; set; }
-        public Stadium Stadium { get; set; }
+        public int StadiumId { get; set; }
+        public virtual Stadium Stadium { get; set; }
+        public virtual Player Player { get; set; }
 
     }
 }

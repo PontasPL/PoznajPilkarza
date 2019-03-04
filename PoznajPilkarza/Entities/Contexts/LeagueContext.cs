@@ -12,14 +12,7 @@ namespace PoznajPilkarza.Entities.Contexts
         public DbSet<Nationality> Nationalities { get; set; }
         public DbSet<League> Leagues { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<League>().Property(b => b.Name).HasMaxLength(200).IsRequired();
-            modelBuilder.Entity<League>().Property(b => b.SeasonYear).HasMaxLength(100).IsRequired();
-            modelBuilder.Entity<League>().Property(b => b.Description).HasMaxLength(1000);
-            modelBuilder.Entity<League>().Property(b => b.WikiLink).HasMaxLength(300);
-        }
-
+       
         public LeagueContext(DbContextOptions<LeagueContext> options) : base(options)
         {
         }
