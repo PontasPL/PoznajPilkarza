@@ -21,25 +21,25 @@ namespace PoznajPilkarza.SeedDatabase
             }
 
             AddNoDataKeysToContexts(context);
-
+            AddPositionToContext(context);
             GetLeague(context);
         }
 
         private static void AddNoDataKeysToContexts(PlayerContext context)
         {
-            //var noDataCountry = new Nationality
-            //{
-            //    Name = "No data",
-            //    CodeCountryThreeChars = "000",
-            //    CodeCountryTwoChars = "00",
-            //    Description = "",
-            //    WikiLink = "",
-            //    PngImage = "",
-            //    TotalPopulation = 0,
-            //    FifaCodeCountry = ""
-            //};
-            //context.Nationalities.Add(noDataCountry);
-            //context.SaveChanges();
+            var noDataCountry = new Nationality
+            {
+                Name = "No data",
+                CodeCountryThreeChars = "000",
+                CodeCountryTwoChars = "00",
+                Description = "",
+                WikiLink = "",
+                PngImage = "",
+                TotalPopulation = 0,
+                FifaCodeCountry = ""
+            };
+            context.Nationalities.Add(noDataCountry);
+            context.SaveChanges();
             var noDataManager = new Manager
             {
                 Name = "No data",

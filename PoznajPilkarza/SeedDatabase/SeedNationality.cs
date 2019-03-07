@@ -93,6 +93,17 @@ namespace PoznajPilkarza.SeedDatabase
                 WikiLink = wikiScot.Link,
                 FifaCodeCountry = "NIR"
             });
+            wikiScot = SeedWikipedia.GetWiki("Kosovo").Result;
+            linkCoutries.Add(new Nationality
+            {
+                Name = "Kosovo",
+                CodeCountryThreeChars = "KVX",
+                CodeCountryTwoChars = "KV",
+                Description = wikiScot.Description,
+                PngImage = "No data",
+                WikiLink = wikiScot.Link,
+                FifaCodeCountry = "KVX"
+            });
             context.Nationalities.AddRange(linkCoutries);
             context.SaveChanges();
 
