@@ -42,7 +42,7 @@ namespace PoznajPilkarza
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env,NationalityContext nationalityContext,LeagueContext leagueContext)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env,NationalityContext nationalityContext,PlayerContext leagueContext)
         {
             if (env.IsDevelopment())
             {

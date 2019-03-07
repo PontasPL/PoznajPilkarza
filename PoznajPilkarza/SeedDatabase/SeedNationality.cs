@@ -35,6 +35,7 @@ namespace PoznajPilkarza.SeedDatabase
             var nodesCountries = htmldoc.DocumentNode.SelectNodes($"//main/div/article/div/table//tr/td");
 
             var linkCoutries = new List<Nationality>();
+            var fifaCodes = AddFifaCodes();
             //long population = GetPopulation("Brazil").Result;
             for (int i = 5; i < nodesCountries.Count - 1; i++)
             {
@@ -44,14 +45,16 @@ namespace PoznajPilkarza.SeedDatabase
                 
                 linkCoutries.Add(item: new Nationality
                 {
+                    
                     Name = Regex.Replace(nodesCountries[i].InnerText, $"\\r\\n\\s", "").Trim(),
                     //TotalPopulation = GetPopulation(Regex.Replace(nodesCountries[i].InnerText, $"\\r\\n\\s", "").Trim()).Result,
                     CodeCountryTwoChars = Regex.Replace(nodesCountries[++i].InnerText, $"\\r\\n\\s", "").Trim(),
                     PngImage = GetImageAsBase64Url(Regex.Replace(nodesCountries[i].InnerText, $"\\r\\n\\s", "").Trim()).Result,
                     CodeCountryThreeChars = nodesCountries[++i].InnerText,
                     Description = wikiData.Description,
-                    WikiLink = wikiData.Link
-                    
+                    WikiLink = wikiData.Link,
+                    FifaCodeCountry = fifaCodes.FirstOrDefault(f => f.Key == nodesCountries[i].InnerText).Value
+
 
                 });
                 i += 2;
@@ -64,12 +67,65 @@ namespace PoznajPilkarza.SeedDatabase
                 CodeCountryThreeChars = "SCO",
                 CodeCountryTwoChars = "SC",
                 Description = wikiScot.Description,
-                WikiLink = wikiScot.Link
+                WikiLink = wikiScot.Link,
+                PngImage = "No data",
+                FifaCodeCountry = "SCO"
+            });
+            wikiScot = SeedWikipedia.GetWiki("Wales").Result;
+            linkCoutries.Add(new Nationality
+            {
+                Name = "Wales",
+                CodeCountryThreeChars = "WAL",
+                CodeCountryTwoChars = "WL",
+                Description = wikiScot.Description,
+                WikiLink = wikiScot.Link,
+                PngImage = "No data",
+                FifaCodeCountry = "WAL"
+            });
+            wikiScot = SeedWikipedia.GetWiki("Northern Ireland").Result;
+            linkCoutries.Add(new Nationality
+            {
+                Name = "Northern Ireland",
+                CodeCountryThreeChars = "NIR",
+                CodeCountryTwoChars = "NX",
+                Description = wikiScot.Description,
+                PngImage = "No data",
+                WikiLink = wikiScot.Link,
+                FifaCodeCountry = "NIR"
             });
             context.Nationalities.AddRange(linkCoutries);
             context.SaveChanges();
 
         }
+
+        public static Dictionary<string,string> AddFifaCodes()
+        {
+            var html = @"http://www.statoids.com/wab.html";
+            HtmlWeb web = new HtmlWeb();
+            var htmldoc = web.Load(html);
+            Dictionary<string, string> countryCodes = new Dictionary<string, string>();
+            var nodesCountries = htmldoc.DocumentNode.SelectNodes($"//div/div/table/tr/td");
+            for (int i = 0; i < nodesCountries.Count - 4; i += 14)
+            {
+
+                var patternCountryCodeCleaner = @"<code>|<\/code>|&nbsp;";
+
+                var fifaCode = Regex.Replace(nodesCountries[i + 7].InnerHtml, patternCountryCodeCleaner, "").Trim();
+                var isoA2 = Regex.Replace(nodesCountries[i + 2].InnerHtml, patternCountryCodeCleaner, "").Trim();
+                if (fifaCode != "")
+                {
+                    if (Regex.IsMatch(fifaCode, $@"note1"))
+                    {
+                        fifaCode = "ENG";
+                    }
+                    countryCodes.Add(isoA2, fifaCode.Substring(0, 3));
+                }
+            }
+
+            return countryCodes;
+        }
+
+
         public static async Task<string> GetImageAsBase64Url(string country)
         {
             using (var client = new HttpClient())

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using HtmlAgilityPack;
 using Newtonsoft.Json.Linq;
 using PoznajPilkarza.Models;
 
@@ -20,14 +21,15 @@ namespace PoznajPilkarza.SeedDatabase
                     await client.GetStringAsync(
                         $@"https://en.wikipedia.org/w/api.php?action=opensearch&search={searchQuery}&limit=1&namespace=0&format=json");
                 JToken token = JToken.Parse(stringJson);
-                string patternDesc = $@"\([^()]*\)";
-                string patternBrackets = $@"[\[\]']";
+                const string quote = "\"";
+                string patternDesc = $@"\([^()]*\)|\r\n|{quote}|\\";
+                string patternBrackets = $@"[\[\]']|\r\n|{quote}|\\";
                 wiki.Description = Regex.Replace(
                     Regex.Replace(
-                        Regex.Replace(token[2].ToString(), patternDesc, ""),
-                        patternDesc, ""),
+                        Regex.Replace(HtmlEntity.DeEntitize(token[2].ToString()), patternDesc, ""),
+                        patternDesc, "").Trim(),
                     patternBrackets, "");
-                wiki.Link = Regex.Replace(token[3].ToString(), patternBrackets, "");
+                wiki.Link = Regex.Replace(token[3].ToString(), patternBrackets, "").Trim();
 
             }
 
