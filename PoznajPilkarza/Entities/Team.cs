@@ -27,10 +27,11 @@ namespace PoznajPilkarza.Enitites
         public Manager Manager { get; set; }
         public int StadiumId { get; set; }
         public virtual Stadium Stadium { get; set; }
-        public virtual Player Player { get; set; }
-
-        public virtual Match HomeMatch { get; set; }
-        public virtual Match AwayMatch { get; set; }
+        public virtual ICollection<Player> Players { get; set; }
+        //[NotMapped]
+        //public virtual Match HomeMatch { get; set; }
+        //[NotMapped]
+        //public virtual Match AwayMatch { get; set; }
 
     }
 }

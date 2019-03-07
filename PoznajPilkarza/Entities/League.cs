@@ -22,7 +22,7 @@ namespace PoznajPilkarza.Enitites
         public string WikiLink { get; set; }
         public string Description { get; set; }
 
-        public virtual Team Team { get; set; }
+        public virtual ICollection<Team> Teams { get; set; }
 
         public virtual Match Match { get; set; }
     }

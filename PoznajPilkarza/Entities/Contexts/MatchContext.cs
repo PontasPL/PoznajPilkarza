@@ -18,10 +18,10 @@ namespace PoznajPilkarza.Entities.Contexts
         {
             modelBuilder.Entity<Match>().HasOne<League>(s => s.League).WithOne(s => s.Match)
                 .HasForeignKey<Match>(sa => sa.LeagueId).IsRequired();
-            modelBuilder.Entity<Match>().HasOne<Team>(s => s.HomeTeam).WithOne(s => s.HomeMatch)
-                .HasForeignKey<Match>(sa => sa.HomeTeamId).IsRequired().OnDelete(DeleteBehavior.Restrict);
-            modelBuilder.Entity<Match>().HasOne<Team>(s => s.AwayTeam).WithOne(s => s.AwayMatch)
-                .HasForeignKey<Match>(sa => sa.AwayTeamId).IsRequired().OnDelete(DeleteBehavior.Restrict);
+            //modelBuilder.Entity<Match>().HasOne<Team>(s => s.HomeTeam).WithOne(s => s.HomeMatch)
+            //    .HasForeignKey<Match>(sa => sa.HomeTeamId).IsRequired().OnDelete(DeleteBehavior.Restrict);
+            //modelBuilder.Entity<Match>().HasOne<Team>(s => s.AwayTeam).WithOne(s => s.AwayMatch)
+            //    .HasForeignKey<Match>(sa => sa.AwayTeamId).IsRequired().OnDelete(DeleteBehavior.Restrict);
             modelBuilder.Entity<Match>().HasOne<MatchDetails>(s => s.MatchDetails).WithOne(s => s.Match)
                 .HasForeignKey<Match>(sa => sa.MatchDetailsId).IsRequired();
             modelBuilder.Entity<Match>().Property(b => b.FTHomeGoals).IsRequired();
@@ -30,8 +30,8 @@ namespace PoznajPilkarza.Entities.Contexts
             modelBuilder.Entity<MatchDetails>().HasOne<Referee>(s => s.Referee).WithOne(s => s.MatchDetails)
                 .HasForeignKey<MatchDetails>(sa => sa.MatchDetailsId).IsRequired();
 
-            modelBuilder.Entity<Referee>().HasOne<Nationality>(s => s.Nationality).WithOne(s => s.Referee)
-                .HasForeignKey<Referee>(sa => sa.NationalityId).IsRequired();
+            modelBuilder.Entity<Referee>().HasOne<Nationality>(s => s.Nationality).WithMany(s => s.Referee)
+                .HasForeignKey(sa => sa.NationalityId).IsRequired().OnDelete(DeleteBehavior.Restrict);
             modelBuilder.Entity<Referee>().Property(b => b.Name).HasMaxLength(50);
             modelBuilder.Entity<Referee>().Property(b => b.Surname).HasMaxLength(80);
             modelBuilder.Entity<Referee>().Property(b => b.WikiLink).HasMaxLength(300);

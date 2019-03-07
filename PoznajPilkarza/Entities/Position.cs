@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PoznajPilkarza.Enitites
@@ -11,6 +12,6 @@ namespace PoznajPilkarza.Enitites
         public string ShortCode { get; set; }
         public string PositionName { get; set; }
 
-        public virtual Player Player { get; set; }
+        public virtual ICollection<Player> Players { get; set; }
     }
 }

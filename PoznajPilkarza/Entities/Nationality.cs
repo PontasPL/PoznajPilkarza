@@ -16,6 +16,8 @@ namespace PoznajPilkarza.Enitites
         public string Name { get; set; }
         public string CodeCountryTwoChars { get; set; }
         public string CodeCountryThreeChars { get; set; }
+
+        public string FifaCodeCountry { get; set; }
         public long TotalPopulation { get; set; }
 
         public string PngImage { get; set; }
@@ -24,11 +26,11 @@ namespace PoznajPilkarza.Enitites
 
         public string WikiLink { get; set; }
 
-        public virtual League League { get; set; }
-        public virtual Player Player { get; set; }
+        public virtual ICollection<League> Leagues { get; set; }
+        public virtual ICollection<Player> Players { get; set; }
 
-        public virtual Manager Manager { get; set; }
-        public virtual Stadium Stadium { get; set; }
-        public virtual Referee Referee { get; set; }
+        public virtual ICollection<Manager> Managers { get; set; }
+        public virtual ICollection<Stadium> Stadium { get; set; }
+        public virtual ICollection<Referee> Referee { get; set; }
     }
 }

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PoznajPilkarza.Entities.Contexts;
 
 namespace PoznajPilkarza.Migrations
 {
     [DbContext(typeof(MainContext))]
-    partial class MainContextModelSnapshot : ModelSnapshot
+    [Migration("20190306230815_Fix-Manager")]
+    partial class FixManager
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -43,7 +45,8 @@ namespace PoznajPilkarza.Migrations
 
                     b.HasKey("LeagueId");
 
-                    b.HasIndex("NationalityId");
+                    b.HasIndex("NationalityId")
+                        .IsUnique();
 
                     b.ToTable("Leagues");
                 });
@@ -238,11 +241,14 @@ namespace PoznajPilkarza.Migrations
 
                     b.HasKey("PlayerId");
 
-                    b.HasIndex("NationalityId");
+                    b.HasIndex("NationalityId")
+                        .IsUnique();
 
-                    b.HasIndex("PositionId");
+                    b.HasIndex("PositionId")
+                        .IsUnique();
 
-                    b.HasIndex("TeamId");
+                    b.HasIndex("TeamId")
+                        .IsUnique();
 
                     b.ToTable("Players");
                 });
@@ -290,7 +296,8 @@ namespace PoznajPilkarza.Migrations
 
                     b.HasKey("RefereeId");
 
-                    b.HasIndex("NationalityId");
+                    b.HasIndex("NationalityId")
+                        .IsUnique();
 
                     b.ToTable("Referees");
                 });
@@ -319,7 +326,8 @@ namespace PoznajPilkarza.Migrations
 
                     b.HasKey("StadiumId");
 
-                    b.HasIndex("NationalityId");
+                    b.HasIndex("NationalityId")
+                        .IsUnique();
 
                     b.ToTable("Stadium");
                 });
@@ -352,7 +360,8 @@ namespace PoznajPilkarza.Migrations
 
                     b.HasKey("TeamId");
 
-                    b.HasIndex("LeagueId");
+                    b.HasIndex("LeagueId")
+                        .IsUnique();
 
                     b.HasIndex("ManagerId")
                         .IsUnique();
@@ -366,9 +375,9 @@ namespace PoznajPilkarza.Migrations
             modelBuilder.Entity("PoznajPilkarza.Enitites.League", b =>
                 {
                     b.HasOne("PoznajPilkarza.Enitites.Nationality", "Nationality")
-                        .WithMany("Leagues")
-                        .HasForeignKey("NationalityId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .WithOne("League")
+                        .HasForeignKey("PoznajPilkarza.Enitites.League", "NationalityId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("PoznajPilkarza.Enitites.Manager", b =>
@@ -376,7 +385,7 @@ namespace PoznajPilkarza.Migrations
                     b.HasOne("PoznajPilkarza.Enitites.Nationality", "Nationality")
                         .WithMany("Managers")
                         .HasForeignKey("NationalityId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("PoznajPilkarza.Enitites.Match", b =>
@@ -413,43 +422,43 @@ namespace PoznajPilkarza.Migrations
             modelBuilder.Entity("PoznajPilkarza.Enitites.Player", b =>
                 {
                     b.HasOne("PoznajPilkarza.Enitites.Nationality", "Nationality")
-                        .WithMany("Players")
-                        .HasForeignKey("NationalityId")
+                        .WithOne("Player")
+                        .HasForeignKey("PoznajPilkarza.Enitites.Player", "NationalityId")
                         .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("PoznajPilkarza.Enitites.Position", "Position")
-                        .WithMany("Players")
-                        .HasForeignKey("PositionId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .WithOne("Player")
+                        .HasForeignKey("PoznajPilkarza.Enitites.Player", "PositionId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("PoznajPilkarza.Enitites.Team", "Team")
-                        .WithMany("Players")
-                        .HasForeignKey("TeamId")
+                        .WithOne("Player")
+                        .HasForeignKey("PoznajPilkarza.Enitites.Player", "TeamId")
                         .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("PoznajPilkarza.Enitites.Referee", b =>
                 {
                     b.HasOne("PoznajPilkarza.Enitites.Nationality", "Nationality")
-                        .WithMany("Referee")
-                        .HasForeignKey("NationalityId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .WithOne("Referee")
+                        .HasForeignKey("PoznajPilkarza.Enitites.Referee", "NationalityId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("PoznajPilkarza.Enitites.Stadium", b =>
                 {
                     b.HasOne("PoznajPilkarza.Enitites.Nationality", "Nationality")
-                        .WithMany("Stadium")
-                        .HasForeignKey("NationalityId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .WithOne("Stadium")
+                        .HasForeignKey("PoznajPilkarza.Enitites.Stadium", "NationalityId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("PoznajPilkarza.Enitites.Team", b =>
                 {
                     b.HasOne("PoznajPilkarza.Enitites.League", "League")
-                        .WithMany("Teams")
-                        .HasForeignKey("LeagueId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .WithOne("Team")
+                        .HasForeignKey("PoznajPilkarza.Enitites.Team", "LeagueId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("PoznajPilkarza.Enitites.Manager", "Manager")
                         .WithOne("Team")
