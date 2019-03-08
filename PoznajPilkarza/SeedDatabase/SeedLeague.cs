@@ -99,7 +99,6 @@ namespace PoznajPilkarza.SeedDatabase
                 linkToTeams.Add(nodeLeagueRow.Attributes["href"].Value);
             }
 
-            var leagues = new List<League>();
             for (int i =0; i < linkLeagues.Count; i++)
             {
                 var wiki = SeedWikipedia.GetWiki(nameLeagues[i]).Result;
@@ -143,7 +142,7 @@ namespace PoznajPilkarza.SeedDatabase
         {
             //var html = $@"http://www.footballsquads.co.uk/eng/{leagueHtml}";
 
-            HtmlWeb web = new HtmlWeb { };
+            HtmlWeb web = new HtmlWeb { AutoDetectEncoding = false, OverrideEncoding = Encoding.GetEncoding("iso-8859-1") };
             var htmldoc = web.Load(leagueHtml);
             var nodesTeams = htmldoc.DocumentNode.SelectNodes($"//h5/a");
             List<string> linkTeams = new List<string>();
@@ -159,7 +158,7 @@ namespace PoznajPilkarza.SeedDatabase
             var list = new List<Team>();
             for (int i = 0; i < linkTeams.Count; i++)
             {
-                PlayersInTeam(context, leagueHtml + linkTeams[i], nameTeams[i], selectedLeague);
+                PlayersInTeam(context, leagueHtml + linkTeams[i], HtmlEntity.DeEntitize(nameTeams[i]), selectedLeague);
             }
         }
 
@@ -173,7 +172,7 @@ namespace PoznajPilkarza.SeedDatabase
             var htmlDoc = web.Load(html);
 
             var nodesTeams = htmlDoc.DocumentNode.SelectNodes($"//h3/text()");
-            var patternClearHtml = $@"\r|\n|&nbsp+.|&amp;";
+            var patternClearHtml = $@"\r|\n|&nbsp+.|&amp;|\r|\n";
             var team = AddTeamToContext(context, HtmlEntity.DeEntitize(teamName), selectedLeague, nodesTeams, patternClearHtml);
 
             var nodesPlayerInTeam = htmlDoc.DocumentNode.SelectNodes("//table/tr");
@@ -214,7 +213,7 @@ namespace PoznajPilkarza.SeedDatabase
                     else
                     {
                         nationalityIdPlayer = context.Nationalities.FirstOrDefault(p =>
-                                p.FifaCodeCountry ==Regex.Replace(Regex.Replace(Regex.Replace(Regex.Replace(Regex.Replace(Regex.Replace(Regex.Replace(nationalityPlayer.Trim(), "EMG", "ENG"), "SWA", "WAL"), "KVZ", "KVX"),"SEB","SRB"),"GMB","GAM"),"CUW","ECU"),"NEL","BEL"))
+                                p.FifaCodeCountry ==Regex.Replace(Regex.Replace(Regex.Replace(Regex.Replace(Regex.Replace(Regex.Replace(Regex.Replace(nationalityPlayer.Trim(), "EMG|END", "ENG"), "SWA", "WAL"), "KVZ", "KVX"),"SEB","SRB"),"GMB","GAM"),"CUW","ECU"),"NEL","BEL"))
                             .NationalityId;
                     }
 
@@ -297,7 +296,7 @@ namespace PoznajPilkarza.SeedDatabase
         private static Stadium AddStadiumToContext(PlayerContext context, HtmlNodeCollection nodesTeams,
             int idNationality)
         {
-            var patternStadiumCapacity = $@"(?<=\()\d.+?(?=\))|&nbsp;|&amp;|\r\n";
+            var patternStadiumCapacity = $@"(?<=\()\d.+?(?=\))|&nbsp;|&amp;|\r\n|&quot;|\r|\n";
             var nodeStadium = nodesTeams[2].InnerText;
 
             var nameStadium = Regex.Replace(nodeStadium, patternStadiumCapacity, "")
@@ -348,15 +347,15 @@ namespace PoznajPilkarza.SeedDatabase
         private static Manager AddMangerToContext(PlayerContext context, HtmlNodeCollection nodesTeams)
         {
             var patternNameManager = $@"\s(?s).*";
-            var patternClearManager = $@"\r|\n|&nbsp+.|(?=\[).+?(?=\]).|\r\n";
+            var patternClearManager = $@"\r|\n|&nbsp+.|(?=\[).+?(?=\]).|&amp;|\r\n|\r|\n";
             var patternCountryManger = $@"(?<=\[).+?(?=\])";
             var countryManagerNode = nodesTeams[3].InnerText;
             var nameSurnameManager = Regex.Replace(nodesTeams[3].InnerText, patternClearManager, " ").Trim();
-            if (nameSurnameManager == "" || nameSurnameManager == " ")
+            if (nameSurnameManager == "" || nameSurnameManager == " "||nameSurnameManager == "TBD")
             {
                 nameSurnameManager = Regex.Replace(nodesTeams[3].ParentNode.SelectNodes(@".//i").Last().InnerText,
                     patternClearManager, "");
-                if (nameSurnameManager=="" || nameSurnameManager == " ")
+                if (nameSurnameManager=="" || nameSurnameManager == " "||nameSurnameManager=="TBD")
                 {
                     return context.Managers.FirstOrDefault(m => m.Surname == "No data");
                 }
@@ -371,7 +370,7 @@ namespace PoznajPilkarza.SeedDatabase
                 Name = nameManager,
                 Surname = surnameManager,
                 NationalityId =
-                    context.Nationalities.FirstOrDefault(n => n.FifaCodeCountry == countryManager).NationalityId,
+                    context.Nationalities.FirstOrDefault(n => n.FifaCodeCountry == Regex.Replace(countryManager,"GIB","ENG")).NationalityId,
                 Description = wikiManager.Description,
                 WikiLink = wikiManager.Link
             };
