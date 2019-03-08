@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PoznajPilkarza.Enitites
@@ -19,6 +20,6 @@ namespace PoznajPilkarza.Enitites
         public string Description { get; set; }
 
         public string WikiLink { get; set; }
-        public Team Team { get; set; }
+        public ICollection<Team> Team { get; set; }
     }
 }

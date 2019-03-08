@@ -45,8 +45,8 @@ namespace PoznajPilkarza.Entities.Contexts
                 .HasForeignKey(b => b.LeagueId).OnDelete(DeleteBehavior.Restrict);
             modelBuilder.Entity<Team>().HasOne<Manager>(s => s.Manager).WithOne(s => s.Team)
                 .HasForeignKey<Team>(b => b.ManagerId).OnDelete(DeleteBehavior.Restrict);
-            modelBuilder.Entity<Team>().HasOne<Stadium>(s => s.Stadium).WithOne(s => s.Team)
-                .HasForeignKey<Team>(b => b.StadiumId).OnDelete(DeleteBehavior.Restrict);
+            modelBuilder.Entity<Team>().HasOne<Stadium>(s => s.Stadium).WithMany(s => s.Team)
+                .HasForeignKey(b => b.StadiumId).OnDelete(DeleteBehavior.Restrict);
             modelBuilder.Entity<Team>().Property(b => b.Name).HasMaxLength(200).IsRequired();
             modelBuilder.Entity<Team>().Property(b => b.LeagueId).IsRequired();
             modelBuilder.Entity<Team>().Property(b => b.StadiumId).IsRequired();
