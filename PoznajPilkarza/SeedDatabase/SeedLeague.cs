@@ -269,8 +269,9 @@ namespace PoznajPilkarza.SeedDatabase
         private static Team AddTeamToContext(PlayerContext context, string teamName, League selectedLeague,
             HtmlNodeCollection nodesTeams, string patternClearHtml)
         {
-            var manager = AddMangerToContext(context, nodesTeams);
-            var stadium = AddStadiumToContext(context, nodesTeams, selectedLeague.NationalityId);
+            var shiftNode = 0;
+            var manager = AddMangerToContext(context, nodesTeams,out shiftNode);
+            var stadium = AddStadiumToContext(context, nodesTeams, selectedLeague.NationalityId,shiftNode);
             var wikiTeam = SeedWikipedia.GetWiki(teamName).Result;
             var formed = Regex.Match(Regex.Replace(nodesTeams[1].InnerText, patternClearHtml, "").Trim(), @"^\d+").ToString();
             if (formed == "")
@@ -294,23 +295,23 @@ namespace PoznajPilkarza.SeedDatabase
         }
 
         private static Stadium AddStadiumToContext(PlayerContext context, HtmlNodeCollection nodesTeams,
-            int idNationality)
+            int idNationality,int shiftNode)
         {
-            var patternStadiumCapacity = $@"(?<=\()\d.+?(?=\))|&nbsp;|&amp;|\r\n|&quot;|\r|\n";
-            var nodeStadium = nodesTeams[2].InnerText;
+            var patternStadiumCapacity = $@"(?<=\()\d.+?(?=\))|&nbsp;|&amp;|\r\n|&quot;|\r|\n|\s\s+|\t+";
+            var nodeStadium = nodesTeams[2+shiftNode].InnerText;
 
-            var nameStadium = Regex.Replace(nodeStadium, patternStadiumCapacity, "")
-                .Replace("()", "")
+            var nameStadium = Regex.Replace(nodeStadium, patternStadiumCapacity, " ")
+                .Replace("( )", "")
                 .Trim();
-            if (nameStadium == "")
+            if (nameStadium == "" ||Regex.IsMatch(nameStadium,@"\d"))
             {
                 var nodeStadiumWithNull = nodesTeams[2].ParentNode.SelectNodes(@".//i");
                 if (nodeStadiumWithNull != null)
                 {
                     nodeStadium=nodeStadiumWithNull.First().InnerText;
 
-                    nameStadium = Regex.Replace(nodeStadium, patternStadiumCapacity, "")
-                        .Replace("()", "")
+                    nameStadium = Regex.Replace(nodeStadium, patternStadiumCapacity, " ")
+                        .Replace("( )", "")
                         .Trim();
                    }
             }
@@ -344,10 +345,11 @@ namespace PoznajPilkarza.SeedDatabase
             return selectedStadium;
         }
 
-        private static Manager AddMangerToContext(PlayerContext context, HtmlNodeCollection nodesTeams)
+        private static Manager AddMangerToContext(PlayerContext context, HtmlNodeCollection nodesTeams,out int shiftNode)
         {
+            shiftNode = 0;
             var patternNameManager = $@"\s(?s).*";
-            var patternClearManager = $@"\r|\n|&nbsp+.|(?=\[).+?(?=\]).|&amp;|\r\n|\r|\n";
+            var patternClearManager = $@"\r|\n|&nbsp+.|(?=\[).+?(?=\]).|&amp;|\r\n|\s\s+";
             var patternCountryManger = $@"(?<=\[).+?(?=\])";
             var countryManagerNode = nodesTeams[3].InnerText;
             var nameSurnameManager = Regex.Replace(nodesTeams[3].InnerText, patternClearManager, " ").Trim();
@@ -357,12 +359,23 @@ namespace PoznajPilkarza.SeedDatabase
                     patternClearManager, "");
                 if (nameSurnameManager=="" || nameSurnameManager == " "||nameSurnameManager=="TBD")
                 {
+                    
                     return context.Managers.FirstOrDefault(m => m.Surname == "No data");
                 }
             }
 
-            string nameManager = HtmlEntity.DeEntitize(Regex.Replace(nameSurnameManager, patternNameManager, ""));
-            string surnameManager = HtmlEntity.DeEntitize(Regex.Match(nameSurnameManager, patternNameManager).ToString().Trim());
+            if (Regex.IsMatch(nameSurnameManager, @"\("))
+            {
+                nameSurnameManager = Regex.Replace(nodesTeams[4].InnerText, patternClearManager, " ");
+                shiftNode++;
+            }
+            else if (Regex.IsMatch(nameSurnameManager, "All Rights"))
+            {
+                nameSurnameManager = Regex.Replace(nodesTeams[2].InnerText, patternClearManager, " ");
+                shiftNode--;
+            }
+            string nameManager = HtmlEntity.DeEntitize(Regex.Replace(nameSurnameManager.Trim(), patternNameManager, ""));
+            string surnameManager = HtmlEntity.DeEntitize(Regex.Match(nameSurnameManager.Trim(), patternNameManager).ToString());
             var countryManager = Regex.Match(countryManagerNode, patternCountryManger).ToString();
             var wikiManager = SeedWikipedia.GetWiki(HtmlEntity.DeEntitize(nameSurnameManager)).Result;
             var selectedManager = new Manager
