@@ -106,8 +106,13 @@ namespace PoznajPilkarza.Entities.Contexts
 
             #endregion
 
-            modelBuilder.Entity<Match>().HasOne<League>(s => s.League).WithOne(s => s.Match)
-                .HasForeignKey<Match>(sa => sa.LeagueId).IsRequired();
+            modelBuilder.Entity<Match>().HasOne<League>(s => s.League).WithMany(s => s.Matches)
+                .HasForeignKey(sa => sa.LeagueId).IsRequired();
+            modelBuilder.Entity<Team>().HasMany(r => r.HomeTeams).WithOne(p => p.HomeTeam)
+                .HasForeignKey(p => p.HomeTeamId);
+            modelBuilder.Entity<Team>().HasMany(r => r.AwayTeams).WithOne(p => p.AwayTeam)
+                .HasForeignKey(p => p.AwayTeamId);
+            //modelBuilder.Entity<Team>().Property(p=>p.HomeTeams).
             //modelBuilder.Entity<Match>().HasOne<Team>(s => s.HomeTeam).WithOne(s => s.HomeMatch)
             //    .HasForeignKey<Match>(sa => sa.HomeTeamId).IsRequired().OnDelete(DeleteBehavior.Restrict);
             //modelBuilder.Entity<Match>().HasOne<Team>(s => s.AwayTeam).WithOne(s => s.AwayMatch)

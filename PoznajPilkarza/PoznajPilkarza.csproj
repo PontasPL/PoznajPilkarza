@@ -45,6 +45,18 @@
     <Compile Remove="Migrations\20190304232714_AddedMatches.Designer.cs" />
     <Compile Remove="Migrations\20190306161713_AddFifaCodeCountry.cs" />
     <Compile Remove="Migrations\20190306161713_AddFifaCodeCountry.Designer.cs" />
+    <Compile Remove="Migrations\20190309102417_ChangedRealtionshipInTeamMatch.cs" />
+    <Compile Remove="Migrations\20190309102417_ChangedRealtionshipInTeamMatch.Designer.cs" />
+    <Compile Remove="Migrations\20190309200025_ChangedRelationInMatch.cs" />
+    <Compile Remove="Migrations\20190309200025_ChangedRelationInMatch.Designer.cs" />
+    <Compile Remove="Migrations\20190309200308_ChangedRelationInMatch.cs" />
+    <Compile Remove="Migrations\20190309200308_ChangedRelationInMatch.Designer.cs" />
+    <Compile Remove="Migrations\20190309204425_ChangedRelationInMatch2.cs" />
+    <Compile Remove="Migrations\20190309204425_ChangedRelationInMatch2.Designer.cs" />
+    <Compile Remove="Migrations\20190309220645_ChangedRelationInMatch2.cs" />
+    <Compile Remove="Migrations\20190309220645_ChangedRelationInMatch2.Designer.cs" />
+    <Compile Remove="Migrations\20190310103818_AddInversePropertyToMatchTeam.cs" />
+    <Compile Remove="Migrations\20190310103818_AddInversePropertyToMatchTeam.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

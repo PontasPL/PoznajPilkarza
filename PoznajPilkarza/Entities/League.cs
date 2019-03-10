@@ -24,6 +24,6 @@ namespace PoznajPilkarza.Enitites
 
         public virtual ICollection<Team> Teams { get; set; }
 
-        public virtual Match Match { get; set; }
+        public virtual ICollection<Match> Matches { get; set; }
     }
 }
