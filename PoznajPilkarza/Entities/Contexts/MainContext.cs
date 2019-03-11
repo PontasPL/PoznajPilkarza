@@ -122,8 +122,8 @@ namespace PoznajPilkarza.Entities.Contexts
             modelBuilder.Entity<Match>().Property(b => b.FTHomeGoals).IsRequired();
             modelBuilder.Entity<Match>().Property(b => b.FTAwayGoals).IsRequired();
 
-            modelBuilder.Entity<MatchDetails>().HasOne<Referee>(s => s.Referee).WithOne(s => s.MatchDetails)
-                .HasForeignKey<MatchDetails>(sa => sa.RefereeId).IsRequired();
+            modelBuilder.Entity<MatchDetails>().HasOne<Referee>(s => s.Referee).WithMany(s => s.MatchDetails)
+                .HasForeignKey(sa => sa.RefereeId).IsRequired();
 
             modelBuilder.Entity<Referee>().HasOne<Nationality>(s => s.Nationality).WithMany(s => s.Referee)
                 .HasForeignKey(sa => sa.NationalityId).OnDelete(DeleteBehavior.Restrict).IsRequired();

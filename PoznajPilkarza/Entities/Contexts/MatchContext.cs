@@ -14,6 +14,12 @@ namespace PoznajPilkarza.Entities.Contexts
 
         public DbSet<Referee> Referees { get; set; }
 
+        public DbSet<League> Leagues { get; set; }
+        public DbSet<Team> Teams { get; set; }
+
+        public DbSet<Nationality> Nationalities { get; set; }
+
+        public DbSet<Stadium> Stadium { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Team>().HasMany(r => r.HomeTeams).WithOne(p => p.HomeTeam)
