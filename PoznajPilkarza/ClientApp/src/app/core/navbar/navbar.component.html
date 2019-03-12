@@ -17,12 +17,15 @@
       </div>
 
       <ul class="navbar-list" [ngClass]="{'navbar-list-mobile': checkHamburger==true}">
-        <li class="navbar-item" id="logo-desktop">
-          <img class="size-logo" src="../assets/Icons/Logo.svg" alt="LOGO">
-        </li>
+        <a [routerLink]="['']" [routerLinkActive]="'active'">
+          <li class="navbar-item" id="logo-desktop">
+            <img class="size-logo" src="../assets/Icons/Logo.svg" alt="LOGO">
+          </li>
+        </a>
+
 
         <li (mouseenter)="paintingIconMatches(true)" (mouseleave)="paintingIconMatches(false)" class="navbar-item">
-          <a href="#">
+          <a [routerLink]="['/matches']" [routerLinkActive]="'active'">
 
             <div>
               <div class="canvas-icons" id="canvas-whistle"></div>
@@ -33,28 +36,34 @@
           </a>
         </li>
         <li (mouseenter)="paintingIconFootballer(true)" (mouseleave)="paintingIconFootballer(false)" class="navbar-item">
-          <div>
-            <div class="canvas-icons" id="canvas-footballer"></div>
-          </div>
-          <div class="category category-2">
-            Piłkarze
-          </div>
+          <a [routerLink]="['/players']" [routerLinkActive]="'active'">
+            <div>
+              <div class="canvas-icons" id="canvas-footballer"></div>
+            </div>
+            <div class="category category-2">
+              Piłkarze
+            </div>
+          </a>
         </li>
         <li (mouseenter)="paintingIconManagers(true)" (mouseleave)="paintingIconManagers(false)" class="navbar-item">
-          <div>
-            <div class="canvas-icons" id="canvas-managers"></div>
-          </div>
-          <div class="category category-3">
-            Trenerzy
-          </div>
+          <a [routerLink]="['/managers']" [routerLinkActive]="'active'">
+            <div>
+              <div class="canvas-icons" id="canvas-managers"></div>
+            </div>
+            <div class="category category-3">
+              Trenerzy
+            </div>
+          </a>
         </li>
         <li class="navbar-item">
-          <div>
-            <div class="canvas-icons" id="canvas-login"></div>
-          </div>
-          <div class="category category-4">
-            Logowanie
-          </div>
+          <a [routerLink]="['/login']" [routerLinkActive]="'active'">
+            <div>
+              <div class="canvas-icons" id="canvas-login"></div>
+            </div>
+            <div class="category category-4">
+              Logowanie
+            </div>
+          </a>
         </li>
       </ul>
     </div>
