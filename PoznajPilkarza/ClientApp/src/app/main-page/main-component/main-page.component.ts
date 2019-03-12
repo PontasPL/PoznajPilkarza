@@ -1,5 +1,5 @@
 import { Component, OnInit, HostListener } from '@angular/core';
-import { NavbarMainSharedService } from '../shared/navbar-main-shared.service';
+import { NavbarMainSharedService } from '../../shared/navbar-main-shared.service';
 import { Subscription } from 'rxjs';
 
 @Component({
