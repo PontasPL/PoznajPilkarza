@@ -24,7 +24,7 @@ namespace PoznajPilkarza.SeedDatabase
                 return;
             }
 
-           //addEmptyReferee(context); 
+            addEmptyReferee(context);
             //var league = "D1";
             var leagues = new List<string>
             {

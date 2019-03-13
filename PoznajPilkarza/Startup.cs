@@ -29,7 +29,7 @@ namespace PoznajPilkarza
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddScoped<IPlayerRepository, PlayerRepository>();
             services.AddDbContext<MainContext>(o =>
-                o.UseSqlServer(Configuration.GetConnectionString("myConnectionString")));
+                o.UseSqlServer(Configuration.GetConnectionString("myConnectionString"),op=>op.EnableRetryOnFailure()));
             services.AddDbContext<NationalityContext>(o =>
                 o.UseSqlServer(Configuration.GetConnectionString("myConnectionString")));
             services.AddDbContext<LeagueContext>(o =>
