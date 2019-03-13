@@ -6,11 +6,9 @@ using PoznajPilkarza.Enitites;
 
 namespace PoznajPilkarza.Services
 {
-    public interface IPlayerRepository
+    public interface INationalityRepository
     {
-        IEnumerable<Player> GetPlayers();
-        IEnumerable<Player> GetPlayersFromCountry(string country);
-       
-        bool Save();
+        IEnumerable<Nationality> GetNationalities();
+        IEnumerable<Nationality> GetPlayersNationalities();
     }
 }

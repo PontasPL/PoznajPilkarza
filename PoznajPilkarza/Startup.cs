@@ -28,6 +28,7 @@ namespace PoznajPilkarza
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddScoped<IPlayerRepository, PlayerRepository>();
+            services.AddScoped<INationalityRepository, NationalityRepository>();
             services.AddDbContext<MainContext>(o =>
                 o.UseSqlServer(Configuration.GetConnectionString("myConnectionString"),op=>op.EnableRetryOnFailure()));
             services.AddDbContext<NationalityContext>(o =>
@@ -38,6 +39,13 @@ namespace PoznajPilkarza
                 o.UseSqlServer(Configuration.GetConnectionString("myConnectionString")));
             services.AddDbContext<MatchContext>(o =>
                 o.UseSqlServer(Configuration.GetConnectionString("myConnectionString")));
+
+            services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
+            {
+                builder.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader();
+            }));
 
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
@@ -60,16 +68,17 @@ namespace PoznajPilkarza
             nationalityContext.EnsureSeedDataForContext();
             leagueContext.EnsureSeedDataForContext();
             matchContext.EnsureSeedDataForContext();
-
+            app.UseCors("MyPolicy");
 
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
 
-            AutoMapper.Mapper.Initialize(cfg =>
+            Mapper.Initialize(cfg =>
             {
                 cfg.CreateMap<Player, PlayerDto>();
                 //cfg.CreateMap<Player, TestPlayer>().ForSourceMember(x=>x.Description, opt=>opt.DoNotValidate());
                 cfg.CreateMap<Player, PlayerNameSurnameDto>(MemberList.Destination);
+                cfg.CreateMap<Nationality, NationalityNameDto>(MemberList.Destination);
             });
 
             app.UseMvc(routes =>

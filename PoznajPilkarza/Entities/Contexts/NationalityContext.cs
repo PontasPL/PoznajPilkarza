@@ -10,6 +10,7 @@ namespace PoznajPilkarza.Entities.Contexts
     public class NationalityContext :DbContext
     {
         public DbSet<Nationality> Nationalities { get; set; }
+        public DbSet<Player> Players { get; set; }
         
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
