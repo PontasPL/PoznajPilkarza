@@ -31,7 +31,7 @@ namespace PoznajPilkarza.SeedDatabase
                 "D1",
                 "E0",
                 "F1",
-                "G1",
+                "D1",
                 "SP1"
             };
             foreach (var league in leagues)
@@ -145,6 +145,7 @@ namespace PoznajPilkarza.SeedDatabase
 
         private static MatchDetails GetMatchDetails(MatchCSV match,int refereeCountry,MatchContext context,int homeTeam)
         {
+         
             var matchDetails = new MatchDetails
             {
                 HomeTeamCorners = match.HC,
@@ -164,7 +165,7 @@ namespace PoznajPilkarza.SeedDatabase
                 AwayTeamWoodWork = GetRandom(0,4),
                 HomeTeamWoodWork = GetRandom(0,4),
                 Attendance = Convert.ToInt32(Math.Round((GetRandom(60,95)*0.01)*context.Stadium.FirstOrDefault(s=>s.StadiumId==homeTeam).Capacity,0)),
-                Referee = match.Referee!=null ?  GetReferee(match.Referee,refereeCountry,context) : context.Referees.FirstOrDefault(r=>r.Name=="No data")
+                RefereeId = match.Referee!=null ?  GetReferee(match.Referee,refereeCountry,context) : context.Referees.FirstOrDefault(r=>r.Name=="No data").RefereeId
             };
             context.MatchesDetails.Add(matchDetails);
             context.SaveChanges();
@@ -178,21 +179,33 @@ namespace PoznajPilkarza.SeedDatabase
             return randomNumber;
         }
 
-        private static Referee GetReferee(string matchReferee, int refereeCountry,MatchContext context)
+        private static int GetReferee(string matchReferee, int refereeCountry,MatchContext context)
         {
-            var wikiReferee = SeedWikipedia.GetWiki(matchReferee + " referee").Result;
-            var referee = new Referee
+           
+            var nameReferee = matchReferee.Substring(0, 1);
+            var surnameReferee = matchReferee.Substring(2, matchReferee.Length - 2);
+            if (!context.Referees.Any(n => n.Name == nameReferee && n.Surname == surnameReferee))
             {
-                Name = matchReferee.Substring(0,1),
-                Surname = matchReferee.Substring(2,matchReferee.Length-2),
-                PngImage = "No data",
-                Nationality = context.Nationalities.FirstOrDefault(n=>n.NationalityId == refereeCountry),
-                Description = wikiReferee.Description,
-                WikiLink = wikiReferee.Link
-            };
-            context.Referees.Add(referee);
-            context.SaveChanges();
-            return referee;
+                var wikiReferee = SeedWikipedia.GetWiki(matchReferee + " referee").Result;
+                var referee = new Referee
+                {
+                    Name = matchReferee.Substring(0, 1),
+                    Surname = matchReferee.Substring(2, matchReferee.Length - 2),
+                    PngImage = "No data",
+                    Nationality = context.Nationalities.FirstOrDefault(n => n.NationalityId == refereeCountry),
+                    Description = wikiReferee.Description,
+                    WikiLink = wikiReferee.Link
+                };
+
+
+                context.Referees.Add(referee);
+                context.SaveChanges();
+            }
+
+            var refereeId = context.Referees.FirstOrDefault(n => n.Name == nameReferee && n.Surname == surnameReferee)
+                .RefereeId;
+
+            return refereeId;
         }
 
         private static StreamReader getCSV(string url)
