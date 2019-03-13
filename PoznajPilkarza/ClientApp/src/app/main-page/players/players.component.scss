@@ -1,0 +1,20 @@
+.main-container {
+  position: absolute;
+  display: grid;
+  grid-template-columns: 15% 70% 15%;
+  grid-template-rows: 1fr;
+  width: 100%;
+  height: calc(100% - 134px);
+  grid-template-areas: " . main-block . "
+    "main-inform-block main-inform-block main-inform-block";
+  transition: 1s;
+
+  .main-block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    grid-area: main-block;
+
+  }
+
+}

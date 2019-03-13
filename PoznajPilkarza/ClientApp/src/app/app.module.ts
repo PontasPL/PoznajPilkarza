@@ -11,6 +11,7 @@ import { MainPageRoutingModule } from './main-page/main-page-routing.module';
 import { RouterModule } from '@angular/router';
 import { PlayersComponent } from './main-page/players/players.component';
 import { MainPageModule } from './main-page/main-page.module';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -23,7 +24,7 @@ import { MainPageModule } from './main-page/main-page.module';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-
+    FormsModule
 
   ],
   bootstrap: [AppComponent],
