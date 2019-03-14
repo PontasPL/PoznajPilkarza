@@ -27,7 +27,7 @@ namespace PoznajPilkarza.Controllers
         {
             var playersEntities = _playerRepository.GetPlayers();
 
-            var result = Mapper.Map<IEnumerable<PlayerNameSurnameDto>>(playersEntities);
+            var result = Mapper.Map<IEnumerable<PlayerDto>>(playersEntities);
             GC.Collect();
             return Ok(result);
         }

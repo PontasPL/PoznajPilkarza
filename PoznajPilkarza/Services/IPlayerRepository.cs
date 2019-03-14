@@ -10,7 +10,7 @@ namespace PoznajPilkarza.Services
     {
         IEnumerable<Player> GetPlayers();
         IEnumerable<Player> GetPlayersFromCountry(string country);
-       
+        
         bool Save();
     }
 }

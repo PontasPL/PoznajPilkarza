@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using PoznajPilkarza.Enitites;
 
 namespace PoznajPilkarza.Models
 {
@@ -11,6 +12,10 @@ namespace PoznajPilkarza.Models
         public string Name { get; set; }
 
         public string Surname { get; set; }
+
+        public string Team { get; set; }
+
+
 
 
     }
