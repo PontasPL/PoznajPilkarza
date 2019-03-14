@@ -3,7 +3,8 @@ import { Player } from 'src/app/models/player';
 import { PlayersService } from '../players/players.service';
 import { Nationality } from 'src/app/models/nationality';
 import { NationalityService } from '../nationality.service';
-
+import { DataSource } from '@angular/cdk/table';
+import { Observable } from 'rxjs';
 @Component({
   selector: 'app-players',
   templateUrl: './players.component.html',
@@ -11,12 +12,15 @@ import { NationalityService } from '../nationality.service';
 })
 export class PlayersComponent implements OnInit {
 
+  constructor(private playerService: PlayersService, private nationalityService: NationalityService) { }
+  displayedColumns: string[] = ['name', 'surname', 'nationalityName', 'positionName', 'nameLeague'];
+  dataSource = new PostDataSource(this.playerService);
+
   players: Player[];
   country: 'Poland';
   countries: Nationality[] = [{ name: 'Poland' }];
   selectedCountry = this.countries[0];
 
-  constructor(private playerService: PlayersService, private nationalityService: NationalityService) { }
 
   ngOnInit() {
     this.nationalityService.getNationality().subscribe(Response => {
@@ -24,6 +28,7 @@ export class PlayersComponent implements OnInit {
     });
     this.playerService.getCars().subscribe(response => {
       this.players = response;
+
     });
   }
   getNewPlayers() {
@@ -39,7 +44,24 @@ export class PlayersComponent implements OnInit {
     });
 
   }
+  test() {
+    console.log(this.players);
+  }
+
 }
+export class PostDataSource extends DataSource<any> {
+  constructor(private dataService: PlayersService) {
+    super();
+  }
+
+  connect(): Observable<Player[]> {
+    return this.dataService.getCars();
+  }
+
+  disconnect() {
+  }
+}
+
   // sendInfo() {
   //   this.playerService.addInfo(country);
   // }

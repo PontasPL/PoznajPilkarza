@@ -1,3 +1,17 @@
+@keyframes navbar-animations {
+  0% {
+    opacity: 0;
+    transform: translateX(-150px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+
+}
+
+
 .main-container {
   position: absolute;
   display: grid;
@@ -15,6 +29,31 @@
     align-items: center;
     grid-area: main-block;
 
+    mat-table {
+      width: 100%;
+      animation-name: navbar-animations;
+      animation-duration: 2s;
+
+    }
+
+    mat-header-cell {
+      display: flex;
+      justify-content: center;
+      color: white;
+      font-family: 'DJBSkritchSkratch', DJBSkritchSkratch;
+      font-weight: 800;
+    }
+
+    mat-cell {
+      display: flex;
+      justify-content: center;
+    }
+
   }
 
 }
+
+// .mat-table {
+//   overflow: auto;
+//   max-height: 500px;
+// }

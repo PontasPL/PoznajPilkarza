@@ -12,7 +12,7 @@ export class PlayersService {
   private apiUrl = 'http://localhost:1234/api/players';
   constructor(private http: HttpClient) { }
 
-  getCars() {
+  getCars(): Observable<Player[]> {
     return this.http.get<Player[]>(this.apiUrl);
   }
   addInfo(country: string) {

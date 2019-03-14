@@ -4,15 +4,13 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './core/navbar/navbar.component';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { MainPageComponent } from './main-page/main-component/main-page.component';
 import { NavbarMainSharedService } from './shared/navbar-main-shared.service';
-import { MainPageRoutingModule } from './main-page/main-page-routing.module';
-import { RouterModule } from '@angular/router';
 import { PlayersComponent } from './main-page/players/players.component';
-import { MainPageModule } from './main-page/main-page.module';
 import { FormsModule } from '@angular/forms';
-
+import { MaterialModule } from './material.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
@@ -24,7 +22,9 @@ import { FormsModule } from '@angular/forms';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    MaterialModule,
 
   ],
   bootstrap: [AppComponent],

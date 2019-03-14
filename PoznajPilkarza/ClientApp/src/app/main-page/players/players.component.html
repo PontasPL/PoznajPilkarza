@@ -1,28 +1,33 @@
 <div class="main-container">
   <div class="main-block">
 
-    <button (click)="getNewPlayers()">Test</button>
+    <mat-table [dataSource]="players" class="mat-elevation-z8">
 
-    <select [(ngModel)]="selectedCountry" (click)="getNewPlayers()" name="test" id="test">
-      <option *ngFor="let country of countries" [ngValue]="country">{{country.name}}</option>
-    </select>
-    <table style="width:100%">
-      <thead>
+      <ng-container matColumnDef="nameLeague">
+        <mat-header-cell *matHeaderCellDef> League </mat-header-cell>
+        <mat-cell *matCellDef="let player"> {{player.nameLeague}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+        <mat-cell *matCellDef="let player" class="test"> {{player.name}} </mat-cell>
+      </ng-container>
 
-        <tr>
-          <th>Firstname</th>
-          <th>Lastname</th>
-          <th>Age</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let player of players">
-          <td>{{player.name}}</td>
-          <td>{{player.surname}}</td>
-          <td>50</td>
-        </tr>
 
-      </tbody>
-    </table>
+      <ng-container matColumnDef="surname">
+        <mat-header-cell *matHeaderCellDef> Surname </mat-header-cell>
+        <mat-cell *matCellDef="let player"> {{player.surname}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="nationalityName">
+        <mat-header-cell *matHeaderCellDef> Country </mat-header-cell>
+        <mat-cell *matCellDef="let player"> {{player.nationalityName}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="positionName">
+        <mat-header-cell *matHeaderCellDef> Position </mat-header-cell>
+        <mat-cell *matCellDef="let player"> {{player.positionName}} </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
   </div>
 </div>
