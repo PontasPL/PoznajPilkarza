@@ -31,6 +31,16 @@ namespace PoznajPilkarza.Controllers
             GC.Collect();
             return Ok(result);
         }
+        [HttpGet("names")]
+        public IActionResult GetPlayersNames()
+        {
+            var playersEntities = _playerRepository.GetPlayersNames();
+
+            var result = Mapper.Map<IEnumerable<PlayerNameSurnameDto>>(playersEntities);
+            GC.Collect();
+            return Ok(result);
+        }
+
         [HttpGet("{country}")]
         public IActionResult GetPlayerFromCountry(string country)
         {

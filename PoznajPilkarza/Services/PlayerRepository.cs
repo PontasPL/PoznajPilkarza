@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
+using Diacritics.Extensions;
 using Microsoft.EntityFrameworkCore;
 using PoznajPilkarza.Enitites;
 using PoznajPilkarza.Entities.Contexts;
@@ -25,8 +26,7 @@ namespace PoznajPilkarza.Services
 
             return _context.Players.Include(t=>t.Team).Include(n=>n.Nationality).Include(l=>l.Team.League)
                 .Include(p=>p.Position)
-                .Where(p => p.Nationality.Name == "Poland")
-                .Select(x => new Player
+               .Select(x => new Player
                 {
                     Name = x.Name,
                     Surname = x.Surname,
@@ -40,7 +40,7 @@ namespace PoznajPilkarza.Services
                  
                     
 
-                }).Take(5).ToList();
+                }).ToList();
         }
 
     
@@ -51,7 +51,12 @@ namespace PoznajPilkarza.Services
                 .Select(x => new Player { Name = x.Name, Surname = x.Surname }).Take(5).ToList();
         }
 
-      
+        public IEnumerable<Player> GetPlayersNames()
+        {
+            return _context.Players.Select(x => new Player { Name = x.Name, Surname = x.Surname.RemoveDiacritics() }).ToList();
+        }
+
+
 
         public bool Save()
         {

@@ -79,11 +79,7 @@ namespace PoznajPilkarza
                     .ForMember(dest => dest.NameTeam, op => op.MapFrom(src => src.Team.Name))
                     .ForMember(dest => dest.PositionName, op => op.MapFrom(src => src.Position.ShortCode))
                     .ForMember(dest => dest.nameLeague, op => op.MapFrom(src => src.Team.League.Name));
-                   
-                //.AfterMap(((player, dto) => Mapper.Map(player.Team.League.Name, dto.LeagueName)));
-                //cfg.CreateMap<Player, TestPlayer>().ForSourceMember(x=>x.Description, opt=>opt.DoNotValidate());
-                cfg.CreateMap<Player, PlayerNameSurnameDto>(MemberList.Destination)
-                    .ForMember(dest => dest.Team, op => op.MapFrom(src => src.Team.Name));
+                cfg.CreateMap<Player, PlayerNameSurnameDto>(MemberList.Destination);
                 cfg.CreateMap<Nationality, NationalityNameDto>(MemberList.Destination);
             });
 
