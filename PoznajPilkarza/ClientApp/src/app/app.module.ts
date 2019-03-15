@@ -8,15 +8,17 @@ import { HttpClientModule } from '@angular/common/http';
 import { MainPageComponent } from './main-page/main-component/main-page.component';
 import { NavbarMainSharedService } from './shared/navbar-main-shared.service';
 import { PlayersComponent } from './main-page/players/players.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from './material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SearchBarComponent } from './main-page/search-bar/search-bar.component';
+import { SinglePlayerComponent } from './main-page/single-player/single-player.component';
 
 
 
 @NgModule({
   declarations: [
-    AppComponent, NavbarComponent, MainPageComponent, PlayersComponent
+    AppComponent, NavbarComponent, MainPageComponent, PlayersComponent, SearchBarComponent, SinglePlayerComponent
   ],
   imports: [
     BrowserModule,
@@ -25,6 +27,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FormsModule,
     BrowserAnimationsModule,
     MaterialModule,
+    ReactiveFormsModule,
 
   ],
   bootstrap: [AppComponent],

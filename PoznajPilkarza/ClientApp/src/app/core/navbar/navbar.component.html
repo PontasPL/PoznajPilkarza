@@ -12,20 +12,22 @@
           </button>
         </div>
         <div class="mobile-logo">
-          <img class="size-logo" src="../assets/Icons/Logo.svg" alt="LOGO">
+          <a [routerLink]="['']" [routerLinkActive]="'active'" (click)="hamburgerClick()">
+            <img class="size-logo" src="../assets/Icons/Logo.svg" alt="LOGO">
+          </a>
         </div>
       </div>
 
       <ul class="navbar-list" [ngClass]="{'navbar-list-mobile': checkHamburger==true}">
-        <a [routerLink]="['']" [routerLinkActive]="'active'">
-          <li class="navbar-item" id="logo-desktop">
+        <li class="navbar-item" id="logo-desktop">
+          <a [routerLink]="['']" [routerLinkActive]="'active'">
             <img class="size-logo" src="../assets/Icons/Logo.svg" alt="LOGO">
-          </li>
-        </a>
+          </a>
+        </li>
 
 
         <li (mouseenter)="paintingIconMatches(true)" (mouseleave)="paintingIconMatches(false)" class="navbar-item">
-          <a [routerLink]="['/matches']" [routerLinkActive]="'active'">
+          <a [routerLink]="['/matches']" [routerLinkActive]="'active'" (click)="hamburgerClick()">
 
             <div>
               <div class="canvas-icons" id="canvas-whistle"></div>
@@ -36,7 +38,7 @@
           </a>
         </li>
         <li (mouseenter)="paintingIconFootballer(true)" (mouseleave)="paintingIconFootballer(false)" class="navbar-item">
-          <a [routerLink]="['/players']" [routerLinkActive]="'active'">
+          <a [routerLink]="['/players']" [routerLinkActive]="'active'" (click)="hamburgerClick()">
             <div>
               <div class="canvas-icons" id="canvas-footballer"></div>
             </div>
@@ -46,7 +48,7 @@
           </a>
         </li>
         <li (mouseenter)="paintingIconManagers(true)" (mouseleave)="paintingIconManagers(false)" class="navbar-item">
-          <a [routerLink]="['/managers']" [routerLinkActive]="'active'">
+          <a [routerLink]="['/managers']" [routerLinkActive]="'active'" (click)="hamburgerClick()">
             <div>
               <div class="canvas-icons" id="canvas-managers"></div>
             </div>
@@ -56,7 +58,7 @@
           </a>
         </li>
         <li class="navbar-item">
-          <a [routerLink]="['/login']" [routerLinkActive]="'active'">
+          <a [routerLink]="['/login']" [routerLinkActive]="'active'" (click)="hamburgerClick()">
             <div>
               <div class="canvas-icons" id="canvas-login"></div>
             </div>

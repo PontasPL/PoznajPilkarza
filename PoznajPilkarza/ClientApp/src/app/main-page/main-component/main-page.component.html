@@ -1,19 +1,6 @@
 <div class="main-container" [ngClass]="{'hide-main-page': hamburgerOpen==true}">
   <div class="main-block">
-
-    <div class="search-block">
-      <ul class="main-search-tittle">
-        <li class="search-tittle-item">Poznaj piłkarza! </li>
-        <li class="search-tittle-item">Wpisz jego imię i nazwisko!</li>
-        <li class="search-tittle-item">
-          <img class="search-arrowRightDown" src="../../assets/Icons/MainPage/arrowRightDown.png" alt="arrowRightDown">
-        </li>
-      </ul>
-      <form action="">
-        <input class="main-search-bar" type="text" placeholder="" name="footballer">
-
-      </form>
-    </div>
+    <app-search-bar></app-search-bar>
   </div>
   <ul class="main-inform-block">
     <li class="main-inform-item assumption">

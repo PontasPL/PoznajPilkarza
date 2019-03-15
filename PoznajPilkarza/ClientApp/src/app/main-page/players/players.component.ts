@@ -1,69 +1,54 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { Player } from 'src/app/models/player';
 import { PlayersService } from '../players/players.service';
 import { Nationality } from 'src/app/models/nationality';
 import { NationalityService } from '../nationality.service';
-import { DataSource } from '@angular/cdk/table';
+
 import { Observable } from 'rxjs';
+import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
+import { FormControl } from '@angular/forms';
+
 @Component({
   selector: 'app-players',
   templateUrl: './players.component.html',
   styleUrls: ['./players.component.scss']
 })
-export class PlayersComponent implements OnInit {
-
-  constructor(private playerService: PlayersService, private nationalityService: NationalityService) { }
-  displayedColumns: string[] = ['name', 'surname', 'nationalityName', 'positionName', 'nameLeague'];
-  dataSource = new PostDataSource(this.playerService);
-
+export class PlayersComponent implements OnInit, AfterViewInit {
   players: Player[];
-  country: 'Poland';
-  countries: Nationality[] = [{ name: 'Poland' }];
-  selectedCountry = this.countries[0];
+  stateCtrl = new FormControl();
+  filteredStates: Observable<Player[]>;
+  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  constructor(private playerService: PlayersService, private nationalityService: NationalityService) {
 
+  }
+  displayedColumns: string[] = ['name', 'surname', 'nationalityName', 'positionName', 'nameLeague'];
+  dataSource = new MatTableDataSource(this.players);
 
   ngOnInit() {
-    this.nationalityService.getNationality().subscribe(Response => {
-      this.countries = Response;
-    });
+
     this.playerService.getCars().subscribe(response => {
-      this.players = response;
+      this.dataSource.data = response as Player[];
 
     });
-  }
-  getNewPlayers() {
-    // country = 'Germany';
-    this.playerService.addInfo(this.selectedCountry.name).subscribe(response => {
-      this.players = response;
-    });
-  }
-  getNationality() {
-    // country = 'Germany';
-    this.nationalityService.getNationality().subscribe(Response => {
-      this.countries = Response;
-    });
 
+
+    this.dataSource.paginator = this.paginator;
   }
-  test() {
-    console.log(this.players);
+
+  ngAfterViewInit(): void {
+    this.dataSource.sort = this.sort;
   }
+
+
+
+
+
+
+
+
 
 }
-export class PostDataSource extends DataSource<any> {
-  constructor(private dataService: PlayersService) {
-    super();
-  }
 
-  connect(): Observable<Player[]> {
-    return this.dataService.getCars();
-  }
-
-  disconnect() {
-  }
-}
-
-  // sendInfo() {
-  //   this.playerService.addInfo(country);
-  // }
 
 

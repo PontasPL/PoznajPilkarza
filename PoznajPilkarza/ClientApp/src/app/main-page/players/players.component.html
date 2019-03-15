@@ -1,33 +1,38 @@
 <div class="main-container">
+  <div class="example-form">
+    <app-search-bar></app-search-bar>
+
+  </div>
   <div class="main-block">
 
-    <mat-table [dataSource]="players" class="mat-elevation-z8">
+    <mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
 
       <ng-container matColumnDef="nameLeague">
-        <mat-header-cell *matHeaderCellDef> League </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> League </mat-header-cell>
         <mat-cell *matCellDef="let player"> {{player.nameLeague}} </mat-cell>
       </ng-container>
       <ng-container matColumnDef="name">
-        <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
         <mat-cell *matCellDef="let player" class="test"> {{player.name}} </mat-cell>
       </ng-container>
 
 
       <ng-container matColumnDef="surname">
-        <mat-header-cell *matHeaderCellDef> Surname </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Surname </mat-header-cell>
         <mat-cell *matCellDef="let player"> {{player.surname}} </mat-cell>
       </ng-container>
       <ng-container matColumnDef="nationalityName">
-        <mat-header-cell *matHeaderCellDef> Country </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Country </mat-header-cell>
         <mat-cell *matCellDef="let player"> {{player.nationalityName}} </mat-cell>
       </ng-container>
       <ng-container matColumnDef="positionName">
-        <mat-header-cell *matHeaderCellDef> Position </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Position </mat-header-cell>
         <mat-cell *matCellDef="let player"> {{player.positionName}} </mat-cell>
       </ng-container>
 
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
     </mat-table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
   </div>
 </div>

@@ -61,7 +61,7 @@ export class NavbarComponent implements OnInit {
 
   hamburgerClick() {
     this.checkHamburger = !this.checkHamburger;
-    this.notify.changeNav(this.checkHamburger);
+    // this.notify.changeNav(this.checkHamburger);
   }
 
 
