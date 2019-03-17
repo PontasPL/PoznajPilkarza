@@ -1,7 +1,7 @@
 import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { Player } from 'src/app/models/player';
 import { PlayersService } from '../players/players.service';
-import { Nationality } from 'src/app/models/nationality';
+import { INationality } from 'src/app/models/nationality';
 import { NationalityService } from '../nationality.service';
 import { DataSource } from '@angular/cdk/table';
 import { Observable } from 'rxjs';

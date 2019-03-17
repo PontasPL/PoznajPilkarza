@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Nationality } from '../models/nationality';
+import { INationality } from '../models/nationality';
 import { tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
@@ -13,6 +13,6 @@ export class NationalityService {
   constructor(private http: HttpClient) { }
 
   getNationality() {
-    return this.http.get<Nationality[]>(this.apiUrl);
+    return this.http.get<INationality[]>(this.apiUrl);
   }
 }

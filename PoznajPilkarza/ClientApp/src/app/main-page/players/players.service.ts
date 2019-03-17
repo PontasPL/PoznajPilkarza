@@ -16,7 +16,7 @@ export class PlayersService {
     return this.http.get<Player[]>(this.apiUrl);
   }
   getPlayersWithCountry(country: string) {
-    this.apiUrl = `http://localhost:1234/api/players/${country}`;
+    this.apiUrl = `http://localhost:1234/api/players/country/${country}`;
     return this.http.get<Player[]>(this.apiUrl);
   }
 }
