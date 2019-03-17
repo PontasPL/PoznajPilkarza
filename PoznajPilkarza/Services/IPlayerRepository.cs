@@ -11,6 +11,8 @@ namespace PoznajPilkarza.Services
         IEnumerable<Player> GetPlayers();
         IEnumerable<Player> GetPlayersFromCountry(string country);
         IEnumerable<Player> GetPlayersNames();
+        IEnumerable<Player> GetPlayersFromLeague(string league);
+        IEnumerable<Player> GetPlayersFromCountryWithLeague(string country, string league);
         bool Save();
     }
 }

@@ -41,12 +41,29 @@ namespace PoznajPilkarza.Controllers
             return Ok(result);
         }
 
-        [HttpGet("{country}")]
+        [HttpGet("country/{country}")]
         public IActionResult GetPlayerFromCountry(string country)
         {
             var playersEntities = _playerRepository.GetPlayersFromCountry(country);
 
             var result = Mapper.Map<IEnumerable<PlayerDto>>(playersEntities);
+            GC.Collect();
+            return Ok(result);
+        }
+        [HttpGet("league/{league}")]
+        public IActionResult GetPlayersFromLeague(string league)
+        {
+            var playersEntities = _playerRepository.GetPlayersFromLeague(league);
+            var result = Mapper.Map<IEnumerable<PlayerNameSurnameDto>>(playersEntities);
+            GC.Collect();
+            return Ok(result);
+        }
+
+        [HttpGet("{country}/{league}")]
+        public IActionResult GetPlayersFromCountryWithLeague(string country, string league)
+        {
+            var playersEntities = _playerRepository.GetPlayersFromCountryWithLeague(country, league);
+            var result = Mapper.Map<IEnumerable<PlayerNameSurnameDto>>(playersEntities);
             GC.Collect();
             return Ok(result);
         }

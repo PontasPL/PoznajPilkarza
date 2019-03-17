@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Diacritics.Extensions;
 using Microsoft.EntityFrameworkCore;
@@ -69,6 +70,24 @@ namespace PoznajPilkarza.Services
             return _context.Players.Select(x => new Player { Name = x.Name, Surname = x.Surname.RemoveDiacritics() }).ToList();
         }
 
+        public IEnumerable<Player> GetPlayersFromLeague(string league)
+        {
+            var nameLeague = Regex.Replace(league, @"\-.*", "").Trim();
+            var countryLeague = Regex.Match(league, @"\-.*").Value.Replace("-", "").Trim();
+            return _context.Players
+                .Where(p =>p.Team.League.Name == nameLeague && p.Team.League.Nationality.Name == countryLeague)
+                .Select(x => new Player {Name = x.Name, Surname = x.Surname});
+        }
+
+        public IEnumerable<Player> GetPlayersFromCountryWithLeague(string country, string league)
+        {
+            var nameLeague = Regex.Replace(league, @"\-.*", "").Trim();
+            var countryLeague = Regex.Match(league, @"\-.*").Value.Replace("-","").Trim();
+            return _context.Players
+                .Where(p => p.Nationality.Name == country && p.Team.League.Name == nameLeague &&
+                            p.Team.League.Nationality.Name == countryLeague)
+                .Select(x => new Player{Name = x.Name,Surname = x.Surname}).ToList();
+        }
 
 
         public bool Save()
