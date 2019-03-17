@@ -8,10 +8,12 @@ import {
     MatCardModule,
     MatButtonModule,
     MatTableModule,
+    MatSelectModule,
     MatPaginatorModule,
     MatSortModule,
     MatAutocompleteModule,
-    MatInputModule
+    MatInputModule,
+    MatProgressSpinnerModule
 } from '@angular/material';
 
 @NgModule({
@@ -23,11 +25,12 @@ import {
         MatCardModule,
         MatButtonModule,
         MatTableModule,
+        MatSelectModule,
         MatPaginatorModule,
         MatSortModule,
         MatAutocompleteModule,
-        MatInputModule
-
+        MatInputModule,
+        MatProgressSpinnerModule
     ],
     exports: [
         MatSidenavModule,
@@ -35,12 +38,14 @@ import {
         MatIconModule,
         MatListModule,
         MatCardModule,
+        MatSelectModule,
         MatButtonModule,
         MatTableModule,
         MatPaginatorModule,
         MatSortModule,
         MatAutocompleteModule,
-        MatInputModule
+        MatInputModule,
+        MatProgressSpinnerModule
     ]
 })
 export class MaterialModule { }

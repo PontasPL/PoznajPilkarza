@@ -12,6 +12,7 @@ import { NationalityService } from './nationality.service';
 import { MatSortModule } from '@angular/material';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { SinglePlayerComponent } from './single-player/single-player.component';
+import { LeagueService } from './league.service';
 @NgModule({
   declarations: [PlayersComponent, SearchBarComponent, SinglePlayerComponent],
   imports: [
@@ -26,6 +27,6 @@ import { SinglePlayerComponent } from './single-player/single-player.component';
   exports: [
     PlayersComponent, SearchBarComponent, SinglePlayerComponent
   ],
-  providers: [PlayersService, NationalityService]
+  providers: [PlayersService, NationalityService, LeagueService]
 })
 export class MainPageModule { }

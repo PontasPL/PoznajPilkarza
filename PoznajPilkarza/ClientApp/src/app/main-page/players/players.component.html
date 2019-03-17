@@ -3,33 +3,73 @@
     <app-search-bar></app-search-bar>
 
   </div>
+  <div class="main-text-api">
+    <h2 class="tittle-text-api">Piłkarze</h2>
+    <p class="text-api">Poniższa tabela prezentuje statystki piłkarzy z różnych lig świata
+      Każdy z piłkarzy posiada swoje unikalne statystki dzięki, którym zawodnicy potrafią wyróżniać
+      się na swoich pozycjach.</p>
+    <p class="text-api">Można sortować ich według:
+      <strong class="text-api-elements"> Imienia, Nazwiska, Wieku, Państwa</strong>
+    </p>
+    <p class="text-api">Wszystkie statystyki piłkarzy możemy również wyświetlić poprzez wbudowane w apliakcje API</p>
+  </div>
   <div class="main-block">
 
+
+    <mat-form-field>
+      <mat-select [(ngModel)]="selectedCountry" placeholder="Państwo" (selectionChange)="getNewPlayers()">
+        <mat-option *ngFor="let country of dataSourceCountries.data" [value]="country.name">
+          {{country.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-select [(ngModel)]="selectedLeague" placeholder="Liga">
+        <mat-option *ngFor="let league of dataSourceLeagues.data;" [value]="league.name + ' | ' +league.nationalityName">
+          {{league.name + ' | ' +league.nationalityName}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+
+    <mat-card *ngIf="isLoading" style="display: flex; justify-content: center; align-items: center;">
+      <mat-progress-spinner color="primary" mode="indeterminate">
+      </mat-progress-spinner>
+    </mat-card>
     <mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
 
       <ng-container matColumnDef="nameLeague">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> League </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Liga </mat-header-cell>
         <mat-cell *matCellDef="let player"> {{player.nameLeague}} </mat-cell>
       </ng-container>
       <ng-container matColumnDef="name">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Imie </mat-header-cell>
         <mat-cell *matCellDef="let player" class="test"> {{player.name}} </mat-cell>
       </ng-container>
-
-
       <ng-container matColumnDef="surname">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Surname </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Nazwisko </mat-header-cell>
         <mat-cell *matCellDef="let player"> {{player.surname}} </mat-cell>
       </ng-container>
       <ng-container matColumnDef="nationalityName">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Country </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Państwo </mat-header-cell>
         <mat-cell *matCellDef="let player"> {{player.nationalityName}} </mat-cell>
       </ng-container>
       <ng-container matColumnDef="positionName">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Position </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Pozycja </mat-header-cell>
         <mat-cell *matCellDef="let player"> {{player.positionName}} </mat-cell>
       </ng-container>
-
+      <ng-container matColumnDef="height">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Wzrost </mat-header-cell>
+        <mat-cell *matCellDef="let player"> {{player.height}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="weight">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Waga </mat-header-cell>
+        <mat-cell *matCellDef="let player"> {{player.weight}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="nameTeam">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Drużyna </mat-header-cell>
+        <mat-cell *matCellDef="let player"> {{player.nameTeam}} </mat-cell>
+      </ng-container>
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
     </mat-table>

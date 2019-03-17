@@ -6,7 +6,20 @@
 
   100% {
     opacity: 1;
-    transform: translateY(0px);
+    transform: translateX(0px);
+  }
+
+}
+
+@keyframes navbar-animations-reverse {
+  0% {
+    opacity: 0;
+    transform: translateX(300px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0px);
   }
 
 }
@@ -16,23 +29,56 @@
   position: absolute;
   display: grid;
   grid-template-columns: 15% 70% 15%;
-  grid-template-rows: minmax(140px, 25%) 1fr;
+  grid-template-rows: minmax(140px, 25%) auto 1fr;
   width: 100%;
   height: calc(100% - 134px);
   grid-template-areas: " . main-block . "
+    ". main-text-api ."
     ". main-inform-block .";
   transition: 1s;
+  animation-name: navbar-animations;
+  animation-duration: 2s;
+
+  .main-text-api {
+    box-shadow: 0px -2px 6px 4px rgba(0, 0, 0, 0.53);
+    background-color: rgba(0, 0, 0, 0.29);
+    grid-area: main-text-api;
+    padding: 20px 20px;
+    line-height: 20pt;
+
+    .text-api {
+      display: flex;
+      // justify-content: center;
+      text-align: justify;
+      color: white;
+
+      .text-api-elements {
+        font-weight: bold;
+      }
+    }
+
+    .tittle-text-api {
+      text-align: center;
+      min-width: 100%;
+      font-family: 'DJBSkritchSkratch', DJBSkritchSkratch;
+      font-weight: 800;
+      color: white;
+      margin: 20px 0;
+    }
+  }
 
   .main-block {
-    display: flex;
+    // display: flex;
     justify-content: center;
     align-items: center;
     grid-area: main-inform-block;
+    background-color: rgba(0, 0, 0, 0.29);
+    box-shadow: 0px -2px 6px 4px rgba(0, 0, 0, 0.53);
+    animation-name: navbar-animations-reverse;
+    animation-duration: 2s;
 
     mat-table {
       width: 100%;
-      animation-name: navbar-animations;
-      animation-duration: 2s;
 
     }
 

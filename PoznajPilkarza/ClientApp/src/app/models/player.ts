@@ -1,11 +1,12 @@
 export interface Player {
     name: string;
     surname: string;
-    shirtNumber: number;
+    // shirtNumber: number;
     nationalityName: string;
+    dateOfBirth: Date;
     positionName: string;
     height: number;
     weight: number;
     nameTeam: string;
-    nameLeague: string;
+    // nameLeague: string;
 }

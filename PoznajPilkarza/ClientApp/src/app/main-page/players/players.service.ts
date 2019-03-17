@@ -15,7 +15,7 @@ export class PlayersService {
   getCars(): Observable<Player[]> {
     return this.http.get<Player[]>(this.apiUrl);
   }
-  addInfo(country: string) {
+  getPlayersWithCountry(country: string) {
     this.apiUrl = `http://localhost:1234/api/players/${country}`;
     return this.http.get<Player[]>(this.apiUrl);
   }
