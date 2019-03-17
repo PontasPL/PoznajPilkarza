@@ -48,7 +48,20 @@ namespace PoznajPilkarza.Services
         public IEnumerable<Player> GetPlayersFromCountry(string country)
         {
             return _context.Players.Where(p => p.Nationality.Name == country)
-                .Select(x => new Player { Name = x.Name, Surname = x.Surname }).Take(5).ToList();
+                .Include(x=>x.Position)
+                .Include(t=>t.Team)
+                .Select(x => new Player
+                {
+                    Name = x.Name,
+                    Surname = x.Surname,
+                    DateOfBirth =x.DateOfBirth.Date,
+                    Height = x.Height,
+                    Weight = x.Weight,
+                    Position = x.Position,
+                    Nationality = x.Nationality,
+                    Team =x.Team
+                    
+                }).ToList();
         }
 
         public IEnumerable<Player> GetPlayersNames()
