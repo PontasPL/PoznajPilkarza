@@ -1,0 +1,38 @@
+@mixin small-search-bar-mixin() {
+  margin: 0 15px;
+  width: 79vw;
+
+  .main-search-tittle {
+    overflow-wrap: break-word;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .search-tittle-item {
+      padding: 5px 0;
+    }
+  }
+
+  .main-search-bar {
+    font-size: $search-font-size-title - 3px;
+    height: 40px;
+  }
+
+  .main-search-tittle {
+    font-size: $search-font-size-title - 3px;
+    margin: 10px 0;
+
+    .search-tittle-item {
+
+      &:last-of-type {
+        display: none;
+        visibility: hidden;
+
+      }
+    }
+  }
+}
+
+input {
+  width: 50px;
+}

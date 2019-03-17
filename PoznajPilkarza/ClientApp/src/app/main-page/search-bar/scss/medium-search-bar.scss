@@ -1,0 +1,20 @@
+@mixin medium-search-bar-mixin() {
+  margin: 0 15px;
+  width: 75vw;
+
+  .main-search-bar {
+    font-size: $search-font-size-title - 3px;
+  }
+
+  .main-search-tittle {
+    font-size: $search-font-size-title - 3px;
+
+    .search-tittle-item {
+      .search-arrowRightDown {
+        width: 100%;
+        transform: none;
+        max-width: 9vw;
+      }
+    }
+  }
+}

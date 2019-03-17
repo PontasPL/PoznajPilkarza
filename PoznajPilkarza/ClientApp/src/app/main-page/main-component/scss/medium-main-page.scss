@@ -5,28 +5,7 @@
   grid-template-areas: " main-block main-block main-block "
     "main-inform-block main-inform-block main-inform-block";
 
-  .main-block {
 
-    .search-block {
-      margin: 0 15px;
-
-      .main-search-bar {
-        font-size: $search-font-size-title - 2px;
-      }
-
-      .main-search-tittle {
-        font-size: $search-font-size-title - 2px;
-
-        .search-tittle-item {
-          .search-arrowRightDown {
-            width: 100%;
-            transform: none;
-            max-width: 9vw;
-          }
-        }
-      }
-    }
-  }
 
   .main-inform-block {
     grid-template-rows: 0.5fr 1fr;

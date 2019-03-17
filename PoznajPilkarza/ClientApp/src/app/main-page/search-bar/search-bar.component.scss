@@ -1,77 +1,97 @@
-$search-font-size-title: 19px;
+// $search-font-size-title: 19px;
 @import "../../shared/scss/shared.scss";
+@import "./scss/all-format-search-bar.scss";
 
-$back-color:rgba($color: #000000, $alpha: 0.43);
-$search-color: rgba(27, 26, 26, 0.747);
 
+// $back-color:rgba($color: #000000, $alpha: 0.43);
+// $search-color: rgba(27, 26, 26, 0.747);
 
 
 
 .search-block {
-  width: 640px;
-
-  .main-search-tittle {
-    font-family: 'DJBSkritchSkratch', DJBSkritchSkratch;
-    font-weight: 800;
-    color: white;
-    display: flex;
-    font-size: $search-font-size-title;
-    justify-content: center;
-    margin: 0 0 20px 0;
-    animation: search-animations 2s;
-
-    .search-tittle-item {
-      padding: 0 3px;
-
-      .search-arrowRightDown {
-        position: absolute;
-        transform: scale(0.7) rotate(30deg);
-      }
-    }
-  }
+  @include search-bar-mixin();
+}
 
 
-  .main-search-bar {
-    animation-name: test;
-    animation: search-animations 2s;
-    height: 50px;
-    width: 140px;
-    border-radius: 15px;
-    text-align: center;
-    min-width: 100%;
-    background-color: $search-color;
-    font-family: 'DJBSkritchSkratch', DJBSkritchSkratch;
-    font-weight: 800;
-    color: white;
-
-
+@media #{$information-medium-screen} {
+  .search-block {
+    @include medium-search-bar-mixin();
   }
 }
 
-input {
-  animation-name: test;
-  animation: search-animations 2s;
-  height: 50px;
-  width: 140px;
-  border-radius: 15px;
-  text-align: center;
-  min-width: 100%;
-  background-color: $search-color;
-  font-family: 'DJBSkritchSkratch', DJBSkritchSkratch;
-  font-weight: 800;
-  color: white;
-}
-
-.mat-option-text {
-  display: flex;
-  justify-content: center;
-}
-
-.link-player {
-  display: flex;
-  justify-content: center;
-
-  .span-name {
-    color: white;
+@media #{$information-small-screen} {
+  .search-block {
+    @include small-search-bar-mixin();
   }
 }
+
+
+
+// .search-block {
+//   width: 640px;
+
+//   .main-search-tittle {
+//     font-family: 'DJBSkritchSkratch', DJBSkritchSkratch;
+//     font-weight: 800;
+//     color: white;
+//     display: flex;
+//     font-size: $search-font-size-title;
+//     justify-content: center;
+//     margin: 0 0 20px 0;
+//     animation: search-animations 2s;
+
+//     .search-tittle-item {
+//       padding: 0 3px;
+
+//       .search-arrowRightDown {
+//         position: absolute;
+//         transform: scale(0.7) rotate(30deg);
+//       }
+//     }
+//   }
+
+
+//   .main-search-bar {
+//     animation-name: test;
+//     animation: search-animations 2s;
+//     height: 50px;
+//     width: 140px;
+//     border-radius: 15px;
+//     text-align: center;
+//     min-width: 100%;
+//     background-color: $search-color;
+//     font-family: 'DJBSkritchSkratch', DJBSkritchSkratch;
+//     font-weight: 800;
+//     color: white;
+
+
+//   }
+// }
+
+// input {
+//   animation-name: test;
+//   animation: search-animations 2s;
+//   height: 50px;
+//   width: 140px;
+//   border-radius: 15px;
+//   text-align: center;
+//   min-width: 100%;
+//   background-color: $search-color;
+//   font-family: 'DJBSkritchSkratch', DJBSkritchSkratch;
+//   font-weight: 800;
+//   color: white;
+// }
+
+// .mat-option-text {
+//   display: flex;
+//   justify-content: center;
+// }
+
+// .link-player {
+//   display: flex;
+//   justify-content: center;
+
+//   .span-name {
+//     color: white;
+//   }
+// }

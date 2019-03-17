@@ -52,45 +52,6 @@ $search-color: rgba(27, 26, 26, 0.747);
     justify-content: center;
     align-items: center;
     grid-area: main-block;
-
-    .search-block {
-      width: 640px;
-
-      .main-search-tittle {
-        font-family: 'DJBSkritchSkratch', DJBSkritchSkratch;
-        font-weight: 800;
-        color: white;
-        display: flex;
-        font-size: $search-font-size-title;
-        justify-content: center;
-        margin: 0 0 20px 0;
-        animation: search-animations 2s;
-
-        .search-tittle-item {
-          padding: 0 3px;
-
-          .search-arrowRightDown {
-            position: absolute;
-            transform: scale(0.7) rotate(30deg);
-          }
-        }
-      }
-
-
-      .main-search-bar {
-        animation-name: test;
-        animation: search-animations 2s;
-        height: 50px;
-        width: 140px;
-        border-radius: 15px;
-        text-align: center;
-        min-width: 100%;
-        background-color: $search-color;
-        font-family: 'DJBSkritchSkratch', DJBSkritchSkratch;
-        font-weight: 800;
-        color: white;
-      }
-    }
   }
 
   .main-inform-block {
