@@ -12,9 +12,14 @@ namespace PoznajPilkarza.Entities.Contexts
         public DbSet<Nationality> Nationalities { get; set; }
         public DbSet<League> Leagues { get; set; }
 
-       
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Ignore<Team>();
+        }
+
         public LeagueContext(DbContextOptions<LeagueContext> options) : base(options)
         {
+
         }
 
     }

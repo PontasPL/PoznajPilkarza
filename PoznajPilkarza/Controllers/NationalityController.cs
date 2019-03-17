@@ -10,11 +10,11 @@ using PoznajPilkarza.Services;
 namespace PoznajPilkarza.Controllers
 {
     [Route("api/nationalities")]
-    public class NatioanlityController : Controller
+    public class NationalityController : Controller
     {
         private INationalityRepository _nationalityRepository;
 
-        public NatioanlityController(INationalityRepository nationalityRepository)
+        public NationalityController(INationalityRepository nationalityRepository)
         {
             _nationalityRepository = nationalityRepository;
         }

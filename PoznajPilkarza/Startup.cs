@@ -29,6 +29,7 @@ namespace PoznajPilkarza
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddScoped<IPlayerRepository, PlayerRepository>();
             services.AddScoped<INationalityRepository, NationalityRepository>();
+            services.AddScoped<ILeagueRepository,LeagueRepository>();
             services.AddDbContext<MainContext>(o =>
                 o.UseSqlServer(Configuration.GetConnectionString("myConnectionString"),op=>op.EnableRetryOnFailure()));
             services.AddDbContext<NationalityContext>(o =>
@@ -76,11 +77,13 @@ namespace PoznajPilkarza
             Mapper.Initialize(cfg =>
             {
                 cfg.CreateMap<Player, PlayerDto>(MemberList.Destination)
-                    .ForMember(dest => dest.NameTeam, op => op.MapFrom(src => src.Team.Name))
                     .ForMember(dest => dest.PositionName, op => op.MapFrom(src => src.Position.ShortCode))
-                    .ForMember(dest => dest.nameLeague, op => op.MapFrom(src => src.Team.League.Name));
+                    .ForMember(dest => dest.NameTeam, op => op.MapFrom(src => src.Team.Name));
+                //.ForMember(dest => dest.nameLeague, op => op.MapFrom(src => src.Team.League.Name));
+
                 cfg.CreateMap<Player, PlayerNameSurnameDto>(MemberList.Destination);
                 cfg.CreateMap<Nationality, NationalityNameDto>(MemberList.Destination);
+                cfg.CreateMap<League, LeagueNameNationalityDto>(MemberList.Destination);
             });
 
             app.UseMvc(routes =>
