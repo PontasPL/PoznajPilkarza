@@ -21,11 +21,11 @@ export class ManagersService {
     return this.http.get<Manager[]>(this.concatApiUrl);
   }
   getPlayersWithLeagueAndCountry(league: string, country: string): Observable<Manager[]> {
-    this.apiUrl = this.apiUrl + `${country}/${league}`;
-    return this.http.get<Manager[]>(this.apiUrl);
+    this.concatApiUrl = this.apiUrl + `${country}/${league}`;
+    return this.http.get<Manager[]>(this.concatApiUrl);
   }
   getPlayersWithCountry(country: string) {
-    this.apiUrl = this.apiUrl + `country/${country}`;
-    return this.http.get<Manager[]>(this.apiUrl);
+    this.concatApiUrl = this.apiUrl + `country/${country}`;
+    return this.http.get<Manager[]>(this.concatApiUrl);
   }
 }

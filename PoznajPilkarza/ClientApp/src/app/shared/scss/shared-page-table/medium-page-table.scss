@@ -1,0 +1,20 @@
+@mixin medium-main-container-mixin() {
+  grid-template-areas: " . main-block . "
+    "main-text-api main-text-api main-text-api"
+    "main-inform-block main-inform-block main-inform-block";
+
+  .main-block {
+    margin: 20px 0 0 0;
+
+    .table-container {
+      height: 100%;
+      width: 100%;
+
+      //   overflow: auto;
+      mat-table {
+        width: 100%;
+
+      }
+    }
+  }
+}

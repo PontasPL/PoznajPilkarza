@@ -12,6 +12,11 @@ export class PlayersService {
   private apiUrl = 'http://localhost:1234/api/players/';
   concatApiUrl: string;
   constructor(private http: HttpClient) { }
+
+  getPlayersNameSurname(): Observable<Player[]> {
+    this.concatApiUrl = this.apiUrl + 'names';
+    return this.http.get<Player[]>(this.concatApiUrl);
+  }
   getPlayers(): Observable<Player[]> {
     // this.apiUrl = 'http://localhost:1234/api/players/';
     return this.http.get<Player[]>(this.apiUrl);

@@ -15,8 +15,9 @@ import { SinglePlayerComponent } from './single-player/single-player.component';
 import { LeagueService } from './league.service';
 import { ManagersComponent } from './managers/managers.component';
 import { ManagersService } from './managers/managers.service';
+import { MatchesComponent } from './matches/matches.component';
 @NgModule({
-  declarations: [PlayersComponent, SearchBarComponent, SinglePlayerComponent, ManagersComponent],
+  declarations: [PlayersComponent, SearchBarComponent, SinglePlayerComponent, ManagersComponent, MatchesComponent],
   imports: [
     CommonModule,
     CoreModule,

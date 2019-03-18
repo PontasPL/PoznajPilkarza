@@ -1,0 +1,25 @@
+@import "../shared.scss";
+@import "./all-formats-page-table.scss";
+
+
+// $back-color:rgba($color: #000000, $alpha: 0.43);
+// $search-color: rgba(27, 26, 26, 0.747);
+
+
+
+.main-container {
+  @include main-container-mixin();
+}
+
+
+@media #{$information-medium-screen} {
+  .main-container {
+    @include medium-main-container-mixin();
+  }
+}
+
+@media #{$information-small-screen} {
+  .main-container {
+    @include small-main-container-mixin();
+  }
+}
