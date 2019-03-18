@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
 import { FormControl } from '@angular/forms';
 import { startWith, map } from 'rxjs/operators';
+import * as clean from 'diacritics/index';
 
 @Component({
   selector: 'app-search-bar',
@@ -19,6 +20,7 @@ export class SearchBarComponent implements OnInit {
   players: Player[];
   stateCtrl = new FormControl();
   filteredStates: Observable<Player[]>;
+  removeDiacritics: any;
 
   constructor(private playerService: PlayersService) {
     this.filteredStates = this.stateCtrl.valueChanges
@@ -31,7 +33,7 @@ export class SearchBarComponent implements OnInit {
   dataSource = new MatTableDataSource(this.players);
 
   ngOnInit() {
-    this.playerService.getPlayers().subscribe(response => {
+    this.playerService.getPlayersNameSurname().subscribe(response => {
       this.dataSource.data = response as Player[];
     });
   }
@@ -42,16 +44,16 @@ export class SearchBarComponent implements OnInit {
 
   // }
 
-
   private _filterStates(value: string): Player[] {
-    console.log(value);
+
+    console.log(clean.remove(value));
     // let test;
+
 
     // console.log(value); // OK
     if (value && value.length > this.minLength) {
 
 
-      console.log(value);
       const filterValue = value.toLowerCase();
       // this.dataz;
       return this.dataSource.data.filter(player => player.name.toLowerCase().indexOf(filterValue) === 0 ||
