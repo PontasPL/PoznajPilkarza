@@ -20,22 +20,29 @@ namespace PoznajPilkarza.Services
             return _context.Nationalities.Select(n=> new Nationality{Name =n.Name} ).ToList();
         }
 
-        public IEnumerable<Nationality> GetPlayersNationalities()
+        private static IEnumerable<Nationality> GetDistinctNationalities(List<string> playersNationalityId)
         {
-            var playersNatioanlityId = _context.Players.Select(x => x.Nationality.Name).Distinct().ToList();
-
-            //var listNationality = new List<Nationality>();
-            //foreach (var natioanlityId in playersNatioanlityId)
-            //{
-            //    listNationality.Add(_context.Nationalities.FirstOrDefault(n => n.NationalityId == natioanlityId));
-            //}
             var listNationality = new List<Nationality>();
-            foreach (var natioanlityId in playersNatioanlityId)
+            foreach (var nationalityId in playersNationalityId)
             {
-                listNationality.Add(new Nationality{Name = natioanlityId});
+                listNationality.Add(new Nationality {Name = nationalityId});
             }
 
-            return listNationality.OrderBy(n=>n.Name);
+            return listNationality.OrderBy(n => n.Name);
+        }
+
+        public IEnumerable<Nationality> GetPlayersNationalities()
+        {
+            var playersNationalityId = _context.Players.Select(x => x.Nationality.Name).Distinct().ToList();
+
+            return GetDistinctNationalities(playersNationalityId);
+        }
+
+        public IEnumerable<Nationality> GetManagersNationalities()
+        {
+            var managersNationalityId = _context.Managers.Select(x => x.Nationality.Name)
+                .Distinct().ToList();
+            return GetDistinctNationalities(managersNationalityId);
         }
     }
 }

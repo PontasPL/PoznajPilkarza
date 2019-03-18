@@ -19,7 +19,7 @@ namespace PoznajPilkarza.Controllers
             _leagueRepository = leagueRepository;
         }
         [HttpGet()]
-        public IActionResult Index()
+        public IActionResult GetLeagues()
         {
             var repository = _leagueRepository.GetLeagues();
             var result = Mapper.Map<IEnumerable<LeagueNameNationalityDto>>(repository);

@@ -8,11 +8,10 @@ namespace PoznajPilkarza.Services
 {
     public interface IPlayerRepository
     {
+        IEnumerable<Player> GetPlayersNames();
         IEnumerable<Player> GetPlayers();
         IEnumerable<Player> GetPlayersFromCountry(string country);
-        IEnumerable<Player> GetPlayersNames();
         IEnumerable<Player> GetPlayersFromLeague(string league);
         IEnumerable<Player> GetPlayersFromCountryWithLeague(string country, string league);
-        bool Save();
     }
 }

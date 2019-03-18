@@ -2,15 +2,11 @@
 {
     public class ManagerDto
     {
-        public int ManagerId { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
-        public int NationalityId { get; set; }
-        public NationalityDto Nationality { get; set; }
+        public string NationalityName { get; set; }
 
-        public string PngImage { get; set; }
-
-        public string Description { get; set; }
+        public string TeamName { get; set; }
 
         public string WikiLink { get; set; }
     }

@@ -54,7 +54,7 @@ namespace PoznajPilkarza.Controllers
         public IActionResult GetPlayersFromLeague(string league)
         {
             var playersEntities = _playerRepository.GetPlayersFromLeague(league);
-            var result = Mapper.Map<IEnumerable<PlayerNameSurnameDto>>(playersEntities);
+            var result = Mapper.Map<IEnumerable<PlayerDto>>(playersEntities);
             GC.Collect();
             return Ok(result);
         }
@@ -63,7 +63,7 @@ namespace PoznajPilkarza.Controllers
         public IActionResult GetPlayersFromCountryWithLeague(string country, string league)
         {
             var playersEntities = _playerRepository.GetPlayersFromCountryWithLeague(country, league);
-            var result = Mapper.Map<IEnumerable<PlayerNameSurnameDto>>(playersEntities);
+            var result = Mapper.Map<IEnumerable<PlayerDto>>(playersEntities);
             GC.Collect();
             return Ok(result);
         }

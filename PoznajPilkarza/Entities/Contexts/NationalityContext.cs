@@ -11,7 +11,9 @@ namespace PoznajPilkarza.Entities.Contexts
     {
         public DbSet<Nationality> Nationalities { get; set; }
         public DbSet<Player> Players { get; set; }
-        
+
+        public DbSet<Manager> Managers { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //modelBuilder.Entity<Team>().Ignore(p=>p.AwayTeams);

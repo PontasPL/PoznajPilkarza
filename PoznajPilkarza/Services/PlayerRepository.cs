@@ -21,17 +21,16 @@ namespace PoznajPilkarza.Services
         }
         public IEnumerable<Player> GetPlayers()
         {
-            //var listPlayers = _context.Players.Include(n => n.Nationality).Take(5).ToList()
 
 
 
-            return _context.Players.Include(t=>t.Team).Include(n=>n.Nationality).Include(l=>l.Team.League)
+            return _context.Players.Include(t=>t.Team).Include(n=>n.Nationality)
                 .Include(p=>p.Position)
                .Select(x => new Player
                 {
                     Name = x.Name,
                     Surname = x.Surname,
-                    Team = new Team{Name = x.Team.Name,League = new League{Name = x.Team.League.Name}},
+                    Team = x.Team,
                     Nationality = x.Nationality,
                     DateOfBirth =x.DateOfBirth,
                     Height = x.Height,
@@ -76,7 +75,17 @@ namespace PoznajPilkarza.Services
             var countryLeague = Regex.Match(league, @"\-.*").Value.Replace("-", "").Trim();
             return _context.Players
                 .Where(p =>p.Team.League.Name == nameLeague && p.Team.League.Nationality.Name == countryLeague)
-                .Select(x => new Player {Name = x.Name, Surname = x.Surname});
+                .Select(x => new Player
+                {
+                    Name = x.Name,
+                    Surname = x.Surname,
+                    DateOfBirth = x.DateOfBirth.Date,
+                    Height = x.Height,
+                    Weight = x.Weight,
+                    Position = x.Position,
+                    Nationality = x.Nationality,
+                    Team = x.Team
+                });
         }
 
         public IEnumerable<Player> GetPlayersFromCountryWithLeague(string country, string league)
@@ -86,13 +95,19 @@ namespace PoznajPilkarza.Services
             return _context.Players
                 .Where(p => p.Nationality.Name == country && p.Team.League.Name == nameLeague &&
                             p.Team.League.Nationality.Name == countryLeague)
-                .Select(x => new Player{Name = x.Name,Surname = x.Surname}).ToList();
+                .Select(x => new Player
+                {
+                    Name = x.Name,
+                    Surname = x.Surname,
+                    DateOfBirth = x.DateOfBirth.Date,
+                    Height = x.Height,
+                    Weight = x.Weight,
+                    Position = x.Position,
+                    Nationality = x.Nationality,
+                    Team = x.Team
+                }).ToList();
         }
 
 
-        public bool Save()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

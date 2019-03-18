@@ -30,6 +30,7 @@ namespace PoznajPilkarza
             services.AddScoped<IPlayerRepository, PlayerRepository>();
             services.AddScoped<INationalityRepository, NationalityRepository>();
             services.AddScoped<ILeagueRepository,LeagueRepository>();
+            services.AddScoped<IMangerRepository, ManagerRepository>();
             services.AddDbContext<MainContext>(o =>
                 o.UseSqlServer(Configuration.GetConnectionString("myConnectionString"),op=>op.EnableRetryOnFailure()));
             services.AddDbContext<NationalityContext>(o =>
@@ -39,6 +40,8 @@ namespace PoznajPilkarza
             services.AddDbContext<PlayerContext>(o =>
                 o.UseSqlServer(Configuration.GetConnectionString("myConnectionString")));
             services.AddDbContext<MatchContext>(o =>
+                o.UseSqlServer(Configuration.GetConnectionString("myConnectionString")));
+            services.AddDbContext<ManagerContext>(o =>
                 o.UseSqlServer(Configuration.GetConnectionString("myConnectionString")));
 
             services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
@@ -80,7 +83,7 @@ namespace PoznajPilkarza
                     .ForMember(dest => dest.PositionName, op => op.MapFrom(src => src.Position.ShortCode))
                     .ForMember(dest => dest.NameTeam, op => op.MapFrom(src => src.Team.Name));
                 //.ForMember(dest => dest.nameLeague, op => op.MapFrom(src => src.Team.League.Name));
-
+                cfg.CreateMap<Manager, ManagerDto>(MemberList.Destination);
                 cfg.CreateMap<Player, PlayerNameSurnameDto>(MemberList.Destination);
                 cfg.CreateMap<Nationality, NationalityNameDto>(MemberList.Destination);
                 cfg.CreateMap<League, LeagueNameNationalityDto>(MemberList.Destination);
