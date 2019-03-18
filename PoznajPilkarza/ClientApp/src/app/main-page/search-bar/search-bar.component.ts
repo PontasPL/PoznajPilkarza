@@ -31,7 +31,7 @@ export class SearchBarComponent implements OnInit {
   dataSource = new MatTableDataSource(this.players);
 
   ngOnInit() {
-    this.playerService.getCars().subscribe(response => {
+    this.playerService.getPlayers().subscribe(response => {
       this.dataSource.data = response as Player[];
     });
   }
