@@ -9,10 +9,16 @@ import { Observable } from 'rxjs';
 })
 export class NationalityService {
 
-  private apiUrl = 'http://localhost:1234/api/nationalities/players';
+  private apiUrl = 'http://localhost:1234/api/nationalities/';
+  concatApiUrl: string;
   constructor(private http: HttpClient) { }
 
-  getNationality() {
-    return this.http.get<INationality[]>(this.apiUrl);
+  getNationalityPlayers() {
+    this.concatApiUrl = this.apiUrl + 'players';
+    return this.http.get<INationality[]>(this.concatApiUrl);
+  }
+  getNationalityManagers() {
+    this.concatApiUrl = this.apiUrl + 'managers';
+    return this.http.get<INationality[]>(this.concatApiUrl);
   }
 }

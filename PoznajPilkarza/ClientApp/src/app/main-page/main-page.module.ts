@@ -13,8 +13,10 @@ import { MatSortModule } from '@angular/material';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { SinglePlayerComponent } from './single-player/single-player.component';
 import { LeagueService } from './league.service';
+import { ManagersComponent } from './managers/managers.component';
+import { ManagersService } from './managers/managers.service';
 @NgModule({
-  declarations: [PlayersComponent, SearchBarComponent, SinglePlayerComponent],
+  declarations: [PlayersComponent, SearchBarComponent, SinglePlayerComponent, ManagersComponent],
   imports: [
     CommonModule,
     CoreModule,
@@ -25,8 +27,8 @@ import { LeagueService } from './league.service';
     FormControl,
   ],
   exports: [
-    PlayersComponent, SearchBarComponent, SinglePlayerComponent
+    PlayersComponent, SearchBarComponent, SinglePlayerComponent, ManagersComponent
   ],
-  providers: [PlayersService, NationalityService, LeagueService]
+  providers: [PlayersService, NationalityService, LeagueService, ManagersService]
 })
 export class MainPageModule { }

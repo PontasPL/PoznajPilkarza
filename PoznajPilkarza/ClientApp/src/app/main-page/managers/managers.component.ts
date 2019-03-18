@@ -1,27 +1,25 @@
-import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
-import { Player } from 'src/app/models/player';
-import { PlayersService } from '../players/players.service';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { Manager } from 'src/app/models/manager';
+import { INationality } from 'src/app/models/nationality';
 import { League } from 'src/app/models/league';
-import { INationality, Nationality } from 'src/app/models/nationality';
-import { NationalityService } from '../nationality.service';
-
-import { Observable } from 'rxjs';
-import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
 import { FormControl } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { MatSort, MatPaginator, MatTableDataSource } from '@angular/material';
+import { ManagersService } from './managers.service';
+import { NationalityService } from '../nationality.service';
 import { LeagueService } from '../league.service';
-import { DataSource } from '@angular/cdk/table';
 
 @Component({
-  selector: 'app-players',
-  templateUrl: './players.component.html',
-  styleUrls: ['./players.component.scss']
+  selector: 'app-managers',
+  templateUrl: './managers.component.html',
+  styleUrls: ['./managers.component.scss']
 })
-export class PlayersComponent implements OnInit, AfterViewInit {
-  players: Player[];
+export class ManagersComponent implements OnInit, AfterViewInit {
+  managers: Manager[];
   countries: INationality[] = [{ name: 'Poland' }];
   leagues: League[] = [new League('Ekstraklasa', 'Poland')];
   stateCtrl = new FormControl();
-  filteredStates: Observable<Player[]>;
+  filteredStates: Observable<Manager[]>;
   selectedCountry = this.countries[0].name;
   selectedLeague = this.leagues[0].name.concat('-').concat(this.leagues[0].nationalityName);
   isLoading = true;
@@ -29,17 +27,17 @@ export class PlayersComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
 
-  constructor(private playerService: PlayersService, private nationalityService: NationalityService,
+  constructor(private managerService: ManagersService, private nationalityService: NationalityService,
     private leagueService: LeagueService) { }
 
 
   displayedColumns: string[] = ['name', 'surname', 'nationalityName',
-    'positionName', 'height', 'weight', 'nameTeam'];
-  dataSource = new MatTableDataSource(this.players);
+    'nameTeam', 'wikiLink'];
+  dataSource = new MatTableDataSource(this.managers);
   dataSourceCountries = new MatTableDataSource(this.countries);
   dataSourceLeagues = new MatTableDataSource(this.leagues);
   ngOnInit() {
-    this.nationalityService.getNationalityPlayers().subscribe(response => {
+    this.nationalityService.getNationalityManagers().subscribe(response => {
       response.push({ name: 'Brak' });
       this.dataSourceCountries.data = response as INationality[];
     });
@@ -48,39 +46,39 @@ export class PlayersComponent implements OnInit, AfterViewInit {
       this.dataSourceLeagues.data = response as League[];
     });
     console.log(this.dataSourceLeagues.data);
-    this.playerService.getPlayersWithLeagueAndCountry(this.selectedLeague, this.selectedCountry).subscribe(response => {
+    this.managerService.getPlayersWithLeagueAndCountry(this.selectedLeague, this.selectedCountry).subscribe(response => {
       this.isLoading = false;
-      this.dataSource.data = response as Player[];
+      this.dataSource.data = response as Manager[];
 
     });
     this.dataSource.paginator = this.paginator;
   }
 
-  getNewPlayers() {
+  getNewManagers() {
     this.isLoading = true;
     if (this.selectedLeague === 'Brak-Brak' && this.selectedCountry === 'Brak') {
-      this.playerService.getPlayers().subscribe(response => {
+      this.managerService.getPlayers().subscribe(response => {
         this.isLoading = false;
-        this.dataSource.data = response as Player[];
+        this.dataSource.data = response as Manager[];
       });
     } else {
       if (this.selectedLeague === 'Brak-Brak') {
-        this.playerService.getPlayersWithCountry(this.selectedCountry).subscribe(response => {
+        this.managerService.getPlayersWithCountry(this.selectedCountry).subscribe(response => {
           this.isLoading = false;
-          this.dataSource.data = response as Player[];
+          this.dataSource.data = response as Manager[];
         });
 
       } else {
         if (this.selectedCountry === 'Brak') {
-          this.playerService.getPlayersWithLeague(this.selectedLeague).subscribe(response => {
+          this.managerService.getPlayersWithLeague(this.selectedLeague).subscribe(response => {
             this.isLoading = false;
-            this.dataSource.data = response as Player[];
+            this.dataSource.data = response as Manager[];
           });
         } else {
-          this.playerService.getPlayersWithLeagueAndCountry(this.selectedLeague, this.selectedCountry)
+          this.managerService.getPlayersWithLeagueAndCountry(this.selectedLeague, this.selectedCountry)
             .subscribe(response => {
               this.isLoading = false;
-              this.dataSource.data = response as Player[];
+              this.dataSource.data = response as Manager[];
             });
         }
       }
@@ -93,13 +91,4 @@ export class PlayersComponent implements OnInit, AfterViewInit {
 
 
 
-
-
-
-
-
-
 }
-
-
-

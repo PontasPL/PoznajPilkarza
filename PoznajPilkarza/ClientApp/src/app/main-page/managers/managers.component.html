@@ -1,0 +1,66 @@
+<div class="main-container">
+  <div class="example-form">
+    <app-search-bar></app-search-bar>
+  </div>
+  <div class="main-text-api">
+    <h2 class="tittle-text-api">Trenerzy</h2>
+    <p class="text-api"></p>
+    <p class="text-api">
+      <strong class="text-api-elements"> </strong>
+    </p>
+    <p class="text-api"></p>
+  </div>
+  <div class="main-block">
+
+
+    <div class="table-filters">
+
+      <mat-form-field>
+        <mat-select [(ngModel)]="selectedCountry" placeholder="Państwo" (selectionChange)="getNewManagers()">
+          <mat-option *ngFor="let country of dataSourceCountries.data" [value]="country.name">
+            {{country.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-select [(ngModel)]="selectedLeague" placeholder="Liga" (selectionChange)="getNewManagers()">
+          <mat-option *ngFor="let league of dataSourceLeagues.data;" [value]="league.name + '-' +league.nationalityName">
+            {{league.name + '-' +league.nationalityName}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+
+    <mat-card *ngIf="isLoading" style="display: flex; justify-content: center; align-items: center;">
+      <mat-progress-spinner color="primary" mode="indeterminate">
+      </mat-progress-spinner>
+    </mat-card>
+    <mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Imie </mat-header-cell>
+        <mat-cell *matCellDef="let manager" class="test"> {{manager.name}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="surname">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Nazwisko </mat-header-cell>
+        <mat-cell *matCellDef="let manager"> {{manager.surname}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="nationalityName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Państwo </mat-header-cell>
+        <mat-cell *matCellDef="let manager"> {{manager.nationalityName}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="nameTeam">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Drużyna </mat-header-cell>
+        <mat-cell *matCellDef="let manager"> {{manager.teamName}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="wikiLink">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Wikipedia </mat-header-cell>
+        <mat-cell *matCellDef="let manager"> {{manager.wikiLink}} </mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  </div>
+</div>

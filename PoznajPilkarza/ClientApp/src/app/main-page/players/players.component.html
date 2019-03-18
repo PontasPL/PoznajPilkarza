@@ -1,7 +1,6 @@
 <div class="main-container">
   <div class="example-form">
     <app-search-bar></app-search-bar>
-
   </div>
   <div class="main-text-api">
     <h2 class="tittle-text-api">Piłkarze</h2>
@@ -16,20 +15,23 @@
   <div class="main-block">
 
 
-    <mat-form-field>
-      <mat-select [(ngModel)]="selectedCountry" placeholder="Państwo" (selectionChange)="getNewPlayers()">
-        <mat-option *ngFor="let country of dataSourceCountries.data" [value]="country.name">
-          {{country.name}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-    <mat-form-field>
-      <mat-select [(ngModel)]="selectedLeague" placeholder="Liga">
-        <mat-option *ngFor="let league of dataSourceLeagues.data;" [value]="league.name + ' - ' +league.nationalityName">
-          {{league.name + ' - ' +league.nationalityName}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
+    <div class="table-filters">
+
+      <mat-form-field>
+        <mat-select [(ngModel)]="selectedCountry" placeholder="Państwo" (selectionChange)="getNewPlayers()">
+          <mat-option *ngFor="let country of dataSourceCountries.data" [value]="country.name">
+            {{country.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-select [(ngModel)]="selectedLeague" placeholder="Liga" (selectionChange)="getNewPlayers()">
+          <mat-option *ngFor="let league of dataSourceLeagues.data;" [value]="league.name + '-' +league.nationalityName">
+            {{league.name + '-' +league.nationalityName}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
 
 
     <mat-card *ngIf="isLoading" style="display: flex; justify-content: center; align-items: center;">

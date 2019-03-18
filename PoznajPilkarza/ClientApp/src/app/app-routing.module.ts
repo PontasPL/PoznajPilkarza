@@ -4,13 +4,14 @@ import { MainPageComponent } from './main-page/main-component/main-page.componen
 import { PlayersComponent } from './main-page/players/players.component';
 import { SearchBarComponent } from './main-page/search-bar/search-bar.component';
 import { SinglePlayerComponent } from './main-page/single-player/single-player.component';
+import { ManagersComponent } from './main-page/managers/managers.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', component: MainPageComponent },
   { path: 'main', component: MainPageComponent },
   { path: 'players', component: PlayersComponent },
   { path: 'matches', component: SearchBarComponent },
-  { path: 'managers', component: PlayersComponent },
+  { path: 'managers', component: ManagersComponent },
   { path: 'login', component: PlayersComponent },
   { path: 'players/:player', component: SinglePlayerComponent },
   { path: ':player', redirectTo: '/players/:player' },

@@ -13,12 +13,19 @@ import { MaterialModule } from './material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SearchBarComponent } from './main-page/search-bar/search-bar.component';
 import { SinglePlayerComponent } from './main-page/single-player/single-player.component';
+import { ManagersComponent } from './main-page/managers/managers.component';
 
 
 
 @NgModule({
   declarations: [
-    AppComponent, NavbarComponent, MainPageComponent, PlayersComponent, SearchBarComponent, SinglePlayerComponent
+    AppComponent,
+    NavbarComponent,
+    MainPageComponent,
+    PlayersComponent,
+    SearchBarComponent,
+    SinglePlayerComponent,
+    ManagersComponent
   ],
   imports: [
     BrowserModule,
