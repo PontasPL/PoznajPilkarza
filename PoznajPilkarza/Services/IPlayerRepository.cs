@@ -9,6 +9,7 @@ namespace PoznajPilkarza.Services
     public interface IPlayerRepository
     {
         IEnumerable<Player> GetPlayersNames();
+        IEnumerable<Player> GetPlayer(string name, string surname);
         IEnumerable<Player> GetPlayers();
         IEnumerable<Player> GetPlayersFromCountry(string country);
         IEnumerable<Player> GetPlayersFromLeague(string league);

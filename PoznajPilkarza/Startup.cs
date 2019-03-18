@@ -81,12 +81,16 @@ namespace PoznajPilkarza
             {
                 cfg.CreateMap<Player, PlayerDto>(MemberList.Destination)
                     .ForMember(dest => dest.PositionName, op => op.MapFrom(src => src.Position.ShortCode))
-                    .ForMember(dest => dest.NameTeam, op => op.MapFrom(src => src.Team.Name));
+                    .ForMember(dest => dest.TeamName, op => op.MapFrom(src => src.Team.Name));
                 //.ForMember(dest => dest.nameLeague, op => op.MapFrom(src => src.Team.League.Name));
                 cfg.CreateMap<Manager, ManagerDto>(MemberList.Destination);
                 cfg.CreateMap<Player, PlayerNameSurnameDto>(MemberList.Destination);
                 cfg.CreateMap<Nationality, NationalityNameDto>(MemberList.Destination);
                 cfg.CreateMap<League, LeagueNameNationalityDto>(MemberList.Destination);
+                cfg.CreateMap<Player, PlayerExtendedDto>(MemberList.Destination)
+                    .ForMember(dest=>dest.PositionName,op=>op.MapFrom(src=>src.Position.ShortCode))
+                    .ForMember(dest=>dest.LeagueName,op=>op.MapFrom(src=>src.Team.League.Name));
+
             });
 
             app.UseMvc(routes =>

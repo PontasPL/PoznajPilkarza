@@ -19,6 +19,45 @@ namespace PoznajPilkarza.Services
         {
             _context = context;
         }
+
+        public IEnumerable<Player> GetPlayer(string name,string surname)
+        {
+            return _context.Players
+                .Where(x => x.Name.ToLower() == name && x.Surname.ToLower() == surname)
+                .Include(t => t.Team)
+                .Include(l=>l.Team.League)
+                .Include(n=>n.Team.League.Nationality)
+                .Include(p=>p.Position)
+                .Select(x=>new Player
+                {
+                    Name = x.Name,
+                    Surname = x.Surname,
+                    DateOfBirth = x.DateOfBirth,
+                    Description = x.Description,
+                    Height = x.Height,
+                    Weight = x.Weight,
+                    Position = x.Position,
+                    Nationality = x.Nationality,
+                    Team = new Team
+                    {
+                        League = new League
+                        {
+                            Name = x.Team.League.Name,
+                            Nationality = new Nationality
+                            {
+                                Name = x.Team.League.Nationality.Name,
+                                PngImage = x.Team.League.Nationality.PngImage,
+                            }
+
+                        },
+                    },
+                    WikiLink = x.WikiLink,
+                    ShirtNumber = x.ShirtNumber,
+                    PngImage = x.PngImage,
+                }).ToList();
+
+        }
+
         public IEnumerable<Player> GetPlayers()
         {
 
@@ -66,7 +105,7 @@ namespace PoznajPilkarza.Services
 
         public IEnumerable<Player> GetPlayersNames()
         {
-            return _context.Players.Select(x => new Player { Name = x.Name, Surname = x.Surname.RemoveDiacritics() }).ToList();
+            return _context.Players.Select(x => new Player { Name = x.Name, Surname = x.Surname }).ToList();
         }
 
         public IEnumerable<Player> GetPlayersFromLeague(string league)
@@ -108,6 +147,7 @@ namespace PoznajPilkarza.Services
                 }).ToList();
         }
 
-
+        
+       
     }
 }

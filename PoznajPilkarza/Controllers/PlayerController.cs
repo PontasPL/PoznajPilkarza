@@ -31,6 +31,14 @@ namespace PoznajPilkarza.Controllers
             GC.Collect();
             return Ok(result);
         }
+        [HttpGet("{name}-{surname}")]
+        public IActionResult GetPlayer(string name,string surname)
+        {
+            var playerEntity = _playerRepository.GetPlayer(name, surname);
+            var result = Mapper.Map<IEnumerable<PlayerExtendedDto>>(playerEntity);
+            return Ok(result);
+
+        }
         [HttpGet("names")]
         public IActionResult GetPlayersNames()
         {
