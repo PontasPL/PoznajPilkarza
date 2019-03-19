@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { PlayersService } from '../players/players.service';
+import { IPlayer, Player } from 'src/app/models/player';
 
 @Component({
   selector: 'app-single-player',
@@ -8,13 +10,22 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class SinglePlayerComponent implements OnInit {
 
-  constructor(private activatedRoute: ActivatedRoute) { }
+  constructor(private activatedRoute: ActivatedRoute,
+    private playerService: PlayersService) { }
+  playerNameFromRoute: string;
+  player: IPlayer;
+  loading = true;
 
   ngOnInit() {
+    console.log('test');
     this.activatedRoute.params.subscribe(params => {
-      const id = params['name'];
-      console.log(id);
+      this.playerService.getPlayer(params['player']).subscribe(response => {
+        this.player = response as IPlayer;
+        this.loading = false;
+      });
+      // console.log('TEST:' + this.playerNameFromRoute);
     });
+
   }
 
 }

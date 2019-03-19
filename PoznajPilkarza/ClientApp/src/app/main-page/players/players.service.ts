@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
-import { Player } from 'src/app/models/player';
+import { IPlayer } from 'src/app/models/player';
 
 @Injectable({
   providedIn: 'root'
@@ -13,25 +13,31 @@ export class PlayersService {
   concatApiUrl: string;
   constructor(private http: HttpClient) { }
 
-  getPlayersNameSurname(): Observable<Player[]> {
+  getPlayer(nameSurname: string): Observable<IPlayer> {
+    this.concatApiUrl = this.apiUrl + nameSurname;
+    return this.http.get<IPlayer>(this.concatApiUrl);
+  }
+
+
+  getPlayersNameSurname(): Observable<IPlayer[]> {
     this.concatApiUrl = this.apiUrl + 'names';
-    return this.http.get<Player[]>(this.concatApiUrl);
+    return this.http.get<IPlayer[]>(this.concatApiUrl);
   }
-  getPlayers(): Observable<Player[]> {
+  getPlayers(): Observable<IPlayer[]> {
     // this.apiUrl = 'http://localhost:1234/api/players/';
-    return this.http.get<Player[]>(this.apiUrl);
+    return this.http.get<IPlayer[]>(this.apiUrl);
   }
-  getPlayersWithLeague(league: string): Observable<Player[]> {
+  getPlayersWithLeague(league: string): Observable<IPlayer[]> {
     this.concatApiUrl = this.apiUrl + `league/${league}`;
-    return this.http.get<Player[]>(this.concatApiUrl);
+    return this.http.get<IPlayer[]>(this.concatApiUrl);
   }
-  getPlayersWithLeagueAndCountry(league: string, country: string): Observable<Player[]> {
+  getPlayersWithLeagueAndCountry(league: string, country: string): Observable<IPlayer[]> {
     this.concatApiUrl = this.apiUrl + `${country}/${league}`;
-    return this.http.get<Player[]>(this.concatApiUrl);
+    return this.http.get<IPlayer[]>(this.concatApiUrl);
   }
   getPlayersWithCountry(country: string) {
     console.log(this.apiUrl);
     this.concatApiUrl = this.apiUrl + `country/${country}`;
-    return this.http.get<Player[]>(this.concatApiUrl);
+    return this.http.get<IPlayer[]>(this.concatApiUrl);
   }
 }

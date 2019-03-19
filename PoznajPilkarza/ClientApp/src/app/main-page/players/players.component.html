@@ -43,10 +43,7 @@
     <div class="table-container">
       <mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
 
-        <!-- <ng-container matColumnDef="nameLeague">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Liga </mat-header-cell>
-        <mat-cell *matCellDef="let player"> {{player.nameLeague}} </mat-cell>
-      </ng-container> -->
+
         <ng-container matColumnDef="name">
           <mat-header-cell *matHeaderCellDef mat-sort-header> Imie </mat-header-cell>
           <mat-cell *matCellDef="let player" class="test"> {{player.name}} </mat-cell>

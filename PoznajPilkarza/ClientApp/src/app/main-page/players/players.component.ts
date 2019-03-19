@@ -1,5 +1,5 @@
 import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
-import { Player } from 'src/app/models/player';
+import { IPlayer } from 'src/app/models/player';
 import { PlayersService } from '../players/players.service';
 import { League } from 'src/app/models/league';
 import { INationality, Nationality } from 'src/app/models/nationality';
@@ -17,11 +17,11 @@ import { DataSource } from '@angular/cdk/table';
   styleUrls: ['./players.component.scss']
 })
 export class PlayersComponent implements OnInit, AfterViewInit {
-  players: Player[];
+  players: IPlayer[];
   countries: INationality[] = [{ name: 'Poland' }];
   leagues: League[] = [new League('Ekstraklasa', 'Poland')];
   stateCtrl = new FormControl();
-  filteredStates: Observable<Player[]>;
+  filteredStates: Observable<IPlayer[]>;
   selectedCountry = this.countries[0].name;
   selectedLeague = this.leagues[0].name.concat('-').concat(this.leagues[0].nationalityName);
   isLoading = true;
@@ -50,7 +50,7 @@ export class PlayersComponent implements OnInit, AfterViewInit {
     console.log(this.dataSourceLeagues.data);
     this.playerService.getPlayersWithLeagueAndCountry(this.selectedLeague, this.selectedCountry).subscribe(response => {
       this.isLoading = false;
-      this.dataSource.data = response as Player[];
+      this.dataSource.data = response as IPlayer[];
 
     });
     this.dataSource.paginator = this.paginator;
@@ -61,26 +61,26 @@ export class PlayersComponent implements OnInit, AfterViewInit {
     if (this.selectedLeague === 'Brak-Brak' && this.selectedCountry === 'Brak') {
       this.playerService.getPlayers().subscribe(response => {
         this.isLoading = false;
-        this.dataSource.data = response as Player[];
+        this.dataSource.data = response as IPlayer[];
       });
     } else {
       if (this.selectedLeague === 'Brak-Brak') {
         this.playerService.getPlayersWithCountry(this.selectedCountry).subscribe(response => {
           this.isLoading = false;
-          this.dataSource.data = response as Player[];
+          this.dataSource.data = response as IPlayer[];
         });
 
       } else {
         if (this.selectedCountry === 'Brak') {
           this.playerService.getPlayersWithLeague(this.selectedLeague).subscribe(response => {
             this.isLoading = false;
-            this.dataSource.data = response as Player[];
+            this.dataSource.data = response as IPlayer[];
           });
         } else {
           this.playerService.getPlayersWithLeagueAndCountry(this.selectedLeague, this.selectedCountry)
             .subscribe(response => {
               this.isLoading = false;
-              this.dataSource.data = response as Player[];
+              this.dataSource.data = response as IPlayer[];
             });
         }
       }

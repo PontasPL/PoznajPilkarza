@@ -1,5 +1,5 @@
 import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
-import { Player } from 'src/app/models/player';
+import { IPlayer } from 'src/app/models/player';
 import { PlayersService } from '../players/players.service';
 import { INationality } from 'src/app/models/nationality';
 import { NationalityService } from '../nationality.service';
@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
 import { FormControl } from '@angular/forms';
 import { startWith, map } from 'rxjs/operators';
-import * as clean from 'diacritics/index';
+import * as removeDiacritics from 'diacritics/index';
 
 @Component({
   selector: 'app-search-bar',
@@ -17,9 +17,9 @@ import * as clean from 'diacritics/index';
 })
 export class SearchBarComponent implements OnInit {
   minLength = 2;
-  players: Player[];
+  players: IPlayer[];
   stateCtrl = new FormControl();
-  filteredStates: Observable<Player[]>;
+  filteredStates: Observable<IPlayer[]>;
   removeDiacritics: any;
 
   constructor(private playerService: PlayersService) {
@@ -34,7 +34,7 @@ export class SearchBarComponent implements OnInit {
 
   ngOnInit() {
     this.playerService.getPlayersNameSurname().subscribe(response => {
-      this.dataSource.data = response as Player[];
+      this.dataSource.data = response as IPlayer[];
     });
   }
 
@@ -44,9 +44,9 @@ export class SearchBarComponent implements OnInit {
 
   // }
 
-  private _filterStates(value: string): Player[] {
+  private _filterStates(value: string): IPlayer[] {
 
-    console.log(clean.remove(value));
+    console.log(removeDiacritics.remove(value));
     // let test;
 
 
@@ -56,9 +56,10 @@ export class SearchBarComponent implements OnInit {
 
       const filterValue = value.toLowerCase();
       // this.dataz;
-      return this.dataSource.data.filter(player => player.name.toLowerCase().indexOf(filterValue) === 0 ||
-        player.surname.toLowerCase().indexOf(filterValue) === 0 ||
-        player.name.toLowerCase().concat(' ').concat(player.surname.toLowerCase()).indexOf(filterValue) === 0);
+      return this.dataSource.data.filter(player => removeDiacritics.remove(player.name.toLowerCase()).indexOf(filterValue) === 0 ||
+        removeDiacritics.remove(player.surname.toLowerCase()).indexOf(filterValue) === 0 ||
+        removeDiacritics.remove(player.name.toLowerCase()).concat(' ')
+          .concat(removeDiacritics.remove(player.surname.toLowerCase())).indexOf(filterValue) === 0);
 
     } else {
       return [];

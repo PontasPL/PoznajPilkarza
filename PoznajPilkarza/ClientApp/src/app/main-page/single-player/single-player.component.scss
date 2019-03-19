@@ -1,0 +1,88 @@
+.main-container {
+  position: absolute;
+  display: grid;
+  grid-template-columns: 15% 70% 15%;
+  grid-template-rows: minmax(140px, 25%) auto;
+  width: 100%;
+  height: calc(100% - 134px);
+  grid-template-areas: " . search-form . "
+    ". player-main-container .";
+  transition: 1s;
+  animation-name: navbar-animations;
+  animation-duration: 2s;
+
+
+  .search-form {
+    grid-area: search-form;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+
+  .player-main-container {
+    grid-area: player-main-container;
+    display: grid;
+    margin: 0 0 20px 0;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.29);
+    box-shadow: 0px -2px 6px 4px rgba(0, 0, 0, 0.53);
+    grid-template-areas:
+      "n-s-item n-s-item . n-n-item n-f-item"
+      "p-item l-n-item l-n-item l-n-item s-n-item"
+      "h-v-item w-v-item d-item d-item w-l-item";
+
+    .name-surname-item {
+      grid-area: n-s-item;
+    }
+
+    .nationality-name-item {
+      grid-area: n-n-item;
+    }
+
+    .nationality-flag-item {
+      grid-area: n-f-item;
+    }
+
+    .position-item {
+      grid-area: p-item;
+
+      .position-in-circle {
+        height: 100px;
+        width: 100px;
+        background-color: #bbb;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+
+    .league-name-item {
+      grid-area: l-n-item;
+    }
+
+    .shirt-number-item {
+      grid-area: s-n-item;
+    }
+
+    .height-value-item {
+      grid-area: h-v-item;
+    }
+
+    .weight-value-item {
+      grid-area: w-v-item;
+    }
+
+    .description-item {
+      grid-area: d-item;
+    }
+
+    .wiki-link-item {
+      grid-area: w-l-item;
+    }
+  }
+}
