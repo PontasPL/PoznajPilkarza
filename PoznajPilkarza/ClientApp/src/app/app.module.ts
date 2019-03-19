@@ -14,6 +14,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SearchBarComponent } from './main-page/search-bar/search-bar.component';
 import { SinglePlayerComponent } from './main-page/single-player/single-player.component';
 import { ManagersComponent } from './main-page/managers/managers.component';
+import { TableValueComponent } from './main-page/table-value/table-value.component';
 
 
 
@@ -25,7 +26,8 @@ import { ManagersComponent } from './main-page/managers/managers.component';
     PlayersComponent,
     SearchBarComponent,
     SinglePlayerComponent,
-    ManagersComponent
+    ManagersComponent,
+    TableValueComponent
   ],
   imports: [
     BrowserModule,

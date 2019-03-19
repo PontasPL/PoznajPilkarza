@@ -1,0 +1,24 @@
+<mat-card *ngIf="loading" style="display: flex; justify-content: center; align-items: center;">
+  <mat-progress-spinner color="primary" mode="indeterminate">
+  </mat-progress-spinner>
+</mat-card>
+
+<div class="table-container">
+  <mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+
+    <ng-container *ngFor="let value of displayedColumns;let i = index">
+      <ng-container *ngIf="i===1" matColumnDef="{{value}}" sticky>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{nameColumns[i]}}</mat-header-cell>
+        <mat-cell *matCellDef="let player" class="test"> {{player[value]}} </mat-cell>
+      </ng-container>
+      <ng-container *ngIf="i!==1" matColumnDef="{{value}}">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{nameColumns[i]}}</mat-header-cell>
+        <mat-cell *matCellDef="let player" class="test"> {{player[value]}} </mat-cell>
+      </ng-container>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</div>
+<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>

@@ -1,0 +1,29 @@
+// .table-container {
+//   height: 100%;
+//   width: 100%;
+//   overflow: auto;
+
+//   mat-table {
+//     width: 800px;
+//   }
+// }
+@import "../../shared/scss/shared.scss";
+@import './scss/all-formats-page-table.scss';
+
+
+.table-container {
+  @include table-container-mixin();
+}
+
+
+@media #{$information-medium-screen} {
+  .table-container {
+    @include medium-table-container-mixin();
+  }
+}
+
+@media #{$information-small-screen} {
+  .table-container {
+    @include small-table-container-mixin();
+  }
+}

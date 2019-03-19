@@ -1,0 +1,37 @@
+@keyframes navbar-animations {
+  0% {
+    opacity: 0;
+    transform: translateX(-150px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+
+}
+
+@keyframes navbar-animations-reverse {
+  0% {
+    opacity: 0;
+    transform: translateX(300px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+
+}
+
+
+@mixin table-container-mixin() {
+
+
+
+  mat-table {
+    width: 100%;
+
+
+  }
+}

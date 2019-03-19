@@ -32,50 +32,8 @@
         </mat-select>
       </mat-form-field>
     </div>
-
-
-
-    <mat-card *ngIf="isLoading" style="display: flex; justify-content: center; align-items: center;">
-      <mat-progress-spinner color="primary" mode="indeterminate">
-      </mat-progress-spinner>
-    </mat-card>
-
-    <div class="table-container">
-      <mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
-
-
-        <ng-container matColumnDef="name">
-          <mat-header-cell *matHeaderCellDef mat-sort-header> Imie </mat-header-cell>
-          <mat-cell *matCellDef="let player" class="test"> {{player.name}} </mat-cell>
-        </ng-container>
-        <ng-container matColumnDef="surname" sticky>
-          <mat-header-cell *matHeaderCellDef mat-sort-header> Nazwisko </mat-header-cell>
-          <mat-cell *matCellDef="let player"> {{player.surname}} </mat-cell>
-        </ng-container>
-        <ng-container matColumnDef="nationalityName">
-          <mat-header-cell *matHeaderCellDef mat-sort-header> Państwo </mat-header-cell>
-          <mat-cell *matCellDef="let player"> {{player.nationalityName}} </mat-cell>
-        </ng-container>
-        <ng-container matColumnDef="positionName">
-          <mat-header-cell *matHeaderCellDef mat-sort-header> Pozycja </mat-header-cell>
-          <mat-cell *matCellDef="let player"> {{player.positionName}} </mat-cell>
-        </ng-container>
-        <ng-container matColumnDef="height">
-          <mat-header-cell *matHeaderCellDef mat-sort-header> Wzrost </mat-header-cell>
-          <mat-cell *matCellDef="let player"> {{player.height}} </mat-cell>
-        </ng-container>
-        <ng-container matColumnDef="weight">
-          <mat-header-cell *matHeaderCellDef mat-sort-header> Waga </mat-header-cell>
-          <mat-cell *matCellDef="let player"> {{player.weight}} </mat-cell>
-        </ng-container>
-        <ng-container matColumnDef="nameTeam">
-          <mat-header-cell *matHeaderCellDef mat-sort-header> Drużyna </mat-header-cell>
-          <mat-cell *matCellDef="let player"> {{player.nameTeam}} </mat-cell>
-        </ng-container>
-        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-      </mat-table>
-    </div>
-    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    <app-table-value [displayedColumns]='displayedColumns' [nameColumns]='nameColumns' [loading]="isLoading"
+      [dataSource]="dataSource">
+    </app-table-value>
   </div>
 </div>

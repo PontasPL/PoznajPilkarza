@@ -16,8 +16,12 @@ import { LeagueService } from './league.service';
 import { ManagersComponent } from './managers/managers.component';
 import { ManagersService } from './managers/managers.service';
 import { MatchesComponent } from './matches/matches.component';
+import { TableValueComponent } from './table-value/table-value.component';
 @NgModule({
-  declarations: [PlayersComponent, SearchBarComponent, SinglePlayerComponent, ManagersComponent, MatchesComponent],
+  declarations: [PlayersComponent,
+    SearchBarComponent,
+    SinglePlayerComponent,
+    ManagersComponent, MatchesComponent, TableValueComponent],
   imports: [
     CommonModule,
     CoreModule,
@@ -26,9 +30,10 @@ import { MatchesComponent } from './matches/matches.component';
     FormsModule,
     MatSortModule,
     FormControl,
+
   ],
   exports: [
-    PlayersComponent, SearchBarComponent, SinglePlayerComponent, ManagersComponent
+    PlayersComponent, SearchBarComponent, SinglePlayerComponent, ManagersComponent, TableValueComponent
   ],
   providers: [PlayersService, NationalityService, LeagueService, ManagersService]
 })

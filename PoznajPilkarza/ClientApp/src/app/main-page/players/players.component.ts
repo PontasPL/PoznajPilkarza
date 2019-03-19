@@ -16,7 +16,7 @@ import { DataSource } from '@angular/cdk/table';
   templateUrl: './players.component.html',
   styleUrls: ['./players.component.scss']
 })
-export class PlayersComponent implements OnInit, AfterViewInit {
+export class PlayersComponent implements OnInit {
   players: IPlayer[];
   countries: INationality[] = [{ name: 'Poland' }];
   leagues: League[] = [new League('Ekstraklasa', 'Poland')];
@@ -25,16 +25,16 @@ export class PlayersComponent implements OnInit, AfterViewInit {
   selectedCountry = this.countries[0].name;
   selectedLeague = this.leagues[0].name.concat('-').concat(this.leagues[0].nationalityName);
   isLoading = true;
-  @ViewChild(MatSort) sort: MatSort;
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-
+  displayedColumns: string[] = ['name', 'surname', 'nationalityName',
+    'positionName', 'height', 'weight', 'teamName'];
+  nameColumns: string[] = ['Imie', 'Nazwisko', 'Państwo',
+    'Pozycja', 'Wzrost', 'Waga', 'Drużyna'];
 
   constructor(private playerService: PlayersService, private nationalityService: NationalityService,
     private leagueService: LeagueService) { }
 
 
-  displayedColumns: string[] = ['name', 'surname', 'nationalityName',
-    'positionName', 'height', 'weight', 'nameTeam'];
+
   dataSource = new MatTableDataSource(this.players);
   dataSourceCountries = new MatTableDataSource(this.countries);
   dataSourceLeagues = new MatTableDataSource(this.leagues);
@@ -53,7 +53,7 @@ export class PlayersComponent implements OnInit, AfterViewInit {
       this.dataSource.data = response as IPlayer[];
 
     });
-    this.dataSource.paginator = this.paginator;
+
   }
 
   getNewPlayers() {
@@ -85,10 +85,6 @@ export class PlayersComponent implements OnInit, AfterViewInit {
         }
       }
     }
-  }
-
-  ngAfterViewInit(): void {
-    this.dataSource.sort = this.sort;
   }
 
 

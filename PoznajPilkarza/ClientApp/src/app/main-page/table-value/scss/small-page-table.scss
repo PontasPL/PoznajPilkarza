@@ -1,0 +1,11 @@
+@mixin small-table-container-mixin() {
+
+
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+
+  mat-table {
+    width: 800px;
+  }
+}

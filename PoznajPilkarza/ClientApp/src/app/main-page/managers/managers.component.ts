@@ -26,13 +26,15 @@ export class ManagersComponent implements OnInit, AfterViewInit {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
+  displayedColumns: string[] = ['name', 'surname', 'nationalityName',
+    'teamName', 'wikiLink'];
+  nameColumns: string[] = ['Imie', 'Nazwisko', 'Państwo',
+    'Drużyna', 'WikiLink'];
 
   constructor(private managerService: ManagersService, private nationalityService: NationalityService,
     private leagueService: LeagueService) { }
 
 
-  displayedColumns: string[] = ['name', 'surname', 'nationalityName',
-    'nameTeam', 'wikiLink'];
   dataSource = new MatTableDataSource(this.managers);
   dataSourceCountries = new MatTableDataSource(this.countries);
   dataSourceLeagues = new MatTableDataSource(this.leagues);
@@ -86,7 +88,7 @@ export class ManagersComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.dataSource.sort = this.sort;
+    // this.dataSource.sort = this.sort;
   }
 
 
