@@ -20,7 +20,7 @@ namespace PoznajPilkarza.Services
             _context = context;
         }
 
-        public IEnumerable<Player> GetPlayer(string name,string surname)
+        public Player GetPlayer(string name,string surname)
         {
             return _context.Players
                 .Where(x => x.Name.ToLower() == name && x.Surname.ToLower() == surname)
@@ -37,16 +37,16 @@ namespace PoznajPilkarza.Services
                     Height = x.Height,
                     Weight = x.Weight,
                     Position = x.Position,
-                    Nationality = x.Nationality,
+                    Nationality = new Nationality{Name = x.Nationality.Name,PngImage = x.Nationality.PngImage},
                     Team = new Team
                     {
+                        Name = x.Team.Name,
                         League = new League
                         {
                             Name = x.Team.League.Name,
                             Nationality = new Nationality
                             {
                                 Name = x.Team.League.Nationality.Name,
-                                PngImage = x.Team.League.Nationality.PngImage,
                             }
 
                         },
@@ -54,7 +54,7 @@ namespace PoznajPilkarza.Services
                     WikiLink = x.WikiLink,
                     ShirtNumber = x.ShirtNumber,
                     PngImage = x.PngImage,
-                }).ToList();
+                }).Single();
 
         }
 

@@ -35,7 +35,7 @@ namespace PoznajPilkarza.Controllers
         public IActionResult GetPlayer(string name,string surname)
         {
             var playerEntity = _playerRepository.GetPlayer(name, surname);
-            var result = Mapper.Map<IEnumerable<PlayerExtendedDto>>(playerEntity);
+            var result = Mapper.Map<PlayerExtendedDto>(playerEntity);
             return Ok(result);
 
         }

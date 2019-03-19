@@ -31,6 +31,7 @@ namespace PoznajPilkarza
             services.AddScoped<INationalityRepository, NationalityRepository>();
             services.AddScoped<ILeagueRepository,LeagueRepository>();
             services.AddScoped<IMangerRepository, ManagerRepository>();
+            services.AddScoped<IMatchRepository, MatchRepository>();
             services.AddDbContext<MainContext>(o =>
                 o.UseSqlServer(Configuration.GetConnectionString("myConnectionString"),op=>op.EnableRetryOnFailure()));
             services.AddDbContext<NationalityContext>(o =>
@@ -88,8 +89,32 @@ namespace PoznajPilkarza
                 cfg.CreateMap<Nationality, NationalityNameDto>(MemberList.Destination);
                 cfg.CreateMap<League, LeagueNameNationalityDto>(MemberList.Destination);
                 cfg.CreateMap<Player, PlayerExtendedDto>(MemberList.Destination)
-                    .ForMember(dest=>dest.PositionName,op=>op.MapFrom(src=>src.Position.ShortCode))
-                    .ForMember(dest=>dest.LeagueName,op=>op.MapFrom(src=>src.Team.League.Name));
+                    .ForMember(dest => dest.PositionName, op => op.MapFrom(src => src.Position.ShortCode))
+                    .ForMember(dest => dest.LeagueName, op => op.MapFrom(src => src.Team.League.Name))
+                    .ForMember(dest => dest.TeamName, op => op.MapFrom(src => src.Team.Name))
+                    .ForMember(dest => dest.NationalLeagueName,
+                        op => op.MapFrom(src => src.Team.League.Nationality.Name))
+                    .ForMember(dest => dest.FlagNational,
+                        op => op.MapFrom(src => src.Nationality.PngImage));
+                cfg.CreateMap<Match, MatchDto>(MemberList.Destination);
+                cfg.CreateMap<Match, MatchDetailsDto>(MemberList.Destination)
+                    .ForMember(dest => dest.Attendance, op => op.MapFrom(src => src.MatchDetails.Attendance))
+                    .ForMember(dest=>dest.HomeTeamShots, op=>op.MapFrom(src=>src.MatchDetails.HomeTeamShots))
+                    .ForMember(dest => dest.AwayTeamShots, op => op.MapFrom(src => src.MatchDetails.AwayTeamShots))
+                    .ForMember(dest => dest.HomeTeamShotsOnTarget, op => op.MapFrom(src => src.MatchDetails.HomeTeamShotsOnTarget))
+                    .ForMember(dest => dest.AwayTeamShotsOnTarget, op => op.MapFrom(src => src.MatchDetails.AwayTeamShotsOnTarget))
+                    .ForMember(dest => dest.HomeTeamWoodWork, op => op.MapFrom(src => src.MatchDetails.HomeTeamWoodWork))
+                    .ForMember(dest => dest.AwayTeamWoodWork, op => op.MapFrom(src => src.MatchDetails.AwayTeamWoodWork))
+                    .ForMember(dest => dest.HomeTeamCorners, op => op.MapFrom(src => src.MatchDetails.HomeTeamCorners))
+                    .ForMember(dest => dest.AwayTeamCorners, op => op.MapFrom(src => src.MatchDetails.AwayTeamCorners))
+                    .ForMember(dest => dest.HomeTeamFoulsCommitted, op => op.MapFrom(src => src.MatchDetails.HomeTeamFoulsCommitted))
+                    .ForMember(dest => dest.AwayTeamFoulsCommitted, op => op.MapFrom(src => src.MatchDetails.AwayTeamFoulsCommitted))
+                    .ForMember(dest => dest.HomeTeamOffsides, op => op.MapFrom(src => src.MatchDetails.HomeTeamOffsides))
+                    .ForMember(dest => dest.AwayTeamOffsides, op => op.MapFrom(src => src.MatchDetails.AwayTeamOffsides))
+                    .ForMember(dest => dest.HomeYellowCards, op => op.MapFrom(src => src.MatchDetails.HomeYellowCards))
+                    .ForMember(dest => dest.AwayYellowCards, op => op.MapFrom(src => src.MatchDetails.AwayYellowCards))
+                    .ForMember(dest => dest.HomeTeamRedCards, op => op.MapFrom(src => src.MatchDetails.HomeTeamRedCards))
+                    .ForMember(dest => dest.AwayTeamRedCards, op => op.MapFrom(src => src.MatchDetails.AwayTeamRedCards));
 
             });
 
