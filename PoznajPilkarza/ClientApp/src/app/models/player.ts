@@ -11,6 +11,7 @@ export interface IPlayer {
     leagueName: string;
     nationalLeagueName: string;
     flagNational: string;
+    flagNationalLeague: string;
     wikiLink: string;
     description: string;
 }
@@ -21,6 +22,7 @@ export class Player implements IPlayer {
     dateOfBirth: Date;
     positionName: string;
     height: number;
+    flagNationalLeague: string;
     weight: number;
     teamName: string;
     leagueName: string;

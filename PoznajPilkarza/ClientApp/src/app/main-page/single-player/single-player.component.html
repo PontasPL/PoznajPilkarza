@@ -3,49 +3,60 @@
     <app-search-bar></app-search-bar>
   </div>
   <div class="player-main-container" *ngIf="!loading">
-    <div class="name-surname-item">
+    <div class="tittle-column-personal tittle-cell-view">
+      Dane osobowe
+    </div>
+    <div class="name-surname-item cell-view">
       <div class="tittle-font">Imię Nazwisko</div>
       <div>{{player.name}} {{player.surname}}</div>
     </div>
-    <div class="nationality-name-item">
-      <div>Nazwa kraju</div>
+
+    <div class="date-of-birth-item cell-view">
+      <div class="tittle-font">Data urodzenia:</div>
+      <div>{{player.dateOfBirth}}</div>
+    </div>
+    <div class="nationality-name-item cell-view">
+      <div class="tittle-font">Nazwa kraju zawodnika</div>
       <div>{{player.nationalityName}}</div>
+      <img src="data:{{player.flagNational}}" width="50" height="50" alt="FlagCountry">
     </div>
-    <div class="nationality-flag-item">
-      <img src="data:{{player.flagNational}}" width="100" height="100" alt="FlagCountry">
+
+    <div class="height-weight-value-item cell-view">
+      <div class="tittle-font">Wzrost i waga zawodnika</div>
+      <div>{{player.height}}{{player.weight}}</div>
     </div>
-    <div class="position-item">
-      <div class="position-in-circle">
+    <div class="tittle-column-team tittle-cell-view">
+      <div>Informacje o zespole</div>
+    </div>
+    <div class="league-national-name-item cell-view">
+      <div class="tittle-font">Nazwa kraju ligi</div>
+      <div>{{player.nationalLeagueName}}</div>
+      <img src="data:{{player.flagNationalLeague}}" width="50" height="50" alt="FlagCountry">
+    </div>
+    <div class="league-name-item cell-view">
+      <div class="tittle-font">Nazwa ligi</div>
+      <div>{{player.leagueName}}</div>
+    </div>
+    <div class="team-name-item cell-view">
+      <div class="tittle-font">Nazwa drużyny:</div>
+      <div>{{player.teamName}}</div>
+    </div>
+    <div class="position-item cell-view">
+      <div class="tittle-font">Nazwa pozycji:</div>
+      <div>
         {{player.positionName}}
       </div>
     </div>
-    <div class="league-name-item">
-      <div class="tittle-league">Liga/Państwo/Zespół</div>
-      <ul>
-        <li>{{player.leagueName}}</li>
-        <li>{{player.nationalLeagueName}}</li>
-        <li>{{player.teamName}}</li>
-      </ul>
+    <div class="shirt-number-item cell-view">
+      <div class="position-in-circle">{{player.shirtNumber}}</div>
     </div>
-    <div class="shirt-number-item">
-      <div>Numer koszulki</div>
-      <div>{{player.shirtNumber}}</div>
-    </div>
-    <div class="height-value-item">
-      <div>Wzrost zawodnika</div>
-      <div>{{player.height}}</div>
-    </div>
-    <div class="weight-value-item">
-      <div>Waga zawodnika</div>
-      <div>{{player.weight}}</div>
-    </div>
-    <div class="description-item">
+    <!-- <div class="description-item">
       <div>Opis zawodnika(z Wikipedii)</div>
       <div>{{player.description}}</div>
     </div>
     <div class="wiki-link-item">
       <div>Link do Wikipedii</div>
       <a href="{{player.wikiLink}}">Ikonka</a>
-    </div>
+    </div> -->
   </div>
 </div>
