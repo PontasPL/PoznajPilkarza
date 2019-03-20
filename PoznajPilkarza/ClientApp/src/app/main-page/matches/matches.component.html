@@ -1,3 +1,34 @@
-<p>
-  matches works!
-</p>
+<div class="main-container">
+  <div class="search-form">
+    <app-search-bar></app-search-bar>
+  </div>
+  <div class="main-text-api">
+    <h2 class="tittle-text-api">Mecze</h2>
+    <p class="text-api"></p>
+    <p class="text-api">
+      <strong class="text-api-elements"> </strong>
+    </p>
+    <p class="text-api"></p>
+  </div>
+  <div class="main-block">
+    <div class="table-filters">
+
+      <!-- (selectionChange)="getNewManagers()" -->
+      <mat-form-field>
+        <mat-select [(ngModel)]="selectedLeague" placeholder="Liga" (selectionChange)="getNewMatches()">
+          <mat-option *ngFor="let league of dataSourceLeagues.data;" [value]="league.name + '-' +league.nationalityName">
+            {{league.name + '-' +league.nationalityName}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-checkbox (change)="changeCheckBox()">Zaawansowane statystki</mat-checkbox>
+    </div>
+    <app-table-value *ngIf="advancedStatistic" [displayedColumns]='displayedColumns' [nameColumns]='nameColumns'
+      [loading]="isLoading" [dataSource]="dataSource">
+    </app-table-value>
+    <app-table-value *ngIf="!advancedStatistic" [displayedColumns]='displayedColumns' [nameColumns]='nameColumns'
+      [loading]="isLoading" [dataSource]="dataSource">
+    </app-table-value>
+  </div>
+
+</div>

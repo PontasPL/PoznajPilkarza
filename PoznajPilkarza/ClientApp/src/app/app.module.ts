@@ -15,6 +15,7 @@ import { SearchBarComponent } from './main-page/search-bar/search-bar.component'
 import { SinglePlayerComponent } from './main-page/single-player/single-player.component';
 import { ManagersComponent } from './main-page/managers/managers.component';
 import { TableValueComponent } from './main-page/table-value/table-value.component';
+import { MatchesComponent } from './main-page/matches/matches.component';
 
 
 
@@ -27,7 +28,8 @@ import { TableValueComponent } from './main-page/table-value/table-value.compone
     SearchBarComponent,
     SinglePlayerComponent,
     ManagersComponent,
-    TableValueComponent
+    TableValueComponent,
+    MatchesComponent
   ],
   imports: [
     BrowserModule,

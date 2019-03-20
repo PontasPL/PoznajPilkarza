@@ -5,12 +5,13 @@ import { PlayersComponent } from './main-page/players/players.component';
 import { SearchBarComponent } from './main-page/search-bar/search-bar.component';
 import { SinglePlayerComponent } from './main-page/single-player/single-player.component';
 import { ManagersComponent } from './main-page/managers/managers.component';
+import { MatchesComponent } from './main-page/matches/matches.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', component: MainPageComponent },
   { path: 'main', component: MainPageComponent },
   { path: 'players', component: PlayersComponent },
-  { path: 'matches', component: SearchBarComponent },
+  { path: 'matches', component: MatchesComponent },
   { path: 'managers', component: ManagersComponent },
   { path: 'login', component: PlayersComponent },
   { path: 'players/:player', component: SinglePlayerComponent },
