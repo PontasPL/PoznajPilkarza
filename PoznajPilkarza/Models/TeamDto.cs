@@ -23,7 +23,7 @@ namespace PoznajPilkarza.Models
         public int ManagerId { get; set; }
         public ManagerDto Manager { get; set; }
         public int StadiumId { get; set; }
-        public StadiumDto Stadium { get; set; }
+        //public StadiumDto Stadium { get; set; }
 
     }
 }
