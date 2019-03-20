@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using PoznajPilkarza.Enitites;
 using PoznajPilkarza.Entities.Contexts;
 
@@ -43,6 +44,13 @@ namespace PoznajPilkarza.Services
             var managersNationalityId = _context.Managers.Select(x => x.Nationality.Name)
                 .Distinct().ToList();
             return GetDistinctNationalities(managersNationalityId);
+        }
+
+        public IEnumerable<Nationality> GetMatchesNationalities()
+        {
+            var matchesNationalityId = _context.Matches.Include(x=>x.League).Select(x => x.League.Nationality.Name)
+                .Distinct().ToList();
+            return GetDistinctNationalities(matchesNationalityId);
         }
     }
 }

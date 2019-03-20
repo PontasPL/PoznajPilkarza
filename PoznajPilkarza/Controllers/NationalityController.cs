@@ -45,5 +45,12 @@ namespace PoznajPilkarza.Controllers
             var result = Mapper.Map<IEnumerable<NationalityNameDto>>(nationalitiesEntities);
             return Ok(result);
         }
+        [HttpGet("matches")]
+        public IActionResult GetNationalitiesMatches()
+        {
+            var nationalitiesEntities = _nationalityRepository.GetMatchesNationalities();
+            var result = Mapper.Map<IEnumerable<NationalityNameDto>>(nationalitiesEntities);
+            return Ok(result);
+        }
     }
 }

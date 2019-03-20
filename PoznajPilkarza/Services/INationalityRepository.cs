@@ -11,5 +11,6 @@ namespace PoznajPilkarza.Services
         IEnumerable<Nationality> GetNationalities();
         IEnumerable<Nationality> GetPlayersNationalities();
         IEnumerable<Nationality> GetManagersNationalities();
+        IEnumerable<Nationality> GetMatchesNationalities();
     }
 }
