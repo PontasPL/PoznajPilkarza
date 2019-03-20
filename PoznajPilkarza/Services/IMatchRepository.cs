@@ -7,5 +7,7 @@ namespace PoznajPilkarza.Services
     {
         IEnumerable<Match> GetMatchWithDetails();
         IEnumerable<Match> GetMatches();
+        IEnumerable<Match> GetMatchWithDetails(string league);
+        IEnumerable<Match> GetMatches(string league);
     }
 }

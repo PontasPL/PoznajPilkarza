@@ -19,7 +19,6 @@ namespace PoznajPilkarza.Models
         public int HTAwayGoals { get; set; }
 
 
-        public MatchDetailsDto MatchDetailsDto { get; set; }
 
     }
 }

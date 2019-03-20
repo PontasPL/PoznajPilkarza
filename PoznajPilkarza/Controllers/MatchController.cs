@@ -32,5 +32,19 @@ namespace PoznajPilkarza.Controllers
             var result = Mapper.Map<IEnumerable<MatchDetailsDto>>(entitiesMatches);
             return Ok(result);
         }
+        [HttpGet("league/{league}")]
+        public IActionResult GetMatches(string league)
+        {
+            var entitiesMatches = _repository.GetMatches(league);
+            var result = Mapper.Map<IEnumerable<MatchDto>>(entitiesMatches);
+            return Ok(result);
+        }
+        [HttpGet("withDetails/league/{league}")]
+        public IActionResult GetMatchesWithDetails(string league)
+        {
+            var entitiesMatches = _repository.GetMatchWithDetails(league);
+            var result = Mapper.Map<IEnumerable<MatchDetailsDto>>(entitiesMatches);
+            return Ok(result);
+        }
     }
 }
