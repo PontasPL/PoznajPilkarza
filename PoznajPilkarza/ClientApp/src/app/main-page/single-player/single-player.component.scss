@@ -25,7 +25,7 @@
     display: grid;
     margin: 0 0 20px 0;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: 50px repeat(5, 0.7fr);
+    grid-template-rows: 50px repeat(4, 0.7fr) 150px;
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.29);
@@ -42,14 +42,37 @@
       font-family: 'DJBSkritchSkratch', DJBSkritchSkratch;
       font-weight: 800;
       color: white;
+      background-color: rgba(0, 0, 0, 0.50);
       display: flex;
       font-size: 20px;
       justify-content: center;
-      padding: 15px;
+      padding: 20px;
+      box-shadow: 0px -2px 6px 4px rgba(0, 0, 0, 0.53);
     }
 
     .cell-view {
       padding: 15px;
+      box-shadow: 0px 1px 2px 2px rgba(0, 0, 0, 0.53);
+      display: flex;
+      align-items: center;
+
+      .tittle-font {
+        font-family: 'DJBSkritchSkratch', DJBSkritchSkratch;
+        font-weight: 800;
+        color: white;
+        display: flex;
+        font-size: 13px;
+
+
+      }
+
+      .content-cell-view {
+        font-family: 'DJBSkritchSkratch', DJBSkritchSkratch;
+        font-size: 12px;
+        padding: 0 20px 0 20px;
+        color: white;
+        font-weight: 600;
+      }
     }
 
     .tittle-column-personal {
@@ -71,11 +94,19 @@
     .nationality-name-item {
       grid-area: n-n-item;
 
+      .flag-name-content {
+        display: flex;
+
+        .content-cell-view {
+          display: flex;
+          align-items: center;
+          padding: 0 20px 0 20px;
+
+        }
+      }
+
     }
 
-    .nationality-flag-item {
-      grid-area: n-f-item;
-    }
 
     .position-item {
       grid-area: p-item;
@@ -89,38 +120,59 @@
 
     .league-national-name-item {
       grid-area: l-n-n-item;
+
+      .flag-name-content {
+        display: flex;
+
+        .content-cell-view {
+          display: flex;
+          align-items: center;
+          padding: 0 20px;
+
+        }
+      }
     }
 
     .team-name-item {
       grid-area: t-n-item;
     }
 
-    .tittle-font {
-      font-family: 'DJBSkritchSkratch', DJBSkritchSkratch;
-      font-weight: 800;
-      color: white;
-      display: flex;
-      font-size: 13px;
-    }
 
     .shirt-number-item {
       grid-area: s-n-item;
       display: flex;
       justify-content: center;
+      flex-direction: column;
+      align-items: center;
 
       .position-in-circle {
-        height: 100px;
-        width: 100px;
+        height: 80px;
+        margin: 20px 0 0 0;
+        padding: 20px 0 0 0;
+        font-family: 'DJBSkritchSkratch', DJBSkritchSkratch;
+        width: 80px;
         background-color: #bbb;
+        font-size: 27px;
+        font-weight: 900;
         border-radius: 50%;
         display: flex;
         justify-content: center;
         align-items: center;
+        box-shadow: 0px 1px 6px 8px rgba(0, 0, 0, 0.53);
       }
     }
 
     .height-weight-value-item {
       grid-area: h-w-v-item;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: unset;
+
+      .tittle-hight-weight {
+        display: flex;
+      }
+
+
     }
 
 
