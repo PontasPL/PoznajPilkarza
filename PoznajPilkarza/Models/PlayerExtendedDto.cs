@@ -9,6 +9,7 @@ namespace PoznajPilkarza.Models
     {
         public string LeagueName { get; set; }
         public string NationalLeagueName { get; set; }
+        public string FlagNationalLeague { get; set; }
         public string FlagNational { get; set; }
         public int ShirtNumber { get; set; }
         public string Description { get; set; }

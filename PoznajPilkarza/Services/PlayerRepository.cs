@@ -47,6 +47,7 @@ namespace PoznajPilkarza.Services
                             Nationality = new Nationality
                             {
                                 Name = x.Team.League.Nationality.Name,
+                                PngImage = x.Team.League.Nationality.PngImage
                             }
 
                         },
@@ -60,9 +61,6 @@ namespace PoznajPilkarza.Services
 
         public IEnumerable<Player> GetPlayers()
         {
-
-
-
             return _context.Players.Include(t=>t.Team).Include(n=>n.Nationality)
                 .Include(p=>p.Position)
                .Select(x => new Player
@@ -76,13 +74,8 @@ namespace PoznajPilkarza.Services
                     Weight = x.Weight,
                     Position = x.Position,
                     ShirtNumber = x.ShirtNumber,
-                 
-                    
-
                 }).ToList();
         }
-
-    
 
         public IEnumerable<Player> GetPlayersFromCountry(string country)
         {

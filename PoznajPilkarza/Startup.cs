@@ -89,14 +89,19 @@ namespace PoznajPilkarza
                 cfg.CreateMap<Nationality, NationalityNameDto>(MemberList.Destination);
                 cfg.CreateMap<League, LeagueNameNationalityDto>(MemberList.Destination);
                 cfg.CreateMap<Player, PlayerExtendedDto>(MemberList.Destination)
+                    .ForMember(dest => dest.DateOfBirth, op => op.MapFrom(src => src.DateOfBirth.ToString("d")))
                     .ForMember(dest => dest.PositionName, op => op.MapFrom(src => src.Position.ShortCode))
                     .ForMember(dest => dest.LeagueName, op => op.MapFrom(src => src.Team.League.Name))
                     .ForMember(dest => dest.TeamName, op => op.MapFrom(src => src.Team.Name))
                     .ForMember(dest => dest.NationalLeagueName,
                         op => op.MapFrom(src => src.Team.League.Nationality.Name))
                     .ForMember(dest => dest.FlagNational,
-                        op => op.MapFrom(src => src.Nationality.PngImage));
-                cfg.CreateMap<Match, MatchDto>(MemberList.Destination);
+                        op => op.MapFrom(src => src.Nationality.PngImage))
+                    .ForMember(dest => dest.FlagNationalLeague,
+                        op => op.MapFrom(src => src.Team.League.Nationality.PngImage));
+                cfg.CreateMap<Match, MatchDto>(MemberList.Destination)
+                    .ForMember(dest=>dest.MatchDay,op=>op.MapFrom(src=>src.MatchDay.ToString("MM/dd/yyyy")));
+                    
                 cfg.CreateMap<Match, MatchDetailsDto>(MemberList.Destination)
                     .ForMember(dest => dest.Attendance, op => op.MapFrom(src => src.MatchDetails.Attendance))
                     .ForMember(dest=>dest.HomeTeamShots, op=>op.MapFrom(src=>src.MatchDetails.HomeTeamShots))
