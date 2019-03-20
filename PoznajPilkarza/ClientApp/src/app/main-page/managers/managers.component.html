@@ -1,5 +1,5 @@
 <div class="main-container">
-  <div class="example-form">
+  <div class="search-form">
     <app-search-bar></app-search-bar>
   </div>
   <div class="main-text-api">
@@ -34,35 +34,5 @@
     <app-table-value [displayedColumns]='displayedColumns' [nameColumns]='nameColumns' [loading]="isLoading"
       [dataSource]="dataSource">
     </app-table-value>
-    <!-- <mat-card *ngIf="isLoading" style="display: flex; justify-content: center; align-items: center;">
-      <mat-progress-spinner color="primary" mode="indeterminate">
-      </mat-progress-spinner>
-    </mat-card>
-    <mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
-
-      <ng-container matColumnDef="name">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Imie </mat-header-cell>
-        <mat-cell *matCellDef="let manager" class="test"> {{manager.name}} </mat-cell>
-      </ng-container>
-      <ng-container matColumnDef="surname">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Nazwisko </mat-header-cell>
-        <mat-cell *matCellDef="let manager"> {{manager.surname}} </mat-cell>
-      </ng-container>
-      <ng-container matColumnDef="nationalityName">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Państwo </mat-header-cell>
-        <mat-cell *matCellDef="let manager"> {{manager.nationalityName}} </mat-cell>
-      </ng-container>
-      <ng-container matColumnDef="nameTeam">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Drużyna </mat-header-cell>
-        <mat-cell *matCellDef="let manager"> {{manager.teamName}} </mat-cell>
-      </ng-container>
-      <ng-container matColumnDef="wikiLink">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Wikipedia </mat-header-cell>
-        <mat-cell *matCellDef="let manager"> {{manager.wikiLink}} </mat-cell>
-      </ng-container>
-      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-    </mat-table>
-    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator> -->
   </div>
 </div>

@@ -22,6 +22,15 @@ export class TableValueComponent implements OnInit, AfterContentInit {
   }
 
   ngAfterContentInit(): void {
+    this.dataSource.sortingDataAccessor = (item, property) => {
+      switch (property) {
+        case 'matchDay': {
+          const newDate = new Date(item.matchDay);
+          return newDate;
+        }
+        default: return item[property];
+      }
+    };
     this.dataSource.sort = this.sort;
   }
 

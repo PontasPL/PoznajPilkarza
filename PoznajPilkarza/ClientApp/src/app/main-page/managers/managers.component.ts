@@ -14,7 +14,7 @@ import { LeagueService } from '../league.service';
   templateUrl: './managers.component.html',
   styleUrls: ['./managers.component.scss']
 })
-export class ManagersComponent implements OnInit, AfterViewInit {
+export class ManagersComponent implements OnInit {
   managers: Manager[];
   countries: INationality[] = [{ name: 'Poland' }];
   leagues: League[] = [new League('Ekstraklasa', 'Poland')];
@@ -53,7 +53,6 @@ export class ManagersComponent implements OnInit, AfterViewInit {
       this.dataSource.data = response as Manager[];
 
     });
-    this.dataSource.paginator = this.paginator;
   }
 
   getNewManagers() {
@@ -87,9 +86,6 @@ export class ManagersComponent implements OnInit, AfterViewInit {
     }
   }
 
-  ngAfterViewInit(): void {
-    // this.dataSource.sort = this.sort;
-  }
 
 
 
