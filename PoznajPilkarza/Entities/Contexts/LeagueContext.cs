@@ -11,6 +11,7 @@ namespace PoznajPilkarza.Entities.Contexts
     {
         public DbSet<Nationality> Nationalities { get; set; }
         public DbSet<League> Leagues { get; set; }
+        public DbSet<Match> Matches { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

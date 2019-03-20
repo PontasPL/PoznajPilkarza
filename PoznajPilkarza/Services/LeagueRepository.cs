@@ -21,5 +21,12 @@ namespace PoznajPilkarza.Services
                .Select(l => new League{Name = l.Name,Nationality = l.Nationality})
                .ToList();
         }
+
+        public IEnumerable<League> GetLeaguesMatches()
+        {
+            return _context.Matches
+               .Select(l => new League { Name = l.League.Name, Nationality = l.League.Nationality })
+               .Distinct().ToList();
+        }
     }
 }

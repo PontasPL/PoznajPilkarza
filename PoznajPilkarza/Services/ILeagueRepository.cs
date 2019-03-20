@@ -9,5 +9,6 @@ namespace PoznajPilkarza.Services
     public interface ILeagueRepository
     {
         IEnumerable<League> GetLeagues();
+        IEnumerable<League> GetLeaguesMatches();
     }
 }
