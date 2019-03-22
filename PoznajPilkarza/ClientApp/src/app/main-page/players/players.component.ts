@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild, HostListener } from '@angular/core';
 import { IPlayer } from 'src/app/models/player';
 import { PlayersService } from '../players/players.service';
 import { League } from 'src/app/models/league';
@@ -54,6 +54,11 @@ export class PlayersComponent implements OnInit {
 
     });
 
+  }
+
+  @HostListener('window:resize') onResize() {
+    console.log('test');
+    this.getNewPlayers();
   }
 
   getNewPlayers() {

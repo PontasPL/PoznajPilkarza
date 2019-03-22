@@ -8,11 +8,11 @@
 
 
     <ng-container *ngFor="let value of displayedColumns;let i = index">
-      <ng-container *ngIf="i===1" matColumnDef="{{value}}" sticky>
+      <ng-container *ngIf="i<=1" matColumnDef="{{value}}" sticky>
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{nameColumns[i]}}</mat-header-cell>
         <mat-cell *matCellDef="let player" class="test"> {{player[value]}} </mat-cell>
       </ng-container>
-      <ng-container *ngIf="i!==1" matColumnDef="{{value}}">
+      <ng-container *ngIf="i>1" matColumnDef="{{value}}">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{nameColumns[i]}}</mat-header-cell>
         <mat-cell *matCellDef="let player" class="test"> {{player[value]}} </mat-cell>
       </ng-container>

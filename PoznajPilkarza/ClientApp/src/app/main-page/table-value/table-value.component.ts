@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, AfterViewInit, AfterContentInit } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, AfterViewInit, AfterContentInit, HostListener } from '@angular/core';
 import { DataSource } from '@angular/cdk/table';
 import { Player } from 'src/app/models/player';
 import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';

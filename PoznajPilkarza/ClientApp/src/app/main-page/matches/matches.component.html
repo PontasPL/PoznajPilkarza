@@ -3,31 +3,40 @@
     <app-search-bar></app-search-bar>
   </div>
   <div class="main-text-api">
-    <h2 class="tittle-text-api">Mecze</h2>
-    <p class="text-api"></p>
-    <p class="text-api">
-      <strong class="text-api-elements"> </strong>
+    <h2 class="tittle-text-api">Piłkarze</h2>
+    <p class="text-api">Poniższa tabela prezentuje statystki piłkarzy z różnych lig świata
+      Każdy z piłkarzy posiada swoje unikalne statystki dzięki, którym zawodnicy potrafią wyróżniać
+      się na swoich pozycjach.</p>
+    <p class="text-api">Można sortować ich według:
+      <strong class="text-api-elements"> Imienia, Nazwiska, Wieku, Państwa</strong>
     </p>
-    <p class="text-api"></p>
+    <p class="text-api">Wszystkie statystyki piłkarzy możemy również wyświetlić poprzez wbudowane w apliakcje API</p>
   </div>
   <div class="main-block">
     <div class="table-filters">
 
       <!-- (selectionChange)="getNewManagers()" -->
       <mat-form-field>
-        <mat-select [(ngModel)]="selectedLeague" placeholder="Liga" (selectionChange)="getNewMatches()">
+        <mat-select *ngIf="!advancedStatistic" [(ngModel)]="selectedLeague" placeholder="Liga" (selectionChange)="getNewMatches()">
+          <mat-option *ngFor="let league of dataSourceLeagues.data;" [value]="league.name + '-' +league.nationalityName">
+            {{league.name + '-' +league.nationalityName}}
+          </mat-option>
+        </mat-select>
+        <mat-select *ngIf="advancedStatistic" [(ngModel)]="selectedLeague" placeholder="Liga" (selectionChange)="getNewMatchesWithDetails()">
           <mat-option *ngFor="let league of dataSourceLeagues.data;" [value]="league.name + '-' +league.nationalityName">
             {{league.name + '-' +league.nationalityName}}
           </mat-option>
         </mat-select>
       </mat-form-field>
-      <mat-checkbox (change)="changeCheckBox()">Zaawansowane statystki</mat-checkbox>
+
+      <mat-checkbox (change)="advancedMatchDetailsSwitch()">Zaawansowane statystki</mat-checkbox>
     </div>
-    <app-table-value *ngIf="advancedStatistic" [displayedColumns]='displayedColumns' [nameColumns]='nameColumns'
-      [loading]="isLoading" [dataSource]="dataSource">
-    </app-table-value>
+
     <app-table-value *ngIf="!advancedStatistic" [displayedColumns]='displayedColumns' [nameColumns]='nameColumns'
       [loading]="isLoading" [dataSource]="dataSource">
+    </app-table-value>
+    <app-table-value *ngIf="advancedStatistic" [displayedColumns]='displayedColumnsDetails' [nameColumns]='nameColumnsDetails'
+      [loading]="isLoading" [dataSource]="dataSourceDetails">
     </app-table-value>
   </div>
 

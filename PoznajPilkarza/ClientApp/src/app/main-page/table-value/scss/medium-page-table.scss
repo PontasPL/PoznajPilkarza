@@ -1,8 +1,11 @@
 @mixin medium-table-container-mixin() {
 
   //   overflow: auto;
-  mat-table {
-    width: 100%;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
 
+  mat-table {
+    width: 1000px;
   }
 }
