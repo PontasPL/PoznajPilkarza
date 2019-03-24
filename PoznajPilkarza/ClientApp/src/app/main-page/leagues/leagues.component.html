@@ -1,0 +1,42 @@
+<div class="main-container">
+  <div class="search-form">
+    <app-search-bar></app-search-bar>
+  </div>
+  <div class="main-text-api">
+    <h2 class="tittle-text-api">Ligi</h2>
+    <p class="text-api">Poniższa tabela prezentuje ligi i zespoły w nich grające z całego świata.
+      Dodatkowo wskazuje rok powstania danego zespołu i stadion na którym rozgrywa dany zespół mecze </p>
+    <p class="text-api">Tabela posiada możliwości dynamicznego sortowania</p>
+    <p class="text-api">Wszystkie informacje o ligach możemy również wyświetlić poprzez wbudowane w aplikacje API</p>
+    <p class="text-api">W celu uzyskania poszczególnych informacji w formacie JSON do adresu strony trzeba dopisać
+      odpowiedni endpoint</p>
+    <div class="text-api-endpoint">
+      <ul class="list-endpoint">
+        <p class="text-api-table-tittle">Endpoint</p>
+        <li class="endpoint-item">/api/managers</li>
+        <li class="endpoint-item">/api/managers/country/spain</li>
+        <li class="endpoint-item">/api/managers/league/laliga</li>
+        <li class="endpoint-item">managers/spain/laliga</li>
+      </ul>
+    </div>
+    <p class="text-api">Przykładowo "poznajpilkarza.pl/api/leagues" wyświetli wszystkich trenerów z bazy
+      strony.</p>
+  </div>
+  <div class="main-block">
+
+
+    <div class="table-filters">
+      <mat-form-field>
+        <mat-select [(ngModel)]="selectedLeague" placeholder="Liga" (selectionChange)="GetNewTeams()">
+          <mat-option *ngFor="let league of dataSourceLeagues.data;" [value]="league.name + '-' +league.nationalityName">
+            {{league.name + '-' +league.nationalityName}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <app-table-value [displayedColumns]='displayedColumns' [nameColumns]='nameColumns' [loading]="isLoading"
+      [dataSource]="dataSource">
+    </app-table-value>
+  </div>
+</div>
