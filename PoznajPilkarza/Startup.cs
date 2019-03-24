@@ -32,6 +32,8 @@ namespace PoznajPilkarza
             services.AddScoped<ILeagueRepository,LeagueRepository>();
             services.AddScoped<IMangerRepository, ManagerRepository>();
             services.AddScoped<IMatchRepository, MatchRepository>();
+            services.AddScoped<ITeamRepository, TeamRepository>();
+
             services.AddDbContext<MainContext>(o =>
                 o.UseSqlServer(Configuration.GetConnectionString("myConnectionString"),op=>op.EnableRetryOnFailure()));
             services.AddDbContext<NationalityContext>(o =>
@@ -44,7 +46,8 @@ namespace PoznajPilkarza
                 o.UseSqlServer(Configuration.GetConnectionString("myConnectionString")));
             services.AddDbContext<ManagerContext>(o =>
                 o.UseSqlServer(Configuration.GetConnectionString("myConnectionString")));
-
+            services.AddDbContext<TeamContext>(o =>
+                o.UseSqlServer(Configuration.GetConnectionString("myConnectionString")));
             services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
             {
                 builder.AllowAnyOrigin()
@@ -101,8 +104,14 @@ namespace PoznajPilkarza
                         op => op.MapFrom(src => src.Team.League.Nationality.PngImage));
                 cfg.CreateMap<Match, MatchDto>(MemberList.Destination)
                     .ForMember(dest=>dest.MatchDay,op=>op.MapFrom(src=>src.MatchDay.ToString("MM/dd/yyyy")));
-                    
+
+                cfg.CreateMap<Team, TeamDto>(MemberList.Destination)
+                    .ForMember(dest => dest.NameStadium, op => op.MapFrom(src => src.Stadium.Name))
+                    .ForMember(dest=>dest.CapacityStadium,op=>op.MapFrom(src=>src.Stadium.Capacity))
+                    .ForMember(dest=>dest.NameLeague, op=>op.MapFrom(src=>src.League.Name));
+
                 cfg.CreateMap<Match, MatchDetailsDto>(MemberList.Destination)
+                    .ForMember(dest => dest.MatchDay, op => op.MapFrom(src => src.MatchDay.ToString("MM/dd/yyyy")))
                     .ForMember(dest => dest.Attendance, op => op.MapFrom(src => src.MatchDetails.Attendance))
                     .ForMember(dest=>dest.HomeTeamShots, op=>op.MapFrom(src=>src.MatchDetails.HomeTeamShots))
                     .ForMember(dest => dest.AwayTeamShots, op => op.MapFrom(src => src.MatchDetails.AwayTeamShots))

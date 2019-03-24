@@ -7,19 +7,13 @@ using PoznajPilkarza.Enitites;
 
 namespace PoznajPilkarza.Entities.Contexts
 {
-    public class MatchContext :DbContext
+    public class TeamContext:DbContext
     {
-        public DbSet<Match> Matches { get; set; }
-        public DbSet<MatchDetails> MatchesDetails { get; set; }
-
-        public DbSet<Referee> Referees { get; set; }
-
-        public DbSet<League> Leagues { get; set; }
         public DbSet<Team> Teams { get; set; }
-
+        public DbSet<League> Leagues { get; set; }
         public DbSet<Nationality> Nationalities { get; set; }
-
         public DbSet<Stadium> Stadium { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Team>().HasMany(r => r.HomeTeams).WithOne(p => p.HomeTeam)
@@ -29,7 +23,7 @@ namespace PoznajPilkarza.Entities.Contexts
         }
 
 
-        public MatchContext(DbContextOptions<MatchContext> options) : base(options)
+        public TeamContext(DbContextOptions<TeamContext> options) : base(options)
         {
         }
     }
