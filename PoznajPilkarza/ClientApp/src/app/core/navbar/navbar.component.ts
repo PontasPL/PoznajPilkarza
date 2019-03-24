@@ -55,6 +55,25 @@ export class NavbarComponent implements OnInit {
     }
   }
 
+  paintingIconLeague(onHover: boolean) {
+
+    const svgele = SVG.adopt(document.getElementById(`league1`));
+    if (onHover) {
+      svgele.attr({
+        fill: 'red'
+        , stroke: 'red'
+        , 'stroke-width': 0.1
+        , opacity: 1
+      });
+      svgele.animate(1500).rotate(360).loop();
+    } else {
+      svgele.stop(true);
+      svgele.stroke('white');
+      svgele.opacity(0);
+    }
+
+
+  }
   ngOnInit() {
     this.paintingSvgIcons();
   }
@@ -66,7 +85,7 @@ export class NavbarComponent implements OnInit {
 
 
   paintingSvgIcons() {
-    const listIconsName: String[] = [`Whistle`, `Login`, `Managers`, `Footballer`];
+    const listIconsName: String[] = [`Whistle`, `League`, `Managers`, `Footballer`];
     const options = { responseType: 'text' as 'text' };
     for (let indexListIconsName = 0; indexListIconsName < listIconsName.length; indexListIconsName++) {
 
@@ -75,14 +94,20 @@ export class NavbarComponent implements OnInit {
           res => {
             const rawSvG = res;
 
-            if (indexListIconsName <= 1) {
+            if (indexListIconsName === 0) {
               const draw = SVG(`canvas-${listIconsName[indexListIconsName].toLowerCase()}`).size('55px', '45px');
               draw.viewbox(0, 0, 40, 30);
               draw.svg(rawSvG);
             } else {
-              const draw = SVG(`canvas-${listIconsName[indexListIconsName].toLowerCase()}`).size('55px', '45px');
-              draw.viewbox(0, 0, 30, 40);
-              draw.svg(rawSvG);
+              if (indexListIconsName === 1) {
+                const draw = SVG(`canvas-${listIconsName[indexListIconsName].toLowerCase()}`).size('55px', '45px');
+                draw.viewbox(0, 0, 55, 40);
+                draw.svg(rawSvG);
+              } else {
+                const draw = SVG(`canvas-${listIconsName[indexListIconsName].toLowerCase()}`).size('55px', '45px');
+                draw.viewbox(0, 0, 30, 40);
+                draw.svg(rawSvG);
+              }
             }
           });
     }

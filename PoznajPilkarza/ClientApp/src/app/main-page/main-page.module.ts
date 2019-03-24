@@ -7,7 +7,7 @@ import { PlayersComponent } from './players/players.component';
 import { MainPageRoutingModule } from './main-page-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { PlayersService } from './players/players.service';
-import { FormsModule, FormControl } from '@angular/forms';
+import { FormsModule, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { NationalityService } from './nationality.service';
 import { MatSortModule } from '@angular/material';
 import { SearchBarComponent } from './search-bar/search-bar.component';
@@ -17,20 +17,20 @@ import { ManagersComponent } from './managers/managers.component';
 import { ManagersService } from './managers/managers.service';
 import { MatchesComponent } from './matches/matches.component';
 import { TableValueComponent } from './table-value/table-value.component';
+import { LeaguesComponent } from './leagues/leagues.component';
+import { MaterialModule } from '../material.module';
 @NgModule({
   declarations: [PlayersComponent,
     SearchBarComponent,
     SinglePlayerComponent,
-    ManagersComponent, MatchesComponent, TableValueComponent],
+    ManagersComponent, MatchesComponent, TableValueComponent, LeaguesComponent],
   imports: [
     CommonModule,
-    CoreModule,
     MainPageRoutingModule,
     HttpClientModule,
     FormsModule,
-    MatSortModule,
-    FormControl,
-
+    MaterialModule,
+    ReactiveFormsModule,
   ],
   exports: [
     PlayersComponent, SearchBarComponent, SinglePlayerComponent, ManagersComponent, TableValueComponent

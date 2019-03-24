@@ -57,8 +57,8 @@ export class PlayersComponent implements OnInit {
   }
 
   @HostListener('window:resize') onResize() {
-    console.log('test');
-    this.getNewPlayers();
+    this.dataSource.paginator.nextPage();
+    this.dataSource.paginator.previousPage();
   }
 
   getNewPlayers() {

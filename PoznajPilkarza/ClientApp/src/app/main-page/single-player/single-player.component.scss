@@ -2,7 +2,7 @@
   position: absolute;
   display: grid;
   grid-template-columns: 15% 70% 15%;
-  grid-template-rows: minmax(140px, 25%) auto;
+  grid-template-rows: minmax(160px, 25%) auto;
   width: 100%;
   height: calc(100% - 134px);
   grid-template-areas: " . search-form . "

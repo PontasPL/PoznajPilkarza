@@ -32,8 +32,8 @@ export class MatchesComponent implements OnInit {
   nameColumns: string[] = ['Gospodarz', 'Gość', 'Dzień',
     'GGole 90m', 'FTAwayGoals', 'HTHomeGoals', 'HTAwayGoals', 'Liga'];
 
-  displayedColumnsDetails: string[] = ['homeTeamName', 'awayTeamName',
-    'ftHomeGoals', 'ftAwayGoals', 'htHomeGoals', 'htAwayGoals', 'matchDay', 'leagueName', 'attendance', 'homeTeamShots',
+  displayedColumnsDetails: string[] = ['homeTeamName', 'awayTeamName', 'matchDay',
+    'ftHomeGoals', 'ftAwayGoals', 'htHomeGoals', 'htAwayGoals', 'leagueName', 'attendance', 'homeTeamShots',
     'awayTeamShots', 'homeTeamShotsOnTarget', 'awayTeamShotsOnTarget', 'homeTeamWoodWork', 'awayTeamWoodWork',
     'homeTeamCorners', 'awayTeamCorners', 'homeTeamFoulsCommitted', 'awayTeamFoulsCommitted', 'homeTeamOffsides', 'awayTeamOffsides',
     'homeYellowCards', 'awayYellowCards', 'homeTeamRedCards', 'awayTeamRedCards'];
@@ -50,11 +50,8 @@ export class MatchesComponent implements OnInit {
 
 
   @HostListener('window:resize') onResize() {
-    if (this.advancedStatistic) {
-      this.getNewMatchesWithDetails();
-    } else {
-      this.getNewMatches();
-    }
+    this.dataSource.paginator.nextPage();
+    this.dataSource.paginator.previousPage();
   }
   ngOnInit() {
     this.leagueService.getLeaguesMatches().subscribe(response => {
@@ -97,7 +94,6 @@ export class MatchesComponent implements OnInit {
     }
   }
   getNewMatchesWithDetails() {
-    // this.advancedStatistic = !this.advancedStatistic;
     console.log(this.selectedLeague);
     this.isLoading = true;
     if (this.selectedLeague === 'Brak-Brak') {

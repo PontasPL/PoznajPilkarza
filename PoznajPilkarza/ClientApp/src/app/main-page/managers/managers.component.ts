@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit, HostListener } from '@angular/core';
 import { Manager } from 'src/app/models/manager';
 import { INationality } from 'src/app/models/nationality';
 import { League } from 'src/app/models/league';
@@ -26,6 +26,9 @@ export class ManagersComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
+
+
+
   displayedColumns: string[] = ['name', 'surname', 'nationalityName',
     'teamName', 'wikiLink'];
   nameColumns: string[] = ['Imie', 'Nazwisko', 'Państwo',
@@ -33,6 +36,8 @@ export class ManagersComponent implements OnInit {
 
   constructor(private managerService: ManagersService, private nationalityService: NationalityService,
     private leagueService: LeagueService) { }
+
+
 
 
   dataSource = new MatTableDataSource(this.managers);
@@ -55,6 +60,10 @@ export class ManagersComponent implements OnInit {
     });
   }
 
+  @HostListener('window:resize') onResize() {
+    this.dataSource.paginator.nextPage();
+    this.dataSource.paginator.previousPage();
+  }
   getNewManagers() {
     this.isLoading = true;
     if (this.selectedLeague === 'Brak-Brak' && this.selectedCountry === 'Brak') {

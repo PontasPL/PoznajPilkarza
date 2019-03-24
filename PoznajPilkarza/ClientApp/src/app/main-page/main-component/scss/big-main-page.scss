@@ -40,7 +40,7 @@ $search-color: rgba(27, 26, 26, 0.747);
   position: absolute;
   display: grid;
   grid-template-columns: 15% 70% 15%;
-  grid-template-rows: minmax(140px, 25%) 1fr;
+  grid-template-rows: minmax(160px, 25%) 1fr;
   width: 100%;
   height: calc(100% - 134px);
   grid-template-areas: " . main-block . "
@@ -108,6 +108,7 @@ $search-color: rgba(27, 26, 26, 0.747);
 
         .main-bullet-dot {
           font-size: 15px;
+          line-height: 3.0;
           padding: 20px 0;
         }
       }
@@ -146,7 +147,7 @@ $search-color: rgba(27, 26, 26, 0.747);
           flex-direction: column;
           align-items: center;
           padding: 0 30px;
-          line-height: 2;
+          line-height: 3;
           font-size: 15px;
         }
       }
