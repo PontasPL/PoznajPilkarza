@@ -50,6 +50,6 @@
     <app-table-value *ngIf="advancedStatistic" [displayedColumns]='displayedColumnsDetails'
       [nameColumns]='nameColumnsDetails' [loading]="isLoading" [dataSource]="dataSourceDetails">
     </app-table-value>
+    <app-pie-chart *ngIf="!isLoading" [dataChart]='dataChart'></app-pie-chart>
   </div>
-
 </div>

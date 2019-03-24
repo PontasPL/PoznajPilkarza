@@ -7,6 +7,9 @@ import { MatSort, MatPaginator, MatTableDataSource } from '@angular/material';
 import { MatchesService } from './matches.service';
 import { LeagueService } from '../league.service';
 import { IMatchDetails } from 'src/app/models/matchDetails';
+import { DataSource } from '@angular/cdk/table';
+
+
 
 @Component({
   selector: 'app-matches',
@@ -17,7 +20,7 @@ export class MatchesComponent implements OnInit {
 
 
   constructor(private matchService: MatchesService, private leagueService: LeagueService) { }
-
+  dataChart = [];
   advancedStatistic = false;
   match: Match[];
   matchDetails: IMatchDetails[];
@@ -62,10 +65,33 @@ export class MatchesComponent implements OnInit {
     this.matchService.getMatchesWithLeague(this.selectedLeague).subscribe(response => {
       this.isLoading = false;
       this.dataSource.data = response as Match[];
-
+      this.getInfData();
     });
   }
 
+  getInfData() {
+    const list: string[] = [];
+    for (let index = 0; index < this.dataSource.data.length; index++) {
+      const a = this.dataSource.data[index];
+      list.push(a.homeTeamName);
+    }
+    const listname = list.filter(function (elem, index, self) {
+      return index === self.indexOf(elem);
+    });
+    for (const b of listname) {
+      let test = 0;
+      for (const p of this.dataSource.data) {
+        if (p.homeTeamName === b) {
+          test += p.ftHomeGoals;
+        } else {
+          if (p.awayTeamName === b) {
+            test += p.ftAwayGoals;
+          }
+        }
+      }
+      this.dataChart.push({ y: test, name: b });
+    }
+  }
 
   getNewMatches() {
     console.log(this.advancedStatistic);

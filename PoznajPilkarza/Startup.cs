@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Newtonsoft.Json.Serialization;
 using PoznajPilkarza.Enitites;
 using PoznajPilkarza.Entities.Contexts;
 using PoznajPilkarza.Models;
@@ -33,6 +34,10 @@ namespace PoznajPilkarza
             services.AddScoped<IMangerRepository, ManagerRepository>();
             services.AddScoped<IMatchRepository, MatchRepository>();
             services.AddScoped<ITeamRepository, TeamRepository>();
+
+            //services.AddMvc()
+            //    .AddJsonOptions(options => options.SerializerSettings.ContractResolver = new DefaultContractResolver());
+
 
             services.AddDbContext<MainContext>(o =>
                 o.UseSqlServer(Configuration.GetConnectionString("myConnectionString"),op=>op.EnableRetryOnFailure()));
