@@ -4,17 +4,18 @@
 </mat-card>
 
 <div class="table-container">
-  <mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+  <mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8" [ngClass]="{'extended-mat-table': bigTable}">
 
 
     <ng-container *ngFor="let value of displayedColumns;let i = index">
       <ng-container *ngIf="i<=1" matColumnDef="{{value}}" sticky>
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{nameColumns[i]}}</mat-header-cell>
-        <mat-cell *matCellDef="let player" class="test"> {{player[value]}} </mat-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="max-width-element"> {{nameColumns[i]}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let player" class="max-width-element align-cell"> {{player[value]}} </mat-cell>
       </ng-container>
       <ng-container *ngIf="i>1" matColumnDef="{{value}}">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{nameColumns[i]}}</mat-header-cell>
-        <mat-cell *matCellDef="let player" class="test"> {{player[value]}} </mat-cell>
+        <mat-cell *matCellDef="let player" class="align-cell"> {{player[value]}} </mat-cell>
       </ng-container>
     </ng-container>
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

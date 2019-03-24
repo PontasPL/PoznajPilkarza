@@ -27,11 +27,33 @@
 
 @mixin table-container-mixin() {
 
+  height: 100%;
+  width: 100%;
+  overflow: auto;
 
+  .extended-mat-table {
+    width: 2000px !important;
+  }
 
-  mat-table {
+  .mat-table {
     width: 100%;
 
+    // .max-width-element {
+    //   min-width: 110px !important;
+    //   max-width: 140px !important;
+    // }
+
+    .mat-header-cell {
+      display: flex;
+      justify-content: center;
+      margin: 0 0 0 18px;
+      position: sticky !important;
+    }
+
+    .align-cell {
+      display: flex;
+      justify-content: center;
+    }
 
   }
 }

@@ -15,9 +15,13 @@ export class TableValueComponent implements OnInit, AfterContentInit {
   @Input() nameColumns: string[];
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  bigTable = false;
   player: Player;
   constructor() { }
   ngOnInit() {
+    if (this.nameColumns.length > 10) {
+      this.bigTable = true;
+    }
     this.dataSource.paginator = this.paginator;
   }
 

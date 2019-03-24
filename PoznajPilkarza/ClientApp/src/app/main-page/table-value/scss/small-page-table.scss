@@ -5,7 +5,20 @@
   width: 100%;
   overflow: auto;
 
-  mat-table {
+  .mat-table {
     width: 1000px;
+
+    .max-width-element {
+      min-width: 120px !important;
+      max-width: 150px !important;
+    }
+
+    // .mat-header-cell {
+    //   position: sticky;
+    // }
+
+    // .test {
+    //   display: block
+    // }
   }
 }
