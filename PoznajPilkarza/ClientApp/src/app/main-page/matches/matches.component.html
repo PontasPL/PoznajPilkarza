@@ -3,40 +3,52 @@
     <app-search-bar></app-search-bar>
   </div>
   <div class="main-text-api">
-    <h2 class="tittle-text-api">Piłkarze</h2>
-    <p class="text-api">Poniższa tabela prezentuje statystki piłkarzy z różnych lig świata
-      Każdy z piłkarzy posiada swoje unikalne statystki dzięki, którym zawodnicy potrafią wyróżniać
-      się na swoich pozycjach.</p>
-    <p class="text-api">Można sortować ich według:
-      <strong class="text-api-elements"> Imienia, Nazwiska, Wieku, Państwa</strong>
+    <h2 class="tittle-text-api">Mecze</h2>
+    <p class="text-api">Poniższa tabela prezentuje statystki meczów z najważniejszych lig światowych
+      Każdy z meczy posiada swoje unikalne statystki dzięki, którym możemy analizować mecz.</p>
+    <p class="text-api">Tabela posiada możliwości dynamicznego sortowania oraz rozszerzenia o zaawansowane statystyki
     </p>
-    <p class="text-api">Wszystkie statystyki piłkarzy możemy również wyświetlić poprzez wbudowane w apliakcje API</p>
+    <p class="text-api">Wszystkie statystyki meczy możemy również wyświetlić poprzez wbudowane w aplikacje API</p>
+    <p class="text-api">W celu uzyskania poszczególnych informacji w formacie JSON do adresu strony trzeba dopisać
+      odpowiedni endpoint</p>
+    <div class="text-api-endpoint">
+      <ul class="list-endpoint">
+        <p class="text-api-table-tittle">Endpoint</p>
+        <li class="endpoint-item">/api/matches</li>
+        <li class="endpoint-item">/api/matches/withDetails</li>
+        <li class="endpoint-item"> /api/matches/league/laliga</li>
+        <li class="endpoint-item">/api/withDetails/league/laliga</li>
+      </ul>
+    </div>
+    <p class="text-api">Przykładowo "poznajpilkarza.pl/api/matches", który wyświetli wszystkie mecze z bazy strony.</p>
   </div>
   <div class="main-block">
     <div class="table-filters">
 
-      <!-- (selectionChange)="getNewManagers()" -->
       <mat-form-field>
-        <mat-select *ngIf="!advancedStatistic" [(ngModel)]="selectedLeague" placeholder="Liga" (selectionChange)="getNewMatches()">
-          <mat-option *ngFor="let league of dataSourceLeagues.data;" [value]="league.name + '-' +league.nationalityName">
+        <mat-select *ngIf="!advancedStatistic" [(ngModel)]="selectedLeague" placeholder="Liga"
+          (selectionChange)="getNewMatches()">
+          <mat-option *ngFor="let league of dataSourceLeagues.data;"
+            [value]="league.name + '-' +league.nationalityName">
             {{league.name + '-' +league.nationalityName}}
           </mat-option>
         </mat-select>
-        <mat-select *ngIf="advancedStatistic" [(ngModel)]="selectedLeague" placeholder="Liga" (selectionChange)="getNewMatchesWithDetails()">
-          <mat-option *ngFor="let league of dataSourceLeagues.data;" [value]="league.name + '-' +league.nationalityName">
+        <mat-select *ngIf="advancedStatistic" [(ngModel)]="selectedLeague" placeholder="Liga"
+          (selectionChange)="getNewMatchesWithDetails()">
+          <mat-option *ngFor="let league of dataSourceLeagues.data;"
+            [value]="league.name + '-' +league.nationalityName">
             {{league.name + '-' +league.nationalityName}}
           </mat-option>
         </mat-select>
       </mat-form-field>
-
       <mat-checkbox (change)="advancedMatchDetailsSwitch()">Zaawansowane statystki</mat-checkbox>
     </div>
 
     <app-table-value *ngIf="!advancedStatistic" [displayedColumns]='displayedColumns' [nameColumns]='nameColumns'
       [loading]="isLoading" [dataSource]="dataSource">
     </app-table-value>
-    <app-table-value *ngIf="advancedStatistic" [displayedColumns]='displayedColumnsDetails' [nameColumns]='nameColumnsDetails'
-      [loading]="isLoading" [dataSource]="dataSourceDetails">
+    <app-table-value *ngIf="advancedStatistic" [displayedColumns]='displayedColumnsDetails'
+      [nameColumns]='nameColumnsDetails' [loading]="isLoading" [dataSource]="dataSourceDetails">
     </app-table-value>
   </div>
 

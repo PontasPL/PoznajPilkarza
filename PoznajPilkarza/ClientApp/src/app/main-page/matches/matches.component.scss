@@ -1,1 +1,7 @@
 @import '../../shared/scss/shared-page-table/shared-page-table.scss';
+
+.mat-checkbox {
+  display: flex;
+  align-items: center;
+  color: white;
+}

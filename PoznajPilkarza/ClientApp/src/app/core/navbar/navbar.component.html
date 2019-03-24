@@ -57,13 +57,13 @@
             </div>
           </a>
         </li>
-        <li class="navbar-item">
-          <a [routerLink]="['/login']" [routerLinkActive]="'active'" (click)="hamburgerClick()">
+        <li (mouseenter)="paintingIconLeague(true)" (mouseleave)="paintingIconLeague(false)" class="navbar-item">
+          <a [routerLink]="['/leagues']" [routerLinkActive]="'active'" (click)="hamburgerClick()">
             <div>
-              <div class="canvas-icons" id="canvas-login"></div>
+              <div class="canvas-icons" id="canvas-league"></div>
             </div>
             <div class="category category-4">
-              Logowanie
+              Ligi
             </div>
           </a>
         </li>
