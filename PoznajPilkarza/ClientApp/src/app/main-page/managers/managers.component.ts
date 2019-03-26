@@ -30,9 +30,9 @@ export class ManagersComponent implements OnInit {
 
 
   displayedColumns: string[] = ['name', 'surname', 'nationalityName',
-    'teamName', 'wikiLink'];
+    'teamName'];
   nameColumns: string[] = ['Imie', 'Nazwisko', 'Państwo',
-    'Drużyna', 'WikiLink'];
+    'Drużyna'];
 
   constructor(private managerService: ManagersService, private nationalityService: NationalityService,
     private leagueService: LeagueService) { }

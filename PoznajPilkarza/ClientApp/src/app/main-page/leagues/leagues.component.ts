@@ -24,9 +24,9 @@ export class LeaguesComponent implements OnInit {
   isLoading = true;
 
   displayedColumns: string[] = ['name', 'formed', 'nameLeague',
-    'nameStadium', 'capacityStadium', 'wikiLink'];
+    'nameStadium', 'capacityStadium'];
   nameColumns: string[] = ['Nazwa', 'Rok Założenia', 'Nazwa Ligi',
-    'Nazwa Stadionu', 'Pojemność stadionu', 'WikiLink'];
+    'Nazwa Stadionu', 'Pojemność stadionu'];
 
   dataSource = new MatTableDataSource(this.team);
   dataSourceLeagues = new MatTableDataSource(this.leagues);

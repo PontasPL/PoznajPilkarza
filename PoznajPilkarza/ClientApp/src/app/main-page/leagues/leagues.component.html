@@ -13,13 +13,13 @@
     <div class="text-api-endpoint">
       <ul class="list-endpoint">
         <p class="text-api-table-tittle">Endpoint</p>
-        <li class="endpoint-item">/api/managers</li>
-        <li class="endpoint-item">/api/managers/country/spain</li>
-        <li class="endpoint-item">/api/managers/league/laliga</li>
-        <li class="endpoint-item">managers/spain/laliga</li>
+        <li class="endpoint-item">/api/leagues</li>
+        <li class="endpoint-item">/api/leagues/matches</li>
+        <li class="endpoint-item">/api/teams</li>
+        <li class="endpoint-item">/api/teams/league/laliga-spain</li>
       </ul>
     </div>
-    <p class="text-api">Przykładowo "poznajpilkarza.pl/api/leagues" wyświetli wszystkich trenerów z bazy
+    <p class="text-api">Przykładowo "poznajpilkarza.pl/api/leagues" wyświetli wszystkie ligi z bazy
       strony.</p>
   </div>
   <div class="main-block">
@@ -28,7 +28,8 @@
     <div class="table-filters">
       <mat-form-field>
         <mat-select [(ngModel)]="selectedLeague" placeholder="Liga" (selectionChange)="GetNewTeams()">
-          <mat-option *ngFor="let league of dataSourceLeagues.data;" [value]="league.name + '-' +league.nationalityName">
+          <mat-option *ngFor="let league of dataSourceLeagues.data;"
+            [value]="league.name + '-' +league.nationalityName">
             {{league.name + '-' +league.nationalityName}}
           </mat-option>
         </mat-select>
