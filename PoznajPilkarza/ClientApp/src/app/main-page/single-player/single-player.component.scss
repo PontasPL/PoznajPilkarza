@@ -1,188 +1,25 @@
+@import "../../shared/scss/shared.scss";
+@import "./scss/all-format-single-player.scss";
+
+
+// $back-color:rgba($color: #000000, $alpha: 0.43);
+// $search-color: rgba(27, 26, 26, 0.747);
+
+
+
 .main-container {
-  position: absolute;
-  display: grid;
-  grid-template-columns: 15% 70% 15%;
-  grid-template-rows: minmax(160px, 25%) auto;
-  width: 100%;
-  height: calc(100% - 134px);
-  grid-template-areas: " . search-form . "
-    ". player-main-container .";
-  transition: 1s;
-  animation-name: navbar-animations;
-  animation-duration: 2s;
+  @include single-player-mixin();
+}
 
 
-  .search-form {
-    grid-area: search-form;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
+@media #{$information-medium-screen} {
+  .main-container {
+    @include medium-single-player-mixin();
   }
+}
 
-  .player-main-container {
-    grid-area: player-main-container;
-    display: grid;
-    margin: 0 0 20px 0;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: 50px repeat(4, 0.7fr) 150px;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.29);
-    box-shadow: 0px -2px 6px 4px rgba(0, 0, 0, 0.53);
-    grid-template-areas:
-      "t-c-personal t-c-team"
-      "n-s-item l-n-n-item"
-      "d-o-b-item l-n-item"
-      "n-n-item t-n-item"
-      "h-w-v-item p-item"
-      "s-n-item s-n-item";
-
-    .tittle-cell-view {
-      font-family: 'DJBSkritchSkratch', DJBSkritchSkratch;
-      font-weight: 800;
-      color: white;
-      background-color: rgba(0, 0, 0, 0.50);
-      display: flex;
-      font-size: 20px;
-      justify-content: center;
-      padding: 20px;
-      box-shadow: 0px -2px 6px 4px rgba(0, 0, 0, 0.53);
-    }
-
-    .cell-view {
-      padding: 15px;
-      box-shadow: 0px 1px 2px 2px rgba(0, 0, 0, 0.53);
-      display: flex;
-      align-items: center;
-
-      .tittle-font {
-        font-family: 'DJBSkritchSkratch', DJBSkritchSkratch;
-        font-weight: 800;
-        color: white;
-        display: flex;
-        font-size: 13px;
-
-
-      }
-
-      .content-cell-view {
-        font-family: 'DJBSkritchSkratch', DJBSkritchSkratch;
-        font-size: 12px;
-        padding: 0 20px 0 20px;
-        color: white;
-        font-weight: 600;
-      }
-    }
-
-    .tittle-column-personal {
-      grid-area: t-c-personal;
-    }
-
-    .tittle-column-team {
-      grid-area: t-c-team;
-    }
-
-    .name-surname-item {
-      grid-area: n-s-item;
-    }
-
-    .date-of-birth-item {
-      grid-area: d-o-b-item;
-    }
-
-    .nationality-name-item {
-      grid-area: n-n-item;
-
-      .flag-name-content {
-        display: flex;
-
-        .content-cell-view {
-          display: flex;
-          align-items: center;
-          padding: 0 20px 0 20px;
-
-        }
-      }
-
-    }
-
-
-    .position-item {
-      grid-area: p-item;
-
-
-    }
-
-    .league-name-item {
-      grid-area: l-n-item;
-    }
-
-    .league-national-name-item {
-      grid-area: l-n-n-item;
-
-      .flag-name-content {
-        display: flex;
-
-        .content-cell-view {
-          display: flex;
-          align-items: center;
-          padding: 0 20px;
-
-        }
-      }
-    }
-
-    .team-name-item {
-      grid-area: t-n-item;
-    }
-
-
-    .shirt-number-item {
-      grid-area: s-n-item;
-      display: flex;
-      justify-content: center;
-      flex-direction: column;
-      align-items: center;
-
-      .position-in-circle {
-        height: 80px;
-        margin: 20px 0 0 0;
-        padding: 20px 0 0 0;
-        font-family: 'DJBSkritchSkratch', DJBSkritchSkratch;
-        width: 80px;
-        background-color: #bbb;
-        font-size: 27px;
-        font-weight: 900;
-        border-radius: 50%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        box-shadow: 0px 1px 6px 8px rgba(0, 0, 0, 0.53);
-      }
-    }
-
-    .height-weight-value-item {
-      grid-area: h-w-v-item;
-      flex-direction: column;
-      justify-content: space-between;
-      align-items: unset;
-
-      .tittle-hight-weight {
-        display: flex;
-      }
-
-
-    }
-
-
-
-    .description-item {
-      grid-area: d-item;
-    }
-
-    .wiki-link-item {
-      grid-area: w-l-item;
-    }
+@media #{$information-small-screen} {
+  .main-container {
+    @include small-single-player-mixin();
   }
 }

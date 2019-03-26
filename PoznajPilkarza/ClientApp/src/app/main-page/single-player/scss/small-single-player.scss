@@ -1,0 +1,45 @@
+@mixin small-single-player-mixin() {
+  grid-template-areas: " . search-form . "
+    "player-main-container player-main-container player-main-container";
+
+  .player-main-container {
+    grid-area: player-main-container;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+
+    .cell-view {
+      min-height: 70px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .content-cell-view {
+        display: flex;
+        align-items: center;
+      }
+    }
+
+
+    .tittle-font {
+
+      justify-content: center;
+      line-height: 2;
+    }
+
+    // grid-template-columns: repeat(2, 1fr);
+    // grid-template-rows: 50px repeat(3, 1fr);
+    // grid-template-areas: "t-c-personal t-c-personal"
+    //   "n-s-item n-s-item"
+    //   "d-o-b-item d-o-b-item";
+    //   "n-n-item"
+    //   "h-w-v-item"
+    //   "s-n-item";
+    //   "t-c-team"
+    //   "l-n-n-item"
+    //   "l-n-item"
+    //   "t-n-item"
+    //   "p-item"
+    //   "s-n-item";
+  }
+}

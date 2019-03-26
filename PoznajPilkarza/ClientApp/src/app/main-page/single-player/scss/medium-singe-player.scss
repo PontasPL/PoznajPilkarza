@@ -1,0 +1,4 @@
+@mixin medium-single-player-mixin() {
+  grid-template-areas: " . search-form . "
+    "player-main-container player-main-container player-main-container";
+}
