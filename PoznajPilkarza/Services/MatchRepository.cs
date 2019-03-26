@@ -121,6 +121,7 @@ namespace PoznajPilkarza.Services
             var nameLeague = Regex.Replace(league, @"\-.*", "").Trim();
             var countryLeague = Regex.Match(league, @"\-.*").Value.Replace("-", "").Trim();
             return _context.Matches
+                .OrderBy(x=>x.MatchDay)
                 .Where(x=>x.League.Name==nameLeague&&x.League.Nationality.Name==countryLeague)
                 .Select(x => new Match
             {

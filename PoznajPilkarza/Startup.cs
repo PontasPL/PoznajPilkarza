@@ -90,7 +90,8 @@ namespace PoznajPilkarza
             {
                 cfg.CreateMap<Player, PlayerDto>(MemberList.Destination)
                     .ForMember(dest => dest.PositionName, op => op.MapFrom(src => src.Position.ShortCode))
-                    .ForMember(dest => dest.TeamName, op => op.MapFrom(src => src.Team.Name));
+                    .ForMember(dest => dest.TeamName, op => op.MapFrom(src => src.Team.Name))
+                    .ForMember(dest=>dest.DateOfBirth, op=>op.MapFrom(src=>src.DateOfBirth.ToString("MM/dd/yyyy")));
                 //.ForMember(dest => dest.nameLeague, op => op.MapFrom(src => src.Team.League.Name));
                 cfg.CreateMap<Manager, ManagerDto>(MemberList.Destination);
                 cfg.CreateMap<Player, PlayerNameSurnameDto>(MemberList.Destination);
@@ -98,7 +99,7 @@ namespace PoznajPilkarza
                 cfg.CreateMap<League, LeagueNameNationalityDto>(MemberList.Destination);
                 cfg.CreateMap<Player, PlayerExtendedDto>(MemberList.Destination)
                     .ForMember(dest => dest.DateOfBirth, op => op.MapFrom(src => src.DateOfBirth.ToString("d")))
-                    .ForMember(dest => dest.PositionName, op => op.MapFrom(src => src.Position.ShortCode))
+                    .ForMember(dest => dest.PositionName, op => op.MapFrom(src => src.Position.PositionName))
                     .ForMember(dest => dest.LeagueName, op => op.MapFrom(src => src.Team.League.Name))
                     .ForMember(dest => dest.TeamName, op => op.MapFrom(src => src.Team.Name))
                     .ForMember(dest => dest.NationalLeagueName,
