@@ -14,5 +14,13 @@
 
   .main-block {
     margin: 20px 0 0 0;
+
+    .table-filters {
+      display: flex;
+      flex-direction: column;
+      margin: 0 10px 20px 10px;
+
+
+    }
   }
 }

@@ -62,6 +62,17 @@
         font-weight: 800;
       }
 
+      .legend-table {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-areas: "tittle tittle";
+
+        .legend-tittle {
+
+          grid-area: tittle;
+        }
+      }
+
       .list-endpoint {
         font-family: 'Montserrat', sans-serif;
         width: 50%;
@@ -119,6 +130,9 @@
       justify-content: space-around;
     }
 
+    .chart {
+      margin: 20px 0 0 0;
+    }
 
 
 
