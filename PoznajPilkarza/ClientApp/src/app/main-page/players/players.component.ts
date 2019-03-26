@@ -25,9 +25,9 @@ export class PlayersComponent implements OnInit {
   selectedCountry = this.countries[0].name;
   selectedLeague = this.leagues[0].name.concat('-').concat(this.leagues[0].nationalityName);
   isLoading = true;
-  displayedColumns: string[] = ['name', 'surname', 'nationalityName',
+  displayedColumns: string[] = ['name', 'surname', 'dateOfBirth', 'nationalityName',
     'positionName', 'height', 'weight', 'teamName'];
-  nameColumns: string[] = ['Imie', 'Nazwisko', 'Państwo',
+  nameColumns: string[] = ['Imie', 'Nazwisko', 'Data Urodzenia', 'Państwo',
     'Pozycja', 'Wzrost', 'Waga', 'Drużyna'];
 
   constructor(private playerService: PlayersService, private nationalityService: NationalityService,

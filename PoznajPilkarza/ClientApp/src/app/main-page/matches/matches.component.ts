@@ -8,6 +8,7 @@ import { MatchesService } from './matches.service';
 import { LeagueService } from '../league.service';
 import { IMatchDetails } from 'src/app/models/matchDetails';
 import { DataSource } from '@angular/cdk/table';
+import { async } from '@angular/core/testing';
 
 
 
@@ -21,6 +22,16 @@ export class MatchesComponent implements OnInit {
 
   constructor(private matchService: MatchesService, private leagueService: LeagueService) { }
   dataChart = [];
+  dataChartDiff = [];
+  dataChartAway = [];
+  dataChartDifferent = [];
+  dataChartProgressPoint = [];
+  dataChartSecondSecondTeam = [];
+  nameChartGoals = 'Gole';
+  nameChartDiffGoals = 'Roznica goli';
+  nameChartPointProgress = 'ProgressPoint';
+  tittleGoalChart = 'Zdobyte bramki';
+  tittleDiffChart = 'Roznica bramek';
   advancedStatistic = false;
   match: Match[];
   matchDetails: IMatchDetails[];
@@ -33,7 +44,7 @@ export class MatchesComponent implements OnInit {
   displayedColumns: string[] = ['homeTeamName', 'awayTeamName', 'matchDay',
     'ftHomeGoals', 'ftAwayGoals', 'htHomeGoals', 'htAwayGoals', 'leagueName'];
   nameColumns: string[] = ['Gospodarz', 'Gość', 'Dzień',
-    'GGole 90m', 'FTAwayGoals', 'HTHomeGoals', 'HTAwayGoals', 'Liga'];
+    'HGFT', 'AGFT', 'HGHT', 'AGHT', 'Liga'];
 
   displayedColumnsDetails: string[] = ['homeTeamName', 'awayTeamName', 'matchDay',
     'ftHomeGoals', 'ftAwayGoals', 'htHomeGoals', 'htAwayGoals', 'leagueName', 'attendance', 'homeTeamShots',
@@ -41,10 +52,10 @@ export class MatchesComponent implements OnInit {
     'homeTeamCorners', 'awayTeamCorners', 'homeTeamFoulsCommitted', 'awayTeamFoulsCommitted', 'homeTeamOffsides', 'awayTeamOffsides',
     'homeYellowCards', 'awayYellowCards', 'homeTeamRedCards', 'awayTeamRedCards'];
   nameColumnsDetails: string[] = ['Gospodarz', 'Gość', 'Dzień',
-    'GGole 90m', 'FTAwayGoals', 'HTHomeGoals', 'HTAwayGoals', 'Liga', 'attendance', 'homeTeamShots',
-    'awayTeamShots', 'homeTeamShotsOnTarget', 'awayTeamShotsOnTarget', 'homeTeamWoodWork', 'awayTeamWoodWork',
-    'homeTeamCorners', 'awayTeamCorners', 'homeTeamFoulsCommitted', 'awayTeamFoulsCommitted', 'homeTeamOffsides', 'awayTeamOffsides',
-    'homeYellowCards', 'awayYellowCards', 'homeTeamRedCards', 'awayTeamRedCards'];
+    'HGFT', 'AGFT', 'HGHT', 'AGHT', 'Liga', 'ATT', 'HTS',
+    'AS', 'HSOT', 'ASOT', 'HWW', 'AWW',
+    'HC', 'AC', 'HF', 'AF', 'HO', 'AO',
+    'HYC', 'AYC', 'HRC', 'ARC'];
 
 
   dataSource = new MatTableDataSource(this.match);
@@ -66,31 +77,88 @@ export class MatchesComponent implements OnInit {
       this.isLoading = false;
       this.dataSource.data = response as Match[];
       this.getInfData();
+      this.compareTwoTeamsChart();
     });
   }
 
+
+
+  compareTwoTeamsChart() {
+    this.dataChartProgressPoint = [];
+    console.log(this.dataSource.data);
+    const teamA = 'Barcelona';
+    const teamB = 'Real Madrid';
+    const teamPointA = this.TeamPoints(teamA);
+    const teamPointB = this.TeamPoints(teamB);
+    this.dataChartProgressPoint = teamPointA;
+    this.dataChartSecondSecondTeam = teamPointB;
+  }
+
+
+  private TeamPoints(teamA: string) {
+    const teamPoint = [];
+    let teamAPoint = 0;
+    let round = 0;
+    const teamBPoint = 0;
+    for (const match of this.dataSource.data) {
+      if (match.homeTeamName === teamA && match.ftHomeGoals > match.ftAwayGoals) {
+        round++;
+        teamAPoint += 3;
+        teamPoint.push({ x: round, y: teamAPoint, indexLabel: 'win', markerType: 'triangle', markerColor: '#6B8E23' });
+      } else if (match.homeTeamName === teamA && match.ftHomeGoals < match.ftAwayGoals) {
+        round++;
+        teamPoint.push({ x: round, y: teamAPoint, indexLabel: 'loss', markerType: 'cross', markerColor: 'tomato' });
+      } else if ((match.homeTeamName === teamA || match.awayTeamName === teamA) && match.ftHomeGoals === match.ftAwayGoals) {
+        round++;
+        teamAPoint += 1;
+        teamPoint.push({ x: round, y: teamAPoint, indexLabel: 'draw', markerType: 'circle', markerColor: 'blue' });
+      } else if (match.awayTeamName === teamA && match.ftHomeGoals < match.ftAwayGoals) {
+        round++;
+        teamAPoint += 3;
+        teamPoint.push({ x: round, y: teamAPoint, indexLabel: 'win', markerType: 'triangle', markerColor: '#6B8E23' });
+      } else if (match.awayTeamName === teamA && match.ftHomeGoals > match.ftAwayGoals) {
+        round++;
+        teamPoint.push({ x: round, y: teamAPoint, indexLabel: 'loss', markerType: 'cross', markerColor: 'tomato' });
+      }
+    }
+    console.log(teamAPoint);
+    return teamPoint;
+  }
+
   getInfData() {
+    this.dataChart = [];
+    this.dataChartDiff = [];
+    this.dataChartAway = [];
     const list: string[] = [];
     for (let index = 0; index < this.dataSource.data.length; index++) {
-      const a = this.dataSource.data[index];
-      list.push(a.homeTeamName);
+      const team = this.dataSource.data[index];
+      list.push(team.homeTeamName);
     }
-    const listname = list.filter(function (elem, index, self) {
+    const listName = list.filter(function (elem, index, self) {
       return index === self.indexOf(elem);
     });
-    for (const b of listname) {
-      let test = 0;
+    for (const teamName of listName) {
+      let goals = 0;
+      let lostGoals = 0;
+      let awayGoals = 0;
       for (const p of this.dataSource.data) {
-        if (p.homeTeamName === b) {
-          test += p.ftHomeGoals;
+        if (p.homeTeamName === teamName) {
+          goals += p.ftHomeGoals;
+          lostGoals += p.ftAwayGoals;
         } else {
-          if (p.awayTeamName === b) {
-            test += p.ftAwayGoals;
+          if (p.awayTeamName === teamName) {
+            goals += p.ftAwayGoals;
+            lostGoals += p.ftHomeGoals;
+            awayGoals += p.ftHomeGoals;
           }
         }
       }
-      this.dataChart.push({ y: test, name: b });
+      const diff = goals - lostGoals;
+      this.dataChart.push({ y: goals, label: teamName });
+      this.dataChartDiff.push({ y: diff, label: teamName });
+      // this.dataChartAway.push({ y: awayGoals, label: teamName });
     }
+    this.dataChart.sort((a, b) => b.y - a.y);
   }
 
   getNewMatches() {
@@ -100,12 +168,14 @@ export class MatchesComponent implements OnInit {
       this.matchService.getMatches().subscribe(response => {
         this.isLoading = false;
         this.dataSource.data = response as Match[];
+        this.getInfData();
       });
     } else {
       this.matchService.getMatchesWithLeague(this.selectedLeague)
         .subscribe(response => {
           this.isLoading = false;
           this.dataSource.data = response as Match[];
+          this.getInfData();
         });
     }
   }

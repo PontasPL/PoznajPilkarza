@@ -21,6 +21,25 @@
       </ul>
     </div>
     <p class="text-api">Przykładowo "poznajpilkarza.pl/api/matches", który wyświetli wszystkie mecze z bazy strony.</p>
+    <p class="text-api">Pierwsza litera H w tabeli oznacza gospodarza</p>
+    <p class="text-api">Pierwsza litera A w tabeli oznacza gościa</p>
+    <p class="text-api">Druga litera G w tabeli oznacza bramki</p>
+    <div class="text-api-endpoint">
+      <ul class="list-endpoint legend-table">
+        <p class="text-api-table-tittle legend-tittle">Legenda Tabeli</p>
+        <li class="endpoint-item">FT- po 90 minutach</li>
+        <li class="endpoint-item">HT- po 45 minutach</li>
+        <li class="endpoint-item">ATT- Publiczność</li>
+        <li class="endpoint-item">S -Liczba strzałów na bramkę</li>
+        <li class="endpoint-item">SOT -Liczba strzałów celnych na bramkę</li>
+        <li class="endpoint-item">WW -Ilość strzałów w słupki</li>
+        <li class="endpoint-item">C -Rzuty rożne</li>
+        <li class="endpoint-item">F -Rzuty wolne</li>
+        <li class="endpoint-item">C -Spalone</li>
+        <li class="endpoint-item">YC -Żółte kartki</li>
+        <li class="endpoint-item">RC -Czerwone kartki</li>
+      </ul>
+    </div>
   </div>
   <div class="main-block">
     <div class="table-filters">
@@ -50,6 +69,19 @@
     <app-table-value *ngIf="advancedStatistic" [displayedColumns]='displayedColumnsDetails'
       [nameColumns]='nameColumnsDetails' [loading]="isLoading" [dataSource]="dataSourceDetails">
     </app-table-value>
-    <app-pie-chart *ngIf="!isLoading" [dataChart]='dataChart'></app-pie-chart>
+    <div class="chart">
+      <app-column-chart *ngIf="!isLoading" [dataChart]='dataChart' [nameChart]="nameChartGoals"
+        [tittleChart]='tittleGoalChart'>
+      </app-column-chart>
+    </div>
+    <div class="chart">
+      <app-column-chart class="chart" *ngIf="!isLoading" [dataChart]='dataChartDiff' [nameChart]='nameChartDiffGoals'
+        [tittleChart]='tittleDiffChart'>
+      </app-column-chart>
+    </div>
+    <div class="chart">
+      <app-compare-chart class="chart" *ngIf="!isLoading" [dataChart]='dataChartProgressPoint'
+        [dataChartSecondTeam]="dataChartSecondSecondTeam"></app-compare-chart>
+    </div>
   </div>
 </div>
