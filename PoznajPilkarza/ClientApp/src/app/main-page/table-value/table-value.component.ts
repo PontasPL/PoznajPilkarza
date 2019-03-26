@@ -32,6 +32,10 @@ export class TableValueComponent implements OnInit, AfterContentInit {
           const newDate = new Date(item.matchDay);
           return newDate;
         }
+        case 'dateOfBirth': {
+          const newDate = new Date(item.dateOfBirth);
+          return newDate;
+        }
         default: return item[property];
       }
     };
