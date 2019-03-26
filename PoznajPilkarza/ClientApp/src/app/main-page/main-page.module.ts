@@ -15,12 +15,13 @@ import { MatchesComponent } from './matches/matches.component';
 import { TableValueComponent } from './table-value/table-value.component';
 import { LeaguesComponent } from './leagues/leagues.component';
 import { MaterialModule } from '../material.module';
-import { PieChartComponent } from './pie-chart/pie-chart.component';
+import { CompareChartComponent } from './charts/compare-chart/compare-chart.component';
+import { ColumnChartComponent } from './charts/column-chart/column-chart.component';
 @NgModule({
   declarations: [PlayersComponent,
     SearchBarComponent,
     SinglePlayerComponent,
-    ManagersComponent, MatchesComponent, TableValueComponent, LeaguesComponent, PieChartComponent],
+    ManagersComponent, MatchesComponent, TableValueComponent, LeaguesComponent, CompareChartComponent, ColumnChartComponent],
   imports: [
     CommonModule,
     MainPageRoutingModule,
