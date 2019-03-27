@@ -17,11 +17,13 @@ import { LeaguesComponent } from './leagues/leagues.component';
 import { MaterialModule } from '../material.module';
 import { CompareChartComponent } from './charts/compare-chart/compare-chart.component';
 import { ColumnChartComponent } from './charts/column-chart/column-chart.component';
+import { PieChartComponent } from './charts/pie-chart/pie-chart.component';
 @NgModule({
   declarations: [PlayersComponent,
     SearchBarComponent,
     SinglePlayerComponent,
-    ManagersComponent, MatchesComponent, TableValueComponent, LeaguesComponent, CompareChartComponent, ColumnChartComponent],
+    ManagersComponent, MatchesComponent, TableValueComponent,
+    LeaguesComponent, CompareChartComponent, ColumnChartComponent, PieChartComponent],
   imports: [
     CommonModule,
     MainPageRoutingModule,
