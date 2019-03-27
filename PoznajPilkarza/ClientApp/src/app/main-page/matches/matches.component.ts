@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, HostListener } from '@angular/core';
+import { Component, OnInit, ViewChild, HostListener, Output, EventEmitter } from '@angular/core';
 import { Match } from 'src/app/models/match';
 import { League } from 'src/app/models/league';
 import { FormControl } from '@angular/forms';
@@ -9,6 +9,7 @@ import { LeagueService } from '../league.service';
 import { IMatchDetails } from 'src/app/models/matchDetails';
 import { DataSource } from '@angular/cdk/table';
 import { async } from '@angular/core/testing';
+import { ITeam, NameTeam } from 'src/app/models/team';
 
 
 
@@ -30,14 +31,16 @@ export class MatchesComponent implements OnInit {
   nameChartGoals = 'Gole';
   nameChartDiffGoals = 'Roznica goli';
   nameChartPointProgress = 'ProgressPoint';
-  tittleGoalChart = 'Zdobyte bramki';
-  tittleDiffChart = 'Roznica bramek';
+  tittleGoalChart = 'Zdobyte bramki przez poszczególne kluby w lidze';
+  tittleDiffChart = 'Rożnica bramek przez poszczególne kluby w lidze';
   advancedStatistic = false;
   match: Match[];
   matchDetails: IMatchDetails[];
+
   leagues: League[] = [new League('LaLiga', 'Spain')];
   stateCtrl = new FormControl();
-
+  teamsName: string[] = ['Barcelona'];
+  selectedTeam = this.teamsName[0];
   selectedLeague = this.leagues[0].name.concat('-').concat(this.leagues[0].nationalityName);
   isLoading = true;
 
@@ -82,20 +85,27 @@ export class MatchesComponent implements OnInit {
   }
 
 
-
   compareTwoTeamsChart() {
     this.dataChartProgressPoint = [];
-    console.log(this.dataSource.data);
-    const teamA = 'Barcelona';
+    // console.log(this.dataSource.data);
+    const teamA = this.selectedTeam;
+    console.log(this.isLoading);
     const teamB = 'Real Madrid';
-    const teamPointA = this.TeamPoints(teamA);
-    const teamPointB = this.TeamPoints(teamB);
-    this.dataChartProgressPoint = teamPointA;
-    this.dataChartSecondSecondTeam = teamPointB;
+
+    const teamPointA = this.TeamPoints(teamA).then((name) => {
+      this.dataChartProgressPoint = name;
+    });
+    const teamPointB = this.TeamPoints(teamB).then((name) => {
+      this.dataChartSecondSecondTeam = name;
+    });
+    // const teamPointB = this.TeamPoints(teamB);
+    // this.dataChartProgressPoint = teamPointA;
+    // this.dataChartSecondSecondTeam = teamPointB;
+
   }
 
 
-  private TeamPoints(teamA: string) {
+  private async TeamPoints(teamA: string) {
     const teamPoint = [];
     let teamAPoint = 0;
     let round = 0;
@@ -137,6 +147,7 @@ export class MatchesComponent implements OnInit {
     const listName = list.filter(function (elem, index, self) {
       return index === self.indexOf(elem);
     });
+    this.teamsName = listName;
     for (const teamName of listName) {
       let goals = 0;
       let lostGoals = 0;

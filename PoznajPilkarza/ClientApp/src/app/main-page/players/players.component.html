@@ -21,7 +21,8 @@
         <li class="endpoint-item">/api/players/krzysztof-piątek</li>
       </ul>
     </div>
-    <p class="text-api">Przykładowo "poznajpilkarza.pl/api/players", który wyświetli wszystkich piłkarzy z bazy strony.</p>
+    <p class="text-api">Przykładowo "poznajpilkarza.pl/api/players", który wyświetli wszystkich piłkarzy z bazy strony.
+    </p>
   </div>
   <div class="main-block">
 
@@ -37,7 +38,8 @@
       </mat-form-field>
       <mat-form-field>
         <mat-select [(ngModel)]="selectedLeague" placeholder="Liga" (selectionChange)="getNewPlayers()">
-          <mat-option *ngFor="let league of dataSourceLeagues.data;" [value]="league.name + '-' +league.nationalityName">
+          <mat-option *ngFor="let league of dataSourceLeagues.data;"
+            [value]="league.name + '-' +league.nationalityName">
             {{league.name + '-' +league.nationalityName}}
           </mat-option>
         </mat-select>
@@ -46,5 +48,15 @@
     <app-table-value [displayedColumns]='displayedColumns' [nameColumns]='nameColumns' [loading]="isLoading"
       [dataSource]="dataSource">
     </app-table-value>
+
+    <div class="chart">
+      <app-pie-chart class="chart" *ngIf="!isLoading" [dataChart]='positionChart' [nameChart]='positionChartName'
+        [tittleChart]="tittlePosition"></app-pie-chart>
+    </div>
+    <div class="chart">
+      <app-column-chart class="chart" *ngIf="!isLoading" [dataChart]='dateYearChart' [nameChart]='dateChartName'
+        [tittleChart]="tittleDate"></app-column-chart>
+    </div>
   </div>
+
 </div>

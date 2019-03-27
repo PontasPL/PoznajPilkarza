@@ -16,6 +16,9 @@ import { LeagueService } from '../league.service';
 })
 export class ManagersComponent implements OnInit {
   managers: Manager[];
+  countryDataCharts: any[];
+  countryManagerChart = 'countryManagerChart';
+  tittleCountry = 'Ilość trenerów danego państwa w lidze';
   countries: INationality[] = [{ name: 'Poland' }];
   leagues: League[] = [new League('Ekstraklasa', 'Poland')];
   stateCtrl = new FormControl();
@@ -56,7 +59,7 @@ export class ManagersComponent implements OnInit {
     this.managerService.getPlayersWithLeagueAndCountry(this.selectedLeague, this.selectedCountry).subscribe(response => {
       this.isLoading = false;
       this.dataSource.data = response as Manager[];
-
+      this.GetCountryForChart();
     });
   }
 
@@ -64,31 +67,60 @@ export class ManagersComponent implements OnInit {
     this.dataSource.paginator.nextPage();
     this.dataSource.paginator.previousPage();
   }
+
+  GetCountryForChart() {
+    this.countryDataCharts = [];
+    const dataCountry = [];
+    const regex = /\d{4}/g;
+    for (const manager of this.dataSource.data) {
+      // console.log(player.dateOfBirth.toString().match(regex)[0]);
+      if (manager.nationalityName !== 'No data') {
+        dataCountry.push(manager.nationalityName);
+      }
+    }
+    const distinctCountry = dataCountry.filter(function (elem, index, self) {
+      return index === self.indexOf(elem);
+    });
+    for (const country of distinctCountry) {
+      let countryCounter = 0;
+      for (const player of this.dataSource.data) {
+        if (country === player.nationalityName) {
+          countryCounter++;
+        }
+      }
+      this.countryDataCharts.push({ y: countryCounter, name: country });
+    }
+  }
+
   getNewManagers() {
     this.isLoading = true;
     if (this.selectedLeague === 'Brak-Brak' && this.selectedCountry === 'Brak') {
       this.managerService.getPlayers().subscribe(response => {
-        this.isLoading = false;
         this.dataSource.data = response as Manager[];
+        this.GetCountryForChart();
+        this.isLoading = false;
       });
     } else {
       if (this.selectedLeague === 'Brak-Brak') {
         this.managerService.getPlayersWithCountry(this.selectedCountry).subscribe(response => {
-          this.isLoading = false;
           this.dataSource.data = response as Manager[];
+          this.GetCountryForChart();
+          this.isLoading = false;
         });
 
       } else {
         if (this.selectedCountry === 'Brak') {
           this.managerService.getPlayersWithLeague(this.selectedLeague).subscribe(response => {
-            this.isLoading = false;
             this.dataSource.data = response as Manager[];
+            this.GetCountryForChart();
+            this.isLoading = false;
           });
         } else {
           this.managerService.getPlayersWithLeagueAndCountry(this.selectedLeague, this.selectedCountry)
             .subscribe(response => {
-              this.isLoading = false;
               this.dataSource.data = response as Manager[];
+              this.GetCountryForChart();
+              this.isLoading = false;
             });
         }
       }

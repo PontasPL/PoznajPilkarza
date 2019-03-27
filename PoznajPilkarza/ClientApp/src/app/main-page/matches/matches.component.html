@@ -79,8 +79,16 @@
         [tittleChart]='tittleDiffChart'>
       </app-column-chart>
     </div>
-    <div class="chart">
-      <app-compare-chart class="chart" *ngIf="!isLoading" [dataChart]='dataChartProgressPoint'
+    <mat-form-field>
+
+      <mat-select [(ngModel)]="selectedTeam" placeholder="Zespół" (selectionChange)="compareTwoTeamsChart()">
+        <mat-option *ngFor="let team of teamsName;" [value]="team">
+          {{team}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <div *ngIf="!isLoading" class="chart">
+      <app-compare-chart class="chart" [dataChart]='dataChartProgressPoint'
         [dataChartSecondTeam]="dataChartSecondSecondTeam"></app-compare-chart>
     </div>
   </div>

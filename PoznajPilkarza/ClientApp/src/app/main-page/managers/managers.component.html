@@ -37,7 +37,8 @@
       </mat-form-field>
       <mat-form-field>
         <mat-select [(ngModel)]="selectedLeague" placeholder="Liga" (selectionChange)="getNewManagers()">
-          <mat-option *ngFor="let league of dataSourceLeagues.data;" [value]="league.name + '-' +league.nationalityName">
+          <mat-option *ngFor="let league of dataSourceLeagues.data;"
+            [value]="league.name + '-' +league.nationalityName">
             {{league.name + '-' +league.nationalityName}}
           </mat-option>
         </mat-select>
@@ -47,5 +48,10 @@
     <app-table-value [displayedColumns]='displayedColumns' [nameColumns]='nameColumns' [loading]="isLoading"
       [dataSource]="dataSource">
     </app-table-value>
+
+    <div class="chart">
+      <app-pie-chart class="chart" *ngIf="!isLoading" [dataChart]='countryDataCharts' [nameChart]='countryManagerChart'
+        [tittleChart]="tittleCountry"></app-pie-chart>
+    </div>
   </div>
 </div>
