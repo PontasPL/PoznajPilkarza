@@ -20,7 +20,8 @@ export class ColumnChartComponent implements AfterViewInit {
       animationEnabled: true,
       exportEnabled: true,
       title: {
-        text: this.tittleChart
+        text: this.tittleChart,
+        fontSize: 25
       },
       axisX: {
         labelFontSize: 10

@@ -17,11 +17,12 @@ export class CompareChartComponent implements AfterViewInit {
   ngAfterViewInit() {
     console.log(this.dataChart);
     const chart = new CanvasJS.Chart('chartContainer', {
-      theme: 'light2', // "light1", "light2", "dark1", "dark2"
+      theme: 'dark2', // "light1", "light2", "dark1", "dark2"
       animationEnabled: true,
       exportEnabled: true,
       title: {
-        text: 'FC Barcelona 2019'
+        text: 'FC Barcelona 2019',
+        fontSize: 25
       },
       axisX: {
         interval: 1,
