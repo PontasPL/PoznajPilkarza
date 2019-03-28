@@ -55,7 +55,6 @@ export class ManagersComponent implements OnInit {
       response.push({ name: 'Brak', nationalityName: 'Brak' });
       this.dataSourceLeagues.data = response as League[];
     });
-    console.log(this.dataSourceLeagues.data);
     this.managerService.getPlayersWithLeagueAndCountry(this.selectedLeague, this.selectedCountry).subscribe(response => {
       this.isLoading = false;
       this.dataSource.data = response as Manager[];
@@ -73,7 +72,6 @@ export class ManagersComponent implements OnInit {
     const dataCountry = [];
     const regex = /\d{4}/g;
     for (const manager of this.dataSource.data) {
-      // console.log(player.dateOfBirth.toString().match(regex)[0]);
       if (manager.nationalityName !== 'No data') {
         dataCountry.push(manager.nationalityName);
       }

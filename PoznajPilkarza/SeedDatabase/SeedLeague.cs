@@ -103,14 +103,7 @@ namespace PoznajPilkarza.SeedDatabase
             {
                 var wiki = SeedWikipedia.GetWiki(nameLeagues[i]).Result;
                 var idNationality = FixingCountry(context, linkLeagues[i]);
-                //leagues.Add(new League
-                //{
-                //   Name = nameLeagues[i],
-                //   NationalityId = idNationality,
-                //   SeasonYear = "2018/2019",
-                //   Description = wiki.Description,
-                //   WikiLink = wiki.Link
-                //});
+    
                 var selectedLeague = (new League
                 {
                     Name = nameLeagues[i],
@@ -123,7 +116,6 @@ namespace PoznajPilkarza.SeedDatabase
                 context.SaveChanges();
                 TeamInLeague(context, html + linkToTeams[i], selectedLeague);
 
-                //i = linkLeagues.Count;
             }
         }
 
@@ -140,7 +132,6 @@ namespace PoznajPilkarza.SeedDatabase
 
         public static void TeamInLeague(PlayerContext context, string leagueHtml, League selectedLeague)
         {
-            //var html = $@"http://www.footballsquads.co.uk/eng/{leagueHtml}";
 
             HtmlWeb web = new HtmlWeb { AutoDetectEncoding = false, OverrideEncoding = Encoding.GetEncoding("iso-8859-1") };
             var htmldoc = web.Load(leagueHtml);
@@ -164,7 +155,6 @@ namespace PoznajPilkarza.SeedDatabase
 
         private static void PlayersInTeam(PlayerContext context, string html, string teamName, League selectedLeague)
         {
-            //var html = @"http://www.footballsquads.co.uk/eng/2018-2019/engprem/arsenal.htm";
             HtmlWeb web = new HtmlWeb
             {
                 AutoDetectEncoding = false, OverrideEncoding = Encoding.GetEncoding("iso-8859-1")

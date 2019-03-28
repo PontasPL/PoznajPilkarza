@@ -92,11 +92,12 @@ namespace PoznajPilkarza
                     .ForMember(dest => dest.PositionName, op => op.MapFrom(src => src.Position.ShortCode))
                     .ForMember(dest => dest.TeamName, op => op.MapFrom(src => src.Team.Name))
                     .ForMember(dest=>dest.DateOfBirth, op=>op.MapFrom(src=>src.DateOfBirth.ToString("MM/dd/yyyy")));
-                //.ForMember(dest => dest.nameLeague, op => op.MapFrom(src => src.Team.League.Name));
+
                 cfg.CreateMap<Manager, ManagerDto>(MemberList.Destination);
                 cfg.CreateMap<Player, PlayerNameSurnameDto>(MemberList.Destination);
                 cfg.CreateMap<Nationality, NationalityNameDto>(MemberList.Destination);
                 cfg.CreateMap<League, LeagueNameNationalityDto>(MemberList.Destination);
+
                 cfg.CreateMap<Player, PlayerExtendedDto>(MemberList.Destination)
                     .ForMember(dest => dest.DateOfBirth, op => op.MapFrom(src => src.DateOfBirth.ToString("d")))
                     .ForMember(dest => dest.PositionName, op => op.MapFrom(src => src.Position.PositionName))
@@ -108,6 +109,7 @@ namespace PoznajPilkarza
                         op => op.MapFrom(src => src.Nationality.PngImage))
                     .ForMember(dest => dest.FlagNationalLeague,
                         op => op.MapFrom(src => src.Team.League.Nationality.PngImage));
+
                 cfg.CreateMap<Match, MatchDto>(MemberList.Destination)
                     .ForMember(dest=>dest.MatchDay,op=>op.MapFrom(src=>src.MatchDay.ToString("MM/dd/yyyy")));
 
@@ -145,18 +147,18 @@ namespace PoznajPilkarza
                     template: "{controller}/{action=Index}/{id?}");
             });
 
-            //app.UseSpa(spa =>
-            //{
-            //    // To learn more about options for serving an Angular SPA from ASP.NET Core,
-            //    // see https://go.microsoft.com/fwlink/?linkid=864501
+            app.UseSpa(spa =>
+            {
+                // To learn more about options for serving an Angular SPA from ASP.NET Core,
+                // see https://go.microsoft.com/fwlink/?linkid=864501
 
-            //    spa.Options.SourcePath = "ClientApp";
+                spa.Options.SourcePath = "ClientApp";
 
-            //    if (env.IsDevelopment())
-            //    {
-            //        spa.UseAngularCliServer(npmScript: "start");
-            //    }
-            //});
+                if (env.IsDevelopment())
+                {
+                    spa.UseAngularCliServer(npmScript: "start");
+                }
+            });
         }
     }
 }

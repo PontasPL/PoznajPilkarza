@@ -39,23 +39,13 @@ export class SearchBarComponent implements OnInit {
   }
 
 
-  // private cleanString(value: string): string {
-
-
-  // }
 
   private _filterStates(value: string): IPlayer[] {
 
-    console.log(removeDiacritics.remove(value));
-    // let test;
-
-
-    // console.log(value); // OK
     if (value && value.length > this.minLength) {
 
 
       const filterValue = value.toLowerCase();
-      // this.dataz;
       return this.dataSource.data.filter(player => removeDiacritics.remove(player.name.toLowerCase()).indexOf(filterValue) === 0 ||
         removeDiacritics.remove(player.surname.toLowerCase()).indexOf(filterValue) === 0 ||
         removeDiacritics.remove(player.name.toLowerCase()).concat(' ')

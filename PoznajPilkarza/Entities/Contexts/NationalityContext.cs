@@ -19,12 +19,7 @@ namespace PoznajPilkarza.Entities.Contexts
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //modelBuilder.Entity<Team>().Ignore(p=>p.AwayTeams);
             modelBuilder.Ignore<Team>();
-            //modelBuilder.Entity<Team>().HasMany(r => r.HomeTeams).WithOne(p => p.HomeTeam)
-            //    .HasForeignKey(p => p.HomeTeamId);
-            //modelBuilder.Entity<Team>().HasMany(r => r.AwayTeams).WithOne(p => p.AwayTeam)
-            //    .HasForeignKey(p => p.AwayTeamId);
         }
 
         public NationalityContext(DbContextOptions<NationalityContext> options) :base(options)

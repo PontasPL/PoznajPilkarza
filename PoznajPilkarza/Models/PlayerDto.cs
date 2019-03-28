@@ -22,7 +22,6 @@ namespace PoznajPilkarza.Models
 
         public string TeamName { get; set; }
 
-        //public string nameLeague { get; set; }
 
 
     }

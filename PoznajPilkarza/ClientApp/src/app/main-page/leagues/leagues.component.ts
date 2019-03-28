@@ -15,21 +15,20 @@ export class LeaguesComponent implements OnInit {
 
   constructor(private teamService: TeamsService, private leagueService: LeagueService) { }
 
+  isLoading = true;
   advancedStatistic = false;
   team: ITeam[];
   leagues: League[] = [new League('LaLiga', 'Spain')];
-  // stateCtrl = new FormControl();
-
+  dataSource = new MatTableDataSource(this.team);
+  dataSourceLeagues = new MatTableDataSource(this.leagues);
   selectedLeague = this.leagues[0].name.concat('-').concat(this.leagues[0].nationalityName);
-  isLoading = true;
 
   displayedColumns: string[] = ['name', 'formed', 'nameLeague',
     'nameStadium', 'capacityStadium'];
   nameColumns: string[] = ['Nazwa', 'Rok Założenia', 'Nazwa Ligi',
     'Nazwa Stadionu', 'Pojemność stadionu'];
 
-  dataSource = new MatTableDataSource(this.team);
-  dataSourceLeagues = new MatTableDataSource(this.leagues);
+
 
   @HostListener('window:resize') onResize() {
     this.dataSource.paginator.nextPage();
@@ -40,7 +39,6 @@ export class LeaguesComponent implements OnInit {
       response.push({ name: 'Brak', nationalityName: 'Brak' });
       this.dataSourceLeagues.data = response as League[];
     });
-    console.log(this.dataSourceLeagues.data);
     this.teamService.GetTeamInLeague(this.selectedLeague).subscribe(response => {
       this.isLoading = false;
       this.dataSource.data = response as ITeam[];

@@ -6,7 +6,6 @@ import { SinglePlayerComponent } from './single-player/single-player.component';
 
 const routes: Routes = [
   { path: 'search', component: PlayersComponent },
-  // { path: 'players/:name', component: SinglePlayerComponent }
 ];
 
 

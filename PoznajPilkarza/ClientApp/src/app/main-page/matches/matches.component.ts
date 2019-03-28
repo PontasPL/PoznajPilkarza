@@ -75,7 +75,6 @@ export class MatchesComponent implements OnInit {
       response.push({ name: 'Brak', nationalityName: 'Brak' });
       this.dataSourceLeagues.data = response as League[];
     });
-    console.log(this.dataSourceLeagues.data);
     this.matchService.getMatchesWithLeague(this.selectedLeague).subscribe(response => {
       this.isLoading = false;
       this.dataSource.data = response as Match[];
@@ -87,9 +86,7 @@ export class MatchesComponent implements OnInit {
 
   compareTwoTeamsChart() {
     this.dataChartProgressPoint = [];
-    // console.log(this.dataSource.data);
     const teamA = this.selectedTeam;
-    console.log(this.isLoading);
     const teamB = 'Real Madrid';
 
     const teamPointA = this.TeamPoints(teamA).then((name) => {
@@ -98,10 +95,6 @@ export class MatchesComponent implements OnInit {
     const teamPointB = this.TeamPoints(teamB).then((name) => {
       this.dataChartSecondSecondTeam = name;
     });
-    // const teamPointB = this.TeamPoints(teamB);
-    // this.dataChartProgressPoint = teamPointA;
-    // this.dataChartSecondSecondTeam = teamPointB;
-
   }
 
 
@@ -131,7 +124,6 @@ export class MatchesComponent implements OnInit {
         teamPoint.push({ x: round, y: teamAPoint, indexLabel: 'loss', markerType: 'cross', markerColor: 'tomato' });
       }
     }
-    console.log(teamAPoint);
     return teamPoint;
   }
 
@@ -167,13 +159,11 @@ export class MatchesComponent implements OnInit {
       const diff = goals - lostGoals;
       this.dataChart.push({ y: goals, label: teamName });
       this.dataChartDiff.push({ y: diff, label: teamName });
-      // this.dataChartAway.push({ y: awayGoals, label: teamName });
     }
     this.dataChart.sort((a, b) => b.y - a.y);
   }
 
   getNewMatches() {
-    console.log(this.advancedStatistic);
     this.isLoading = true;
     if (this.selectedLeague === 'Brak-Brak') {
       this.matchService.getMatches().subscribe(response => {
@@ -201,7 +191,6 @@ export class MatchesComponent implements OnInit {
     }
   }
   getNewMatchesWithDetails() {
-    console.log(this.selectedLeague);
     this.isLoading = true;
     if (this.selectedLeague === 'Brak-Brak') {
       this.matchService.getMatchesWithDetails().subscribe(response => {

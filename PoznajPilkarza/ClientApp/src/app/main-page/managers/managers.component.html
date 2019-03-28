@@ -24,10 +24,7 @@
       strony.</p>
   </div>
   <div class="main-block">
-
-
     <div class="table-filters">
-
       <mat-form-field>
         <mat-select [(ngModel)]="selectedCountry" placeholder="Państwo" (selectionChange)="getNewManagers()">
           <mat-option *ngFor="let country of dataSourceCountries.data" [value]="country.name">

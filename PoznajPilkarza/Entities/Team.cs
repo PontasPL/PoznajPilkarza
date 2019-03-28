@@ -28,11 +28,8 @@ namespace PoznajPilkarza.Enitites
         public int StadiumId { get; set; }
         public virtual Stadium Stadium { get; set; }
         public virtual ICollection<Player> Players { get; set; }
-        //[NotMapped]
-        //[NotMapped]
-        //[InverseProperty("HomeTeam")]
         public virtual ICollection<Match> HomeTeams { get; set; }
-        //[InverseProperty("AwayTeam")]
+
         public virtual ICollection<Match> AwayTeams { get; set; }
 
     }

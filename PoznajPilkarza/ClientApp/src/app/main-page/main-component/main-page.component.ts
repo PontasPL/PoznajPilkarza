@@ -26,7 +26,6 @@ export class MainPageComponent implements OnInit {
   ngOnInit() {
     this.subscription = this.navbarSharedService.navItem$
       .subscribe(item => this.hamburgerOpen = item);
-    console.log(this.hamburgerOpen);
   }
 
 }

@@ -24,7 +24,6 @@ export class PieChartComponent implements AfterViewInit {
       data: [{
         type: 'pie',
         showInLegend: true,
-        // toolTipContent: '<b>{name}</b>: (#percent%)',
         indexLabel: '{name} - #percent%',
         dataPoints: this.dataChart
       }]

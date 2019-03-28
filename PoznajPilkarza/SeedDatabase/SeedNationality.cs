@@ -36,7 +36,6 @@ namespace PoznajPilkarza.SeedDatabase
 
             var linkCoutries = new List<Nationality>();
             var fifaCodes = AddFifaCodes();
-            //long population = GetPopulation("Brazil").Result;
             for (int i = 5; i < nodesCountries.Count - 1; i++)
             {
 
@@ -47,7 +46,6 @@ namespace PoznajPilkarza.SeedDatabase
                 {
                     
                     Name = Regex.Replace(nodesCountries[i].InnerText, $"\\r\\n\\s", "").Trim(),
-                    //TotalPopulation = GetPopulation(Regex.Replace(nodesCountries[i].InnerText, $"\\r\\n\\s", "").Trim()).Result,
                     CodeCountryTwoChars = Regex.Replace(nodesCountries[++i].InnerText, $"\\r\\n\\s", "").Trim(),
                     PngImage = GetImageAsBase64Url(Regex.Replace(nodesCountries[i].InnerText, $"\\r\\n\\s", "").Trim()).Result,
                     CodeCountryThreeChars = nodesCountries[++i].InnerText,

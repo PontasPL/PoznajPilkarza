@@ -24,7 +24,6 @@ export class PlayersService {
     return this.http.get<IPlayer[]>(this.concatApiUrl);
   }
   getPlayers(): Observable<IPlayer[]> {
-    // this.apiUrl = 'http://localhost:1234/api/players/';
     return this.http.get<IPlayer[]>(this.apiUrl);
   }
   getPlayersWithLeague(league: string): Observable<IPlayer[]> {
@@ -36,7 +35,6 @@ export class PlayersService {
     return this.http.get<IPlayer[]>(this.concatApiUrl);
   }
   getPlayersWithCountry(country: string) {
-    console.log(this.apiUrl);
     this.concatApiUrl = this.apiUrl + `country/${country}`;
     return this.http.get<IPlayer[]>(this.concatApiUrl);
   }

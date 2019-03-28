@@ -14,7 +14,6 @@ export class ColumnChartComponent implements AfterViewInit {
   @Input() tittleChart: string;
   data = [];
   ngAfterViewInit() {
-    console.log(this.nameChart);
     const chart = new CanvasJS.Chart(this.nameChart, {
       theme: 'dark2',
       animationEnabled: true,
@@ -33,8 +32,6 @@ export class ColumnChartComponent implements AfterViewInit {
         indexLabelOrientation: 'horizontal',
         indexLabelFontColor: 'black',
         indexLabelFontStyle: 'bold',
-
-        // toolTipContent: '<b>{label}:</b> {y}',
         startAngle: 270,
         dataPoints: this.dataChart
       }]

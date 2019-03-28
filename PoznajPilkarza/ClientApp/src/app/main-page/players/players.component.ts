@@ -53,7 +53,6 @@ export class PlayersComponent implements OnInit {
       response.push({ name: 'Brak', nationalityName: 'Brak' });
       this.dataSourceLeagues.data = response as League[];
     });
-    console.log(this.dataSourceLeagues.data);
     this.playerService.getPlayersWithLeagueAndCountry(this.selectedLeague, this.selectedCountry).subscribe(response => {
       this.isLoading = false;
       this.dataSource.data = response as IPlayer[];
@@ -70,13 +69,11 @@ export class PlayersComponent implements OnInit {
     const dataYears = [];
     const regex = /\d{4}/g;
     for (const player of this.dataSource.data) {
-      // console.log(player.dateOfBirth.toString().match(regex)[0]);
       dataYears.push(player.dateOfBirth.toString().match(regex)[0]);
     }
     const distinctYear = dataYears.filter(function (elem, index, self) {
       return index === self.indexOf(elem);
     });
-    // console.log(distinctYear.sort());
     distinctYear.sort();
     for (const year of distinctYear) {
       let yearCounter = 0;

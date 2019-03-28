@@ -23,8 +23,6 @@
       strony.</p>
   </div>
   <div class="main-block">
-
-
     <div class="table-filters">
       <mat-form-field>
         <mat-select [(ngModel)]="selectedLeague" placeholder="Liga" (selectionChange)="GetNewTeams()">
@@ -35,7 +33,6 @@
         </mat-select>
       </mat-form-field>
     </div>
-
     <app-table-value [displayedColumns]='displayedColumns' [nameColumns]='nameColumns' [loading]="isLoading"
       [dataSource]="dataSource">
     </app-table-value>

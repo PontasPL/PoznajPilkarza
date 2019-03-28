@@ -112,11 +112,7 @@ namespace PoznajPilkarza.Entities.Contexts
                 .HasForeignKey(p => p.HomeTeamId);
             modelBuilder.Entity<Team>().HasMany(r => r.AwayTeams).WithOne(p => p.AwayTeam)
                 .HasForeignKey(p => p.AwayTeamId);
-            //modelBuilder.Entity<Team>().Property(p=>p.HomeTeams).
-            //modelBuilder.Entity<Match>().HasOne<Team>(s => s.HomeTeam).WithOne(s => s.HomeMatch)
-            //    .HasForeignKey<Match>(sa => sa.HomeTeamId).IsRequired().OnDelete(DeleteBehavior.Restrict);
-            //modelBuilder.Entity<Match>().HasOne<Team>(s => s.AwayTeam).WithOne(s => s.AwayMatch)
-            //    .HasForeignKey<Match>(sa => sa.AwayTeamId).IsRequired().OnDelete(DeleteBehavior.Restrict);
+           
             modelBuilder.Entity<Match>().HasOne<MatchDetails>(s => s.MatchDetails).WithOne(s => s.Match)
                 .HasForeignKey<Match>(sa => sa.MatchDetailsId).IsRequired().OnDelete(DeleteBehavior.Restrict);
             modelBuilder.Entity<Match>().Property(b => b.FTHomeGoals).IsRequired();

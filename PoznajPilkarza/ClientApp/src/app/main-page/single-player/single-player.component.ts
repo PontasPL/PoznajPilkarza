@@ -17,13 +17,11 @@ export class SinglePlayerComponent implements OnInit {
   loading = true;
 
   ngOnInit() {
-    console.log('test');
     this.activatedRoute.params.subscribe(params => {
       this.playerService.getPlayer(params['player']).subscribe(response => {
         this.player = response as IPlayer;
         this.loading = false;
       });
-      // console.log('TEST:' + this.playerNameFromRoute);
     });
 
   }

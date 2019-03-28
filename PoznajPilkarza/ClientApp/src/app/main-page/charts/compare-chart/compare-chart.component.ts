@@ -12,10 +12,8 @@ export class CompareChartComponent implements AfterViewInit {
 
   @Input() dataChart: [{}];
   @Input() dataChartSecondTeam: [{}];
-  // @Input() nameChart: string;
   data = [];
   ngAfterViewInit() {
-    console.log(this.dataChart);
     const chart = new CanvasJS.Chart('chartContainer', {
       theme: 'dark2', // "light1", "light2", "dark1", "dark2"
       animationEnabled: true,

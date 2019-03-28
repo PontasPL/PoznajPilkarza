@@ -17,7 +17,9 @@ export class TableValueComponent implements OnInit, AfterContentInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   bigTable = false;
   player: Player;
+
   constructor() { }
+
   ngOnInit() {
     if (this.nameColumns.length > 10) {
       this.bigTable = true;
