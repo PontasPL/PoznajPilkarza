@@ -10,6 +10,7 @@ import { IMatchDetails } from 'src/app/models/matchDetails';
 import { DataSource } from '@angular/cdk/table';
 import { async } from '@angular/core/testing';
 import { ITeam, NameTeam } from 'src/app/models/team';
+import { SendTeamService } from '../send-team.service';
 
 
 
@@ -21,7 +22,7 @@ import { ITeam, NameTeam } from 'src/app/models/team';
 export class MatchesComponent implements OnInit {
 
 
-  constructor(private matchService: MatchesService, private leagueService: LeagueService) { }
+  constructor(private matchService: MatchesService, private leagueService: LeagueService, private sendTeam:SendTeamService) { }
   dataChart = [];
   dataChartDiff = [];
   dataChartAway = [];
@@ -39,8 +40,9 @@ export class MatchesComponent implements OnInit {
 
   leagues: League[] = [new League('LaLiga', 'Spain')];
   stateCtrl = new FormControl();
-  teamsName: string[] = ['Barcelona'];
+  teamsName: string[] = ['Barcelona', 'Real Madrid'];
   selectedTeam = this.teamsName[0];
+  selectedTeam2 = this.teamsName[1];
   selectedLeague = this.leagues[0].name.concat('-').concat(this.leagues[0].nationalityName);
   isLoading = true;
 
@@ -87,13 +89,17 @@ export class MatchesComponent implements OnInit {
   compareTwoTeamsChart() {
     this.dataChartProgressPoint = [];
     const teamA = this.selectedTeam;
-    const teamB = 'Real Madrid';
+    const teamB = this.selectedTeam2;
 
+    this.sendTeam.changeFirstName(teamA);
+    this.sendTeam.changeSecondName(teamB);
     const teamPointA = this.TeamPoints(teamA).then((name) => {
       this.dataChartProgressPoint = name;
+      this.sendTeam.changeFirstTeam(name);
     });
     const teamPointB = this.TeamPoints(teamB).then((name) => {
       this.dataChartSecondSecondTeam = name;
+      this.sendTeam.changeSecondTeam(name);
     });
   }
 

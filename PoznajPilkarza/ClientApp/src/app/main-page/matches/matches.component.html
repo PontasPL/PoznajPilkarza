@@ -87,6 +87,14 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
+    <mat-form-field>
+
+      <mat-select [(ngModel)]="selectedTeam2" placeholder="Zespół2" (selectionChange)="compareTwoTeamsChart()">
+        <mat-option *ngFor="let team2 of teamsName;" [value]="team2">
+          {{team2}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
     <div *ngIf="!isLoading" class="chart">
       <app-compare-chart class="chart" [dataChart]='dataChartProgressPoint'
         [dataChartSecondTeam]="dataChartSecondSecondTeam"></app-compare-chart>
